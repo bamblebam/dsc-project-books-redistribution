@@ -1,3 +1,69 @@
-.body{
+$background_white: #ffffff;
+$font_color:#444444;
+$input_color:#f6f6f6;
+$input_text:#333333;
+$icon_color:#acacac;
+
+.main_container{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $background_white;
+    overflow: hidden;
 }
 
+.form_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 2.2rem;
+    color: $font_color;
+    margin-bottom: 10px;
+}
+
+.input_field{
+    width: 100%;
+    max-width: 400px;
+    height: 55px;
+    background-color: $input_color;
+    margin: 10px 0;
+    padding: 0 0.5rem;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    border-radius: 55px;
+
+    .FontAwesomeIcon{
+        text-align: center;
+        line-height: 55px;
+        color: $icon_color;
+        font-size: 1.1rem;
+    }
+//the icon doesnt align so a wrapper
+    .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input{
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 1;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: $input_text;
+    }
+}
