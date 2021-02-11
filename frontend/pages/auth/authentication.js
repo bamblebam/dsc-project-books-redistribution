@@ -14,7 +14,7 @@ export default function authentication() {
                 <div className={styles.main_container}>
                     <div className={styles.form_container}>
                         <div className={styles.signin_signup}>
-                            <form action="" method="POST" className={styles.signin_form, styles.form}>
+                            <form action="" method="POST" className={styles.form + " " + styles.signin_form}>
                                 <h2 className={styles.title}>Sign In</h2>
                                 <div className={styles.input_field}>
                                     <div className={styles.icon}>
@@ -28,7 +28,7 @@ export default function authentication() {
                                     </div>
                                     <input type="text" name="signin_password" className={styles.input} placeholder="Password" />
                                 </div>
-                                <button type="submit" className={styles.btn, styles.solid}>Sign In</button>
+                                <button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
                                 <p className={styles.social_text}>Or sign in with</p>
                                 <div className={styles.social_media}>
                                     <a href="" className={styles.social_icon}>

@@ -3,6 +3,10 @@ $font_color:#444444;
 $input_color:#f6f6f6;
 $input_text:#333333;
 $icon_color:#acacac;
+$input_placeholder:#aaaaaa;
+$primary:#17aefd;
+$primary_dark:#1466e3;
+
 
 .main_container{
     position: relative;
@@ -65,5 +69,28 @@ $icon_color:#acacac;
         font-weight: 600;
         font-size: 1.1rem;
         color: $input_text;
+
+        &::placeholder{
+            color: $input_placeholder;
+        }
+    }
+}
+
+.btn{
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: $primary;
+    color: $background_white;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: 0.5s;
+
+    &:hover{
+        background-color:$primary_dark ;
     }
 }

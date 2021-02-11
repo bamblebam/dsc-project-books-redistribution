@@ -78,4 +78,40 @@
   font-size: 1.1rem;
   color: #333333;
 }
+
+.input_field .input::-webkit-input-placeholder {
+  color: #aaaaaa;
+}
+
+.input_field .input:-ms-input-placeholder {
+  color: #aaaaaa;
+}
+
+.input_field .input::-ms-input-placeholder {
+  color: #aaaaaa;
+}
+
+.input_field .input::placeholder {
+  color: #aaaaaa;
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: #17aefd;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: #1466e3;
+}
 /*# sourceMappingURL=authentication.module.css.map */
