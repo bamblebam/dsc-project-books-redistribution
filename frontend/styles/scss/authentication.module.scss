@@ -24,11 +24,34 @@ $primary_dark:#1466e3;
     left: 0;
 }
 
+.signin_signup{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 .form{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0 5rem;
+    overflow: hidden;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.form.signin_form{
+    z-index: 2;
+}
+
+.form.signin_form{
+    z-index: 1;
+    opacity: 0;
 }
 
 .title{
