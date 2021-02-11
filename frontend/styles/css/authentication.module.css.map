@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAA;EACD,gBAAgB,EAAE,IAAI;CACzB",
+    "mappings": "",
     "sources": [
         "../scss/authentication.module.scss"
     ],
