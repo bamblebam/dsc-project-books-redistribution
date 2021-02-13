@@ -80,6 +80,7 @@ $primary_dark:#1466e3;
 .input_field{
     width: 100%;
     max-width: 400px;
+    min-width: 250px;
     height: 55px;
     background-color: $input_color;
     margin: 10px 0;
@@ -250,5 +251,49 @@ $primary_dark:#1466e3;
     .form.signup_form{
         z-index: 2;
         opacity: 1;
+    }
+}
+
+@media (max-width:870px){
+    .main_container{
+        min-height: 800px;
+        height: 100vh;
+
+        &::before{
+            display: none;
+        }
+    }
+    .signin_signup{
+        width: 100%;
+        left: 0;
+        top: 95%;
+        transform: translate(0,-100%);
+    }
+    .panel_container{
+        background-color: green;
+        z-index: 10;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+    }
+
+    .panel{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .image{
+        width: 200px;
+    }
+
+    .left_panel{
+        grid-row: 1 / 2;
+    }
+
+    .right_panel{
+        grid-row: 3 / 4;
+        .content,.image{
+            transform: translateX(0);
+        }
     }
 }

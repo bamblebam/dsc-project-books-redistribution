@@ -90,6 +90,7 @@
 .input_field {
   width: 100%;
   max-width: 400px;
+  min-width: 250px;
   height: 55px;
   background-color: #f6f6f6;
   margin: 10px 0;
@@ -311,5 +312,58 @@
 .main_container.signup_mode .form.signup_form {
   z-index: 2;
   opacity: 1;
+}
+
+@media (max-width: 870px) {
+  .main_container {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .main_container::before {
+    display: none;
+  }
+  .signin_signup {
+    width: 100%;
+    left: 0;
+    top: 95%;
+    -webkit-transform: translate(0, -100%);
+            transform: translate(0, -100%);
+  }
+  .panel_container {
+    background-color: green;
+    z-index: 10;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 2fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+  }
+  .panel {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .image {
+    width: 200px;
+  }
+  .left_panel {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1 / 2;
+  }
+  .right_panel {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3 / 4;
+  }
+  .right_panel .content, .right_panel .image {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
 }
 /*# sourceMappingURL=authentication.module.css.map */
