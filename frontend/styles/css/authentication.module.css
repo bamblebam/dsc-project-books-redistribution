@@ -251,6 +251,10 @@
   transition: .9s .6s ease-in-out;
 }
 
+.panel h3 {
+  font-size: 2.2rem;
+}
+
 .left_panel {
   padding: 3rem 17% 2rem 12%;
   pointer-events: all;
@@ -267,7 +271,7 @@
 }
 
 .btn.transparent {
-  margin: 0;
+  margin-top: 10px;
   background: none;
   border: 2px solid #ffffff;
   width: 130px;
@@ -416,7 +420,7 @@
     display: none;
   }
   .panel .content {
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
   }
   .main_container::before {
     bottom: 72%;
@@ -425,6 +429,9 @@
   .main_container.signup_mode::before {
     bottom: 28%;
     left: 50%;
+  }
+  .main_container.signup_mode .panel .content {
+    padding: 0.5rem 1rem;
   }
 }
 /*# sourceMappingURL=authentication.module.css.map */
