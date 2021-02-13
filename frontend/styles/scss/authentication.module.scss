@@ -342,3 +342,33 @@ $primary_dark:#1466e3;
         }
     }
 }
+
+@media (max-width:570px){
+    .form{
+        padding: 0 1.5rem;
+    }
+
+    .image{
+        display: none;
+    }
+
+    .panel{
+        .content{
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    .main_container{
+        &::before{
+            bottom: 72%;
+            left: 50%;
+        }
+    }
+
+    .main_container.signup_mode{
+        &::before{
+            bottom: 28%;
+            left: 50%;
+        }
+    }
+}
