@@ -90,6 +90,25 @@ export default function authentication() {
                             </form>
                         </div>
                     </div>
+                    <div className={styles.panel_container}>
+                        <div className={styles.panel + " " + styles.left_panel}>
+                            <div className={styles.content}>
+                                <h3>New Here ?</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, suscipit assumenda. Dignissimos incidunt, voluptatem quam veniam impedit perferendis. Non architecto neque totam saepe animi culpa, ipsam ab quibusdam tenetur iure?</p>
+                                <button className={styles.btn + " " + styles.transparent} id="signup_btn">Sign Up</button>
+                            </div>
+                            <img src="/images/image1.svg" alt="" className={styles.image} />
+                        </div>
+
+                        <div className={styles.panel + " " + styles.right_panel}>
+                            <div className={styles.content}>
+                                <h3>One of us ?</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, suscipit assumenda. Dignissimos incidunt, voluptatem quam veniam impedit perferendis. Non architecto neque totam saepe animi culpa, ipsam ab quibusdam tenetur iure?</p>
+                                <button className={styles.btn + " " + styles.transparent} id="signin_btn">Sign In</button>
+                            </div>
+                            <img src="/images/image2.svg" alt="" className={styles.image} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

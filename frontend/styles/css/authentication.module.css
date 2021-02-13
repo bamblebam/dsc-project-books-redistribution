@@ -6,6 +6,19 @@
   overflow: hidden;
 }
 
+.main_container::before {
+  content: "";
+  position: absolute;
+  width: 2000px;
+  height: 2000px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, #1466e3, #17aefd);
+  top: -10%;
+  right: 48%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
 .form_container {
   position: absolute;
   width: 100%;
