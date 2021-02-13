@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Head from 'next/head'
 import styles from '../../styles/css/authentication.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -6,12 +6,25 @@ import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 export default function authentication() {
+
+    const change_to_signup_btn = useRef(null)
+    const change_to_signin_btn = useRef(null)
+    const main_container = useRef(null)
+
+    const change_to_signup = () => {
+        main_container.current.classList.add("signup_mode")
+    }
+
+    const change_to_signin = () => {
+        main_container.current.classList.add("signin_mode")
+    }
+
     return (
         <>
             <Head>
             </Head>
             <div className={styles.body}>
-                <div className={styles.main_container}>
+                <div className={styles.main_container} ref={main_container}>
                     <div className={styles.form_container}>
                         <div className={styles.signin_signup}>
                             <form action="" method="POST" className={styles.form + " " + styles.signin_form}>
@@ -95,7 +108,7 @@ export default function authentication() {
                             <div className={styles.content}>
                                 <h3>New Here ?</h3>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, suscipit assumenda. Dignissimos incidunt, voluptatem quam veniam impedit perferendis. Non architecto neque totam saepe animi culpa, ipsam ab quibusdam tenetur iure?</p>
-                                <button className={styles.btn + " " + styles.transparent} id="signup_btn">Sign Up</button>
+                                <button onClick={change_to_signup} className={styles.btn + " " + styles.transparent} id="signup_btn" ref={change_to_signup_btn}>Sign Up</button>
                             </div>
                             <img src="/images/image1.svg" alt="" className={styles.image} />
                         </div>
@@ -104,7 +117,7 @@ export default function authentication() {
                             <div className={styles.content}>
                                 <h3>One of us ?</h3>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, suscipit assumenda. Dignissimos incidunt, voluptatem quam veniam impedit perferendis. Non architecto neque totam saepe animi culpa, ipsam ab quibusdam tenetur iure?</p>
-                                <button className={styles.btn + " " + styles.transparent} id="signin_btn">Sign In</button>
+                                <button onClick={change_to_signin} className={styles.btn + " " + styles.transparent} id="signin_btn" ref={change_to_signin_btn}>Sign In</button>
                             </div>
                             <img src="/images/image2.svg" alt="" className={styles.image} />
                         </div>
