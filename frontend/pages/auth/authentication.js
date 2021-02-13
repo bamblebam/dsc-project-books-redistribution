@@ -12,7 +12,7 @@ export default function authentication() {
     const main_container = useRef(null)
 
     const change_to_signup = () => {
-        main_container.current.classList.add("signup_mode")
+        main_container.current.classList.add(styles.signup_mode)
     }
 
     const change_to_signin = () => {

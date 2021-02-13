@@ -18,6 +18,8 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   z-index: 6;
+  -webkit-transition: 1.8s ease-in-out;
+  transition: 1.8s ease-in-out;
 }
 
 .form_container {
@@ -263,5 +265,11 @@
   height: 40px;
   font-weight: 600;
   font-size: 0.8rem;
+}
+
+.main_container.signup_mode::before {
+  -webkit-transform: translate(100%, -50%);
+          transform: translate(100%, -50%);
+  right: 52%;
 }
 /*# sourceMappingURL=authentication.module.css.map */

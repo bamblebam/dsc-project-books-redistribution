@@ -26,6 +26,7 @@ $primary_dark:#1466e3;
         right: 48%;
         transform: translateY(-50%);
         z-index: 6;
+        transition: 1.8s ease-in-out;
     }
 }
 
@@ -212,4 +213,9 @@ $primary_dark:#1466e3;
     height: 40px;
     font-weight: 600;
     font-size: 0.8rem;
+}
+
+.main_container.signup_mode::before{
+    transform: translate(100%,-50%);
+    right: 52%;
 }
