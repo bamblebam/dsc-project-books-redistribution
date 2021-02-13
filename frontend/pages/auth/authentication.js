@@ -16,7 +16,7 @@ export default function authentication() {
     }
 
     const change_to_signin = () => {
-        main_container.current.classList.add("signin_mode")
+        main_container.current.classList.remove(styles.signup_mode)
     }
 
     return (

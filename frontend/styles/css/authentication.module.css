@@ -42,6 +42,8 @@
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   z-index: 5;
+  -webkit-transition: 1s 0.7s ease-in-out;
+  transition: 1s 0.7s ease-in-out;
 }
 
 .form {
@@ -66,6 +68,8 @@
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   grid-row: 1 / 2;
+  -webkit-transition: 0.2s 0.7s ease-in-out;
+  transition: 0.2s 0.7s ease-in-out;
 }
 
 .form.signin_form {
@@ -207,6 +211,8 @@
 
 .image {
   width: 100%;
+  -webkit-transition: 1.1s .4s ease-in-out;
+  transition: 1.1s .4s ease-in-out;
 }
 
 .panel_container {
@@ -240,6 +246,8 @@
 
 .panel .content {
   color: #ffffff;
+  -webkit-transition: .9s .6s ease-in-out;
+  transition: .9s .6s ease-in-out;
 }
 
 .left_panel {
@@ -271,5 +279,37 @@
   -webkit-transform: translate(100%, -50%);
           transform: translate(100%, -50%);
   right: 52%;
+}
+
+.main_container.signup_mode .left_panel {
+  pointer-events: none;
+}
+
+.main_container.signup_mode .left_panel .image, .main_container.signup_mode .left_panel .content {
+  -webkit-transform: translateX(-800px);
+          transform: translateX(-800px);
+}
+
+.main_container.signup_mode .right_panel {
+  pointer-events: all;
+}
+
+.main_container.signup_mode .right_panel .image, .main_container.signup_mode .right_panel .content {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.main_container.signup_mode .signin_signup {
+  left: 0;
+}
+
+.main_container.signup_mode .form.signin_form {
+  z-index: 1;
+  opacity: 0;
+}
+
+.main_container.signup_mode .form.signup_form {
+  z-index: 2;
+  opacity: 1;
 }
 /*# sourceMappingURL=authentication.module.css.map */
