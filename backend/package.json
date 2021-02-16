@@ -15,12 +15,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
     "firebase": "^8.2.7",
     "nodemon": "^2.0.7"
-=======
-    "firebase": "^8.2.7"
->>>>>>> 9c71bb61144465266094017a2b7cc31b65324e0d
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
