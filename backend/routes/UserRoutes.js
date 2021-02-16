@@ -1,11 +1,10 @@
 const express = require('express');
-const {addUser,
-       getAllUser,
-       getUser,
-       updateUser,
-       deleteUser
-      } = require('../controllers/UserController');
-
+const {addUser, 
+    getAllUser, 
+    getUser,
+    updateUser,
+    deleteUser
+   } = require('../controllers/UserController');
 
 const router = express.Router();
 

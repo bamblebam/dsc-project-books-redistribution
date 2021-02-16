@@ -18,19 +18,17 @@ const addUser = async(req,res,next) =>{
     }
 }
 
-const getAllUser = async(req,res,next)=>{
-    try{
-
+const getAllUser = async (req, res, next) => {
+    try {
         const users = await firestore.collection('users');
         const data = await users.get();
-        const UserArraydata =[];
-
-        if(data.empty){
-            res.status(404).send("No record for users found");
-        }
-        else{
-            data.forEach(doc =>{
-                const user1 = new User(
+        console.log(data);
+        const Array = [];
+        if(data.empty) {
+            res.status(404).send('No record found');
+        }else {
+            data.forEach(doc => {
+                const user = new User(
                     doc.id,
                     doc.data().username,
                     doc.data().password,
@@ -40,14 +38,14 @@ const getAllUser = async(req,res,next)=>{
                     doc.data().education,
                     doc.data().bio,
                     doc.data().photoURL,
-                    doc.data().createdAt,
+                    doc.data().createdAt
+    
                 );
-                UserArraydata.push(user1);
+                Array.push(user);
             });
-            res.send(UserArraydata);
+            res.send(Array);
         }
-
-    }catch(error){
+    } catch (error) {
         res.status(400).send(error.message);
     }
 }

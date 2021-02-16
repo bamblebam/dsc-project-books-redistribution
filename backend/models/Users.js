@@ -12,3 +12,5 @@ class User{
         this.createdAt =createdAt;
     }
 }
+
+module.exports = User;
