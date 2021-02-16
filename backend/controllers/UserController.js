@@ -10,8 +10,25 @@ const addUser = async(req,res,next) =>{
     try{
 
         const data = req.body;
-        await firestore.collection('users').doc().set(data);
-        res.send("Successfully added");
+        console.log(data);
+        var email=data.email;
+        var password=data.password;
+        
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            var user = userCredential.user;
+            firestore.collection('users').doc(user.uid).set(data);
+            res.send("Successfully added");
+
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            res.send(errorMessage);
+        });
+
+        
 
     }catch(error){
         res.status(400).send(error.message);
@@ -86,13 +103,47 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
+<<<<<<< HEAD
 
+=======
+const logInUser = async(req,res,next) => {
+    
+    var email = req.body.email;
+    var password = req.body.password;
+    
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+  .then(async(userCredential) => {
+
+    var user = userCredential.user;
+
+    const data = firestore.collection('users').doc(user.uid);
+    const doc =await data.get();
+    if(!doc.exists) {
+        res.status(404).send('User not found');
+    }else {
+        res.send(doc.data());
+    }
+
+
+  
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+}
+>>>>>>> aa1d664b3b2b50aca313e3faf5d18f5f264bec88
 
 module.exports ={
     addUser,
     getAllUser,
     getUser,
     updateUser,
+<<<<<<< HEAD
     deleteUser
 
+=======
+    deleteUser,
+    logInUser
+>>>>>>> aa1d664b3b2b50aca313e3faf5d18f5f264bec88
 }
