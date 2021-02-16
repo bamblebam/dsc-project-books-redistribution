@@ -22,7 +22,7 @@ const getAllUser = async (req, res, next) => {
     try {
         const users = await firestore.collection('users');
         const data = await users.get();
-        console.log(data);
+        
         const Array = [];
         if(data.empty) {
             res.status(404).send('No record found');
@@ -86,10 +86,13 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
+
+
 module.exports ={
     addUser,
     getAllUser,
     getUser,
     updateUser,
     deleteUser
+
 }
