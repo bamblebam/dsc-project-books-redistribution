@@ -103,9 +103,6 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
-<<<<<<< HEAD
-
-=======
 const logInUser = async(req,res,next) => {
     
     var email = req.body.email;
@@ -132,18 +129,12 @@ const logInUser = async(req,res,next) => {
     var errorMessage = error.message;
   });
 }
->>>>>>> aa1d664b3b2b50aca313e3faf5d18f5f264bec88
 
 module.exports ={
     addUser,
     getAllUser,
     getUser,
     updateUser,
-<<<<<<< HEAD
-    deleteUser
-
-=======
     deleteUser,
     logInUser
->>>>>>> aa1d664b3b2b50aca313e3faf5d18f5f264bec88
 }
