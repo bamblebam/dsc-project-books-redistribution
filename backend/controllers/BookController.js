@@ -66,7 +66,91 @@ const getAllBooksofUser = async(req,res,next) =>{
     }
 }
 
+const getAbook = async(req,res,next) =>{
+    try{
+
+        const bookid = req.params.bookId;
+        const book = await firestore.collection('books').doc(bookid);
+        console.log(bookid);
+        const data = await book.get();
+        console.log(data.exists);
+        if(!data.exists){
+            res.status(404).send('Book not found');
+        }else{
+
+            res.send(data.data());
+        }
+
+    }catch(error){
+        res.status(400).send(error.message);
+    }
+}
+
+const updateBook = async (req, res, next) => {
+    try {
+        const id = req.params.bookId;
+        const data = req.body;
+        const book = await firestore.collection('books').doc(id);
+        await book.update(data);
+        res.send('Book updated successfully !');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const deleteBook = async (req, res, next) => {
+    try {
+        const id = req.params.bookId;
+        console.log(id);
+        await firestore.collection('books').doc(id).delete();
+        res.send('Book deleted successfuly');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
+    try{
+        const books = await firestore.collection('books');
+        const data_from_firestore = await books.get();
+        const Array =[];
+        var flag =0
+
+        if(data_from_firestore.empty){
+            res.send(404).send("No data in database");
+        }else{
+            data_from_firestore.forEach(async doc =>{
+                const bookTitle = doc.data().booktitle;
+                const des = doc.data().description;
+                const user_id = doc.data().userId;
+                const userData = await firestore.collection('users').doc(user_id);
+                const docdata = await userData.get();
+                const jsondata = {
+                    "Title" :bookTitle,
+                    "Description" :des,
+                    "Belongs_To" :docdata.data().username,
+                };
+                console.log(jsondata);
+                Array.push(jsondata);
+                console.log(Array);
+                flag = 1;
+            });
+            console.log("The array is below");
+            console.log(Array);
+            res.send(Array);
+
+        }
+
+    }catch(error){
+        res.status(400).send(error.message);
+    }
+
+}
 module.exports={
     addbook,
-    getAllBooksofUser
+    getAllBooksofUser,
+    getAbook,
+    updateBook,
+    deleteBook,
+    GetAllBookWithRespectiveUser
 }
