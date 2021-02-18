@@ -3,19 +3,29 @@
 const firebase = require('../db');
 const Book = require('../models/Books');
 const firestore = firebase.firestore();
-
+var storage = firebase.storage();
+var storageRef = storage.ref();
 const addbook = async(req,res,next) =>{
     try{
 
         const userid = req.params.userId;
         const data = req.body;
-
+        
+        var bookRef = storageRef.child('images/'+req.body.imgfile);
+        var metadata = {
+            
+            id:req.body.id,
+            uid: userid
+          };
+        var uploadTask = bookRef.put(req.body.imgfile, metadata);
         // Out here the body data has ever data except the userId
-        const newData ={
+        const bookData ={
             userId :userid,
-            ...req.body
+            ...req.body,
+            storageref:'images/'+req.body.imgfile
+
         };
-        await firestore.collection('books').doc().set(newData);
+        await firestore.collection('books').doc().set(bookData);
         res.send('Book added successfully!');
 
     }catch(error){
