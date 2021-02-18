@@ -104,17 +104,17 @@ const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
         const books = await firestore.collection('books');
         const data_from_firestore = await books.get();
         const Array =[];
-        var flag =0
-
+    
         if(data_from_firestore.empty){
             res.send(404).send("No data in database");
         }else{
-            data_from_firestore.forEach(async doc =>{
+            data_from_firestore.forEach( doc =>{
                 const bookTitle = doc.data().booktitle;
                 const des = doc.data().description;
                 const user_id = doc.data().userId;
-                const userData = await firestore.collection('users').doc(user_id);
-                const docdata = await userData.get();
+                const userData = firestore.collection('users').doc(user_id);
+                const docdata = userData.get();
+                console.log(docdata);
                 const jsondata = {
                     "Title" :bookTitle,
                     "Description" :des,
@@ -123,8 +123,9 @@ const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
                 console.log(jsondata);
                 Array.push(jsondata);
                 console.log(Array);
-                flag = 1;
+              
             });
+           
             console.log("The array is below");
             console.log(Array);
             res.send(Array);
