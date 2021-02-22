@@ -12,5 +12,6 @@ This is the repository for our project submission in the google DSC challenge.
 ### TODO:
 
 - [ ] Hambuger in nav
-- [ ] Home page components
+- [x] Home page components
+- [ ] unable to exit out of modal
 
