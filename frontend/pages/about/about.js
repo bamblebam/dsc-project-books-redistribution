@@ -1,8 +1,13 @@
+import Card from "../../components/Card";
+
 const about = () => {
 	return (
-		<div>
-			<h1>About</h1>
-		</div>
+		<Card
+			bookImg="/images/testImage.jpg"
+			imgAlt="test Image"
+			bookName="Hello"
+			author="world"
+		/>
 	);
 };
 

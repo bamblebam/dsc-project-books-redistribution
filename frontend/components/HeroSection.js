@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroStyles from "../styles/HeroSection.module.css";
+import heroStyles from "../styles/css/HeroSection.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect } from "react";
@@ -11,7 +11,32 @@ const HeroSection = () => {
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
-		gsap.fromTo(".box", { opacity: 0 }, { opacity: 1, duration: 1 });
+		const t1 = gsap.timeline();
+		let tween1 = gsap.from("#left", {
+			scrollTrigger: {
+				trigger: "#left",
+				start: "50px 50%",
+				end: "bottom bottom",
+				toggleActions: "play none none none",
+				markers: true,
+			},
+			opacity: 0,
+			x: "-=100px",
+			duration: 0.5,
+		});
+		let tween2 = gsap.from("#right", {
+			scrollTrigger: {
+				trigger: "#right",
+				start: "200px 50%",
+				end: "bottom bottom",
+				toggleActions: "play none none none",
+				markers: true,
+			},
+			opacity: 0,
+			x: "-=100px",
+			duration: 0.5,
+			delay: 1.5,
+		});
 	}, []);
 	//}
 
@@ -63,9 +88,9 @@ const HeroSection = () => {
 					</div>
 				</div>
 			</div>
-			<div className="box">
-				<div id="Mybox" className={heroStyles.heroContainer2}>
-					<div className={heroStyles.left}>
+			<div id={heroStyles.box} className="box">
+				<div className={heroStyles.heroContainer2}>
+					<div id="left" className={heroStyles.left}>
 						<Image
 							src="/images/testImage.jpg"
 							alt="test image"
@@ -73,7 +98,7 @@ const HeroSection = () => {
 							height={500}
 						/>
 					</div>
-					<div className={heroStyles.right}>
+					<div id="right" className={heroStyles.right}>
 						<div className={heroStyles.main}>
 							<h1 className={heroStyles.title}>
 								Total books donated <span>1,000,000</span>

@@ -1,0 +1,29 @@
+.main {
+	border: 1px solid #17aefd;
+	border-radius: 100px;
+	height: 2rem;
+	width: 15rem;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.icon {
+	color: #17aefd;
+	height: 1.5rem;
+	width: 1.5rem;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.input {
+	border: none;
+}
+
+.input:focus {
+	outline: none;
+	color: #17aefd;
+}
