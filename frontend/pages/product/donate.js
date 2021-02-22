@@ -8,7 +8,7 @@ export default function Donate() {
             <div className={styles.main_container}>
                 <div className={styles.form_container}>
                     <div className={styles.form}>
-                        <div className={styles.donate_form}>
+                        <form method="POST" className={styles.donate_form}>
                             <div className={styles.content}>
                                 <div className={styles.title}>
                                     <h1>Donate</h1>
@@ -17,14 +17,17 @@ export default function Donate() {
                             <div className={styles.input_field}>
                                 <input type="text" className={styles.input} placeholder="Product Name" name="product_name" />
                             </div>
-                            <div className={styles.input_field}>
-                                <input type="text" className={styles.input} placeholder="Product Name" name="product_name" />
+                            <div className={styles.text_field}>
+                                <textarea cols="30" rows="10" className={styles.text} placeholder="Enter a short description about your product." name="product_description"></textarea>
                             </div>
                             <div className={styles.input_field}>
                                 <input type="text" className={styles.input} placeholder="Product Name" name="product_name" />
                             </div>
                             <button className={styles.btn}>Donate</button>
-                        </div>
+                            <p className={styles.subtext}>
+                                Read our <a href="">Terms of Service</a> before donating
+                            </p>
+                        </form>
                     </div>
                 </div>
                 <div className={styles.panel_container}>

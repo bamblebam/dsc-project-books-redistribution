@@ -13,7 +13,7 @@ $primary_dark:#1466e3;
     width: 100%;
     min-height: 100vh;
     background-color: $background_white;
-    overflow: hidden;
+    overflow-x: hidden;
 
     &::before{
         content: "";
@@ -262,6 +262,7 @@ $primary_dark:#1466e3;
     .main_container{
         min-height: 800px;
         height: 100vh;
+        overflow-y: hidden;
 
         &::before{
             width: 1500px;
