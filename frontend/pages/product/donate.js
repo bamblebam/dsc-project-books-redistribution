@@ -21,7 +21,8 @@ export default function Donate() {
                                 <textarea cols="30" rows="10" className={styles.text} placeholder="Enter a short description about your product." name="product_description"></textarea>
                             </div>
                             <div className={styles.file_field}>
-                                <input type="file" accept="image/*" className={styles.file} name="product_image" />
+                                <label htmlFor="product_image">Upload an Image (Optional)</label>
+                                <input type="file" accept="image/*" className={styles.file} name="product_image" id="product_image" />
                             </div>
                             <button className={styles.btn}>Donate</button>
                             <p className={styles.subtext}>
