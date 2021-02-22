@@ -280,6 +280,10 @@
   font-size: 0.8rem;
 }
 
+.btn.transparent:hover {
+  background-color: #1466e3;
+}
+
 .main_container.signup_mode::before {
   -webkit-transform: translate(100%, -50%);
           transform: translate(100%, -50%);

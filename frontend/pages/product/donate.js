@@ -21,7 +21,7 @@ export default function Donate() {
                                 <textarea cols="30" rows="10" className={styles.text} placeholder="Enter a short description about your product." name="product_description"></textarea>
                             </div>
                             <div className={styles.file_field}>
-                                <label htmlFor="product_image">Upload an Image (Optional)</label>
+                                <label htmlFor="product_image">Image (Optional)</label>
                                 <input type="file" accept="image/*" className={styles.file} name="product_image" id="product_image" />
                             </div>
                             <button className={styles.btn}>Donate</button>
@@ -34,9 +34,13 @@ export default function Donate() {
                 <div className={styles.panel_container}>
                     <div className={styles.panel}>
                         <div className={styles.content}>
-                            <h3>Donate here</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime tenetur, voluptatem quod ex ipsum, cumque doloremque neque quam quo accusamus asperiores non, officiis corporis. Maxime tenetur dignissimos sit recusandae animi?</p>
+                            <h3>Donate Now!!!</h3>
+                            <p>Donate now and help provide a child education</p>
+                            <p>Or</p>
+                            <p>Browse products that others want to give you might find something useful for yourself</p>
+                            <button className={styles.btn + " " + styles.transparent}>Browse</button>
                         </div>
+                        <img src="/images/image1.svg" alt="" className={styles.image} />
                     </div>
                 </div>
             </div>
