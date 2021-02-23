@@ -1,0 +1,31 @@
+.card {
+	margin: 25px 10px;
+	width: 90%;
+	height: 15rem;
+	display: grid;
+	grid-gap: 50px 100px;
+	grid-template-columns: 200px 200px auto 100px;
+	background-color: #17aefd;
+}
+
+.left {
+	margin: 1rem 1rem;
+	grid-column-start: 1;
+	grid-column-end: 1;
+}
+
+.right {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	color: white;
+}
+
+.title {
+	font-size: 2rem;
+}
+.subtitle {
+	font-size: 1.5rem;
+}
+.description {
+	font-size: 1rem;
+}
