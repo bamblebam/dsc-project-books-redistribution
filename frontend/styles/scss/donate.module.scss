@@ -169,6 +169,7 @@ $primary_dark:#1466e3;
 
 .subtext{
     margin: 10px 0;
+    text-align: center;
     a{
         color: $primary;
         cursor: pointer;
@@ -258,6 +259,30 @@ $primary_dark:#1466e3;
             h3{
                 font-size: 2rem;
             }
+        }
+    }
+}
+
+@media (max-width:570px){
+    .donate_form{
+        padding: 0 1.5rem;
+    }
+    .image{
+        display: none;
+    }
+    .panel{
+        .content{
+            padding: 0 1rem;
+            margin: -70px 0 0 0;
+        }
+    }
+    .desctext{
+        display: none;
+    }
+    .main_container{
+        &::before{
+            bottom: 75%;
+            left: 50%;
         }
     }
 }

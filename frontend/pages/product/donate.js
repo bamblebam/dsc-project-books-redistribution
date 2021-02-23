@@ -35,9 +35,9 @@ export default function Donate() {
                     <div className={styles.panel}>
                         <div className={styles.content}>
                             <h3>Donate Now!!!</h3>
-                            <p>Donate now and help provide a child education</p>
+                            <p className={styles.desctext}>Donate now and help provide a child education</p>
                             <p>Or</p>
-                            <p>Browse products that others want to give you might find something useful for yourself</p>
+                            <p className={styles.desctext}>Browse products that others want to give you might find something useful for yourself</p>
                             <button className={styles.btn + " " + styles.transparent}>Browse</button>
                         </div>
                         <img src="/images/image1.svg" alt="" className={styles.image} />
