@@ -253,6 +253,65 @@
 
 .panel .content h3 {
   font-size: 3rem;
-  font-weight: 9000;
+}
+
+@media (max-width: 870px) {
+  .main_container {
+    min-height: 900px;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+  .main_container::before {
+    width: 1500px;
+    height: 1500px;
+    left: 30%;
+    bottom: 70%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    right: initial;
+    top: initial;
+    -webkit-transition: 2s ease-in-out;
+    transition: 2s ease-in-out;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtext {
+    margin: 10px 0 20px 0;
+  }
+  .form {
+    width: 100%;
+    left: 0;
+    top: 110%;
+    -webkit-transform: translate(0, -100%);
+            transform: translate(0, -100%);
+  }
+  .image {
+    width: 200px;
+  }
+  .panel_container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 2fr;
+        grid-template-rows: 1fr 2fr;
+  }
+  .panel {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 1rem;
+  }
+  .panel .content {
+    margin: -20px 0 0 0;
+  }
+  .panel .content h3 {
+    font-size: 2rem;
+  }
 }
 /*# sourceMappingURL=donate.module.css.map */
