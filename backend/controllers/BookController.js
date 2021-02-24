@@ -10,12 +10,17 @@ const addbook = async(req,res,next) =>{
         const userid = req.params.userId;
         const data = req.body;
 
-        // Out here the body data has ever data except the userId
-        const newData ={
+        var metadata = {
+            
+            id:req.body.id,
+            uid: userid
+          };
+ 
+        const bookData ={
             userId :userid,
-            ...req.body
-        };
-        await firestore.collection('books').doc().set(newData);
+            ...req.body,
+         };
+        await firestore.collection('books').doc().set(bookData);
         res.send('Book added successfully!');
 
     }catch(error){
@@ -108,28 +113,32 @@ const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
         if(data_from_firestore.empty){
             res.send(404).send("No data in database");
         }else{
-            data_from_firestore.forEach( doc =>{
-                const bookTitle = doc.data().booktitle;
-                const des = doc.data().description;
-                const user_id = doc.data().userId;
-                const userData = firestore.collection('users').doc(user_id);
-                const docdata = userData.get();
-                console.log(docdata);
-                const jsondata = {
-                    "Title" :bookTitle,
-                    "Description" :des,
-                    "Belongs_To" :docdata.data().username,
-                };
-                console.log(jsondata);
-                Array.push(jsondata);
-                console.log(Array);
-              
-            });
-           
-            console.log("The array is below");
-            console.log(Array);
-            res.send(Array);
+            let promise = new Promise(function(resolve, reject) {
+                data_from_firestore.forEach(async doc =>{
+                    const bookTitle = doc.data().booktitle;
+                    const des = doc.data().description;
+                    const user_id = doc.data().userId;
+                    const userData = await firestore.collection('users').doc(user_id);
+                    const docdata = await userData.get();
+                    const jsondata = {
+                        "Title" :bookTitle,
+                        "Description" :des,
+                        "Belongs_To" :docdata.data().username,
+                    };
+                    Array.push(jsondata);
 
+                });
+                setTimeout(() => resolve(Array), 1000);
+              });
+              promise.then((Array)=>{
+                console.log(Array);
+                  res.send(Array);
+                  
+              }).catch((error)=>{
+                console.log(error);
+                  res.send(error);
+              });
+            
         }
 
     }catch(error){
