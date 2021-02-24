@@ -103,7 +103,7 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
-const logInUser = async (req, res, next) => {
+const signInUser = async (req, res, next) => {
 
     var email = req.body.email;
     var password = req.body.password;
@@ -128,11 +128,24 @@ const logInUser = async (req, res, next) => {
         });
 }
 
+const signOutUser =(req,res,next)=>{
+    firebase.auth().signOut().then(() => {
+        
+        res.redirect('/home')
+      }).catch((error) => {
+        // An error happened.
+        console.log(error)
+      });
+}
+
+  
+
 module.exports = {
     addUser,
     getAllUser,
     getUser,
     updateUser,
     deleteUser,
-    logInUser
+    signInUser,
+    signOutUser
 }
