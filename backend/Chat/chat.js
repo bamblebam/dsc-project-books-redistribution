@@ -1,10 +1,11 @@
 //Mention everything using  <script src="chat.js"></script>
 // Whatever parameters are used as ID
 //Need to replace the username with firebase
+const firebase = require('../db');
 
 $(function(){
 
-    var username = "World-changer"
+    var username = firebase.auth().currentUser.displayName;
 
     var socket = io.connect('http://localhost:3000/chat')
 
@@ -19,6 +20,12 @@ $(function(){
     //Give the message
     send_message.click(function(){
         socket.emit('new_message', {message : message.val()})
+    });
+    message.keypress( e => {
+        let keycode = (e.keyCode ? e.keyCode : e.which);
+        if(keycode == '13'){
+            socket.emit('new_message', {message : message.val()})
+        }
     })
 
     //Listen on new_message
@@ -42,9 +49,5 @@ $(function(){
 
     })
 
-    //Emit a username
-    send_username.click(function(){
-        socket.emit('change_username', {username : username.val()})
-        myUsername = username.val();
-    })
+    
 })
