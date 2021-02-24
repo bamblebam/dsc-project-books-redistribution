@@ -109,8 +109,7 @@ const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
         const books = await firestore.collection('books');
         const data_from_firestore = await books.get();
         const Array =[];
-        var flag =0
-
+    
         if(data_from_firestore.empty){
             res.send(404).send("No data in database");
         }else{
