@@ -5,7 +5,8 @@ const { addUser,
     updateUser,
     deleteUser,
     signInUser,
-    signOutUser
+    signOutUser,
+    googleSignIn
 } = require('../controllers/UserController');
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
 router.post('/login', signInUser);
 router.post('/signOut', signOutUser);
+router.get('/googleSignIn',googleSignIn);
 module.exports = {
     routes: router
 }

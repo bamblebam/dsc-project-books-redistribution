@@ -4,7 +4,10 @@
 const firebase = require('../db');
 const User = require('../models/Users');
 const firestore = firebase.firestore();
-
+const auth=firebase.auth();
+const { GoogleAuth } = require('google-auth-library');
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 const addUser = async (req, res, next) => {
 
     try {
@@ -138,7 +141,31 @@ const signOutUser =(req,res,next)=>{
       });
 }
 
-  
+const googleSignIn = (req,res,next)=>{
+    var provider = new auth.GoogleAuthProvider();
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  res.send("done")
+} 
 
 module.exports = {
     addUser,
@@ -147,5 +174,6 @@ module.exports = {
     updateUser,
     deleteUser,
     signInUser,
-    signOutUser
+    signOutUser,
+    googleSignIn
 }
