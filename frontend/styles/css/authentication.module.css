@@ -70,6 +70,7 @@
   grid-row: 1 / 2;
   -webkit-transition: 0.2s 0.7s ease-in-out;
   transition: 0.2s 0.7s ease-in-out;
+  
 }
 
 .form.signin_form {

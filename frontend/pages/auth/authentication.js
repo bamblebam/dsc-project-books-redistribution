@@ -5,6 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+const firebaseConfig= {
+    apiKey: "AIzaSyDMjdPGj_MMlEa0Ub4mYe6gtm2m-dLAZw8",
+    authDomain: "dscbooks-3a4c3.firebaseapp.com",
+    databaseURL: "https://dscbooks-3a4c3.firebaseio.com",
+    projectId: "dscbooks-3a4c3",
+    storageBucket: "dscbooks-3a4c3.appspot.com",
+    messagingSenderId: "401879675162",
+    appId: "1:401879675162:web:0227715ffaee7fc0af7ca3"
+}
+
+import firebase from "firebase/app"
+import "firebase/auth"
+const db = firebase.initializeApp(firebaseConfig)
+
 export default function authentication() {
 
     const change_to_signup_btn = useRef(null)
@@ -18,6 +32,31 @@ export default function authentication() {
     const change_to_signin = () => {
         main_container.current.classList.remove(styles.signup_mode)
     }
+
+    const googleSignIn=()=>{
+        console.log("google signup");
+        var provider = new firebase.auth.GoogleAuthProvider();
+        console.log("Provider done");
+        db.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            /** @type {db.auth.OAuthCredential} */
+            console.log("Auth done");
+            var credential = result.credential
+            var token = credential.accessToken;
+            var user = result.user;
+
+            console.log(user);
+        }).catch((error) => {
+            
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            var email = error.email;
+            var credential = error.credential;
+            
+        });
+    }
+
 
     return (
         <>
@@ -43,13 +82,15 @@ export default function authentication() {
                                 </div>
                                 <button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
                                 <p className={styles.social_text}>Or sign in with</p>
+                                </form>
                                 <div className={styles.social_media}>
                                     <a href="" className={styles.social_icon}>
                                         <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
                                     </a>
-                                    <a href="" className={styles.social_icon}>
-                                        <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faGoogle}></FontAwesomeIcon>
-                                    </a>
+                                    <button onClick ={googleSignIn} className={styles.social_icon}>
+                                    <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faGoogle}></FontAwesomeIcon>
+                                    </button>
+                                    
                                     <a href="" className={styles.social_icon}>
                                         <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
                                     </a>
@@ -57,7 +98,8 @@ export default function authentication() {
                                         <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faLinkedin}></FontAwesomeIcon>
                                     </a>
                                 </div>
-                            </form>
+                            
+                            
                             <form action="" method="POST" className={styles.form + " " + styles.signup_form}>
                                 <h2 className={styles.title}>Sign Up</h2>
                                 <div className={styles.input_field}>
@@ -90,9 +132,9 @@ export default function authentication() {
                                     <a href="" className={styles.social_icon}>
                                         <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
                                     </a>
-                                    <a href="" className={styles.social_icon}>
-                                        <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faGoogle}></FontAwesomeIcon>
-                                    </a>
+                                    <button onClick ={() => {console.log("Fucking clicked")}} >
+                                     Google
+                                    </button>
                                     <a href="" className={styles.social_icon}>
                                         <FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
                                     </a>
