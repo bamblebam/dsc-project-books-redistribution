@@ -7,8 +7,9 @@ export const test = [
 		year: "2020",
 		imgSrc: "/images/testImage.jpg",
 		imgAlt: "Test image",
-		link: "/home",
-		text: "Some random text describing the book",
+		link: "/user",
+		text:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
 	},
 	{
 		author: "Abc",
@@ -18,8 +19,9 @@ export const test = [
 		year: "2020",
 		imgSrc: "/images/testImage.jpg",
 		imgAlt: "Test image",
-		link: "/home",
-		text: "Some random text describing the book",
+		link: "/user",
+		text:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
 	},
 	{
 		author: "Abc",
@@ -29,7 +31,8 @@ export const test = [
 		year: "2020",
 		imgSrc: "/images/testImage.jpg",
 		imgAlt: "Test image",
-		link: "/home",
-		text: "Some random text describing the book",
+		link: "/user",
+		text:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
 	},
 ];

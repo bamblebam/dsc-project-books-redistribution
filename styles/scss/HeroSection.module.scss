@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
 
-$primary: #fffb1f;
+$primary: #17aefd;
 $accent: #f83686;
-$light: white
-$dark:black
-
+$dark: black;
+$light: white;
 .heroContainer {
 	.left {
 		opacity: 0;
@@ -59,7 +58,7 @@ $dark:black
 	font-weight: 900;
 	position: relative;
 	width: fit-content;
-	color: $light;
+	color: $dark;
 }
 .title::after {
 	content: "";
@@ -75,7 +74,7 @@ $dark:black
 	margin: 0 0 50px 0;
 	opacity: 0.5;
 	font-size: 2.5rem;
-	color: $light;
+	color: $dark;
 }
 
 .buttonDiv {
@@ -110,6 +109,14 @@ $dark:black
 	background-color: $accent;
 	transform: scale(1.5);
 	transition: all ease-in-out 0.5s;
+}
+.right{
+	height: 80vh;
+}
+.image{
+	display: none;
+	min-width: 30vw;
+	object-fit: cover;
 }
 
 .custom_shape_divider_top_1613659207 {
@@ -174,5 +181,45 @@ $dark:black
 	.right {
 		opacity: 0;
 		animation: fadeX 0.5s ease-in-out 1s forwards;
+	}
+}
+
+
+@media screen and (max-width: 960px){
+	.title{
+		font-size: 3rem;
+	}
+	.title::after{
+		height: 0.5rem;
+		bottom: 1rem;
+	}
+	.subtitle{
+		font-size: 1.5rem;
+	}
+	.buttonDiv{
+		display: flex;
+		height: 20vh;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		margin: 0;
+	}
+	.main{
+		width: 40vw;
+	}
+	.btn__primary{
+		margin: 0;
+		width: 20vw;
+	}
+	.btn__secondary{
+		margin: 0;
+		width: 20vw;
+	}
+	.right{
+		height: 70vh;
+		width: 40vw;
+	}
+	.image{
+		object-fit: cover;
 	}
 }
