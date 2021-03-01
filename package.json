@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase": "^8.2.7",
     "socket.io": "^3.1.1"
+=======
+    "react-dom": "^17.0.1"
+>>>>>>> 6aee365404d78bf714d3b7bc5b27bff1b1a8b1fa
   }
 }
