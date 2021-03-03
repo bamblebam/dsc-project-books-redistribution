@@ -11,7 +11,10 @@ This is the repository for our project submission in the google DSC challenge.
 
 ### TODO:
 
-- [ ] Hambuger in nav
+- [x] Hambuger in nav
 - [x] Home page components
-- [ ] unable to exit out of modal
-
+- [x] unable to exit out of modal
+- [ ] Search in resources page
+- [ ] About Page
+- [ ] Account Page
+- [ ] Wishlist
