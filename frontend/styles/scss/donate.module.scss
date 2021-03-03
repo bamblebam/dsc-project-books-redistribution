@@ -1,0 +1,288 @@
+$background_white: #ffffff;
+$font_color:#444444;
+$input_color:#f6f6f6;
+$input_text:#333333;
+$icon_color:#acacac;
+$input_placeholder:#aaaaaa;
+$primary:#17aefd;
+$primary_dark:#1466e3;
+
+.main_container{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $background_white;
+    overflow-x: hidden;
+
+    &::before{
+        content: "";
+        position: absolute;
+        width: 2000px;
+        height: 2000px;
+        border-radius: 50%;
+        background: linear-gradient(-45deg,$primary_dark,$primary);
+        top: -10%;
+        right: 48%;
+        transform: translateY(-50%);
+        transition: 1.8s ease-in-out;
+    }
+}
+
+.form_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -10%;
+    left: 0;
+    z-index: 5;
+}
+.form{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    width: 50%;
+}
+.donate_form{
+    transition: 1s 0.7s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 5rem;
+}
+
+.title{
+    font-size: 2.2rem;
+    color: $font_color;
+    margin-bottom: 10px;
+}
+
+.input_field{
+    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    height: 55px;
+    background-color: $input_color;
+    margin: 10px 0;
+    padding: 0 0.5rem;
+    border-radius: 55px;
+
+    .input{
+        width: 100%;
+        height: 100%;
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 1;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding-left: 50px;
+        color: $input_text;
+
+        &::placeholder{
+            color: $input_placeholder;
+        }
+    }
+}
+
+.text_field{
+    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    height: 250px;
+    background-color: $input_color;
+    margin: 10px 0;
+    padding: 0 0.5rem;
+    border-radius: 20px;
+
+    .text{
+        width: 100%;
+        height: 100%;
+        resize: none;
+        padding: 1rem;
+        background: none;
+        outline: none;
+        border: none;
+        color: $input_text;
+        &::placeholder{
+            color: $input_placeholder;
+        }
+    }
+}
+
+.file_field{
+    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    height: 55px;
+    background-color: $input_color;
+    margin: 10px 0;
+    padding: 0 0.5rem;
+    border-radius: 55px;
+    position: relative;
+
+    .file{
+        width: 100%;
+        height: 100%;
+        background: none;
+        outline: none;
+        border: none;
+        display: none;
+    }
+    label{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        line-height: 55px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: $input_placeholder;
+    }
+}
+
+.btn{
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: $primary;
+    color: $background_white;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transform: 1s;
+    &:hover{
+        background-color: $primary_dark;
+        transform: scale(1.1);
+    }
+}
+
+.transparent{
+    background: transparent;
+    border: 2px solid $background_white;
+}
+
+.subtext{
+    margin: 10px 0;
+    text-align: center;
+    a{
+        color: $primary;
+        cursor: pointer;
+    }
+}
+
+.image{
+    width: 100%;
+    transition: 1.1s .4s ease-in-out;
+}
+
+.panel_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.panel{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    z-index: 6;
+    text-align: center;
+
+    .content{
+        color: $background_white;
+        margin: 15px 0 0 50px;
+        h3{
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (max-width:870px){
+    .main_container{
+        min-height: 900px;
+        height: 100vh;
+        overflow-y: hidden;
+        &::before{
+            width: 1500px;
+            height: 1500px;
+            left: 30%;
+            bottom: 70%;
+            transform: translateX(-50%);
+            right: initial;
+            top: initial;
+            transition: 2s ease-in-out;
+        }
+    }
+
+    .title{
+        font-size: 1.5rem;
+    }
+
+    .subtext{
+        margin: 10px 0 20px 0;
+    }
+    .form{
+        width: 100%;
+        left: 0;
+        top: 110%;
+        transform: translate(0,-100%);
+    }
+
+    .image{
+        width: 200px;
+    }
+
+    .panel_container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+    }
+
+    .panel{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+
+        .content{
+            margin: -20px 0 0 0;
+            h3{
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media (max-width:570px){
+    .donate_form{
+        padding: 0 1.5rem;
+    }
+    .image{
+        display: none;
+    }
+    .panel{
+        .content{
+            padding: 0 1rem;
+            margin: -70px 0 0 0;
+        }
+    }
+    .desctext{
+        display: none;
+    }
+    .main_container{
+        &::before{
+            bottom: 75%;
+            left: 50%;
+        }
+    }
+}

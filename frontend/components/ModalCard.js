@@ -42,7 +42,7 @@ const ModalCard = ({
 			>
 				<div className={modalCardStyles.modal}>
 					<div className={modalCardStyles.store_left}>
-						<img className={modalCardStyles.image}  src={imgSrc} alt="" />
+						<img className={modalCardStyles.image} src={imgSrc} alt="" />
 					</div>
 					<div className={modalCardStyles.store_right}>
 						<div className={modalCardStyles.modal_header}>

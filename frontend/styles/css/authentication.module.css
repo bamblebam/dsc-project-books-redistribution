@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;
   background-color: #ffffff;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .main_container::before {
@@ -280,6 +280,10 @@
   font-size: 0.8rem;
 }
 
+.btn.transparent:hover {
+  background-color: #1466e3;
+}
+
 .main_container.signup_mode::before {
   -webkit-transform: translate(100%, -50%);
           transform: translate(100%, -50%);
@@ -322,6 +326,7 @@
   .main_container {
     min-height: 800px;
     height: 100vh;
+    overflow-y: hidden;
   }
   .main_container::before {
     width: 1500px;
