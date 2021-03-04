@@ -4,7 +4,10 @@ import styles from '../../styles/css/authentication.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import firebase from "firebase/app"
+import "firebase/auth"
 
+/*
 const firebaseConfig= {
     apiKey: "AIzaSyDMjdPGj_MMlEa0Ub4mYe6gtm2m-dLAZw8",
     authDomain: "dscbooks-3a4c3.firebaseapp.com",
@@ -18,6 +21,9 @@ const firebaseConfig= {
 import firebase from "firebase/app"
 import "firebase/auth"
 const db = firebase.initializeApp(firebaseConfig)
+*/
+
+import firebaseApp from '../../configurations/db';
 
 export default function authentication() {
 
@@ -34,13 +40,11 @@ export default function authentication() {
     }
 
     const googleSignIn=()=>{
-        console.log("google signup");
         var provider = new firebase.auth.GoogleAuthProvider();
-        console.log("Provider done");
-        db.auth()
+        firebaseApp.auth()
         .signInWithPopup(provider)
         .then((result) => {
-            /** @type {db.auth.OAuthCredential} */
+            /** @type {database.auth.OAuthCredential} */
             console.log("Auth done");
             var credential = result.credential
             var token = credential.accessToken;
