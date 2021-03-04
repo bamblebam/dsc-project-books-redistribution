@@ -164,6 +164,7 @@ $primary_dark:#1466e3;
     &:hover{
         color: $primary;
         border-color: $primary_dark;
+        cursor: pointer;
     }
 }
 

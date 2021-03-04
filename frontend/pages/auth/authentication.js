@@ -38,7 +38,8 @@ export default function authentication() {
 		main_container.current.classList.remove(styles.signup_mode)
 	}
 
-	const googleSignIn = () => {
+	const googleSignIn = (e) => {
+		e.preventDefault()
 		console.log("google signup");
 		var provider = new firebase.auth.GoogleAuthProvider();
 		console.log("Provider done");
@@ -92,9 +93,9 @@ export default function authentication() {
 								<a href="" className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
 								</a>
-								<button onClick={googleSignIn} className={styles.social_icon}>
+								<a onClick={googleSignIn} className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faGoogle}></FontAwesomeIcon>
-								</button>
+								</a>
 
 								<a href="" className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
@@ -133,20 +134,6 @@ export default function authentication() {
 								</div>
 								<button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign up with</p>
-								<div className={styles.social_media}>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
-									</a>
-									<button onClick={() => { console.log("Fucking clicked") }} >
-										Google
-                                    </button>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
-									</a>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faLinkedin}></FontAwesomeIcon>
-									</a>
-								</div>
 							</form>
 						</div>
 					</div>
@@ -174,17 +161,3 @@ export default function authentication() {
 		</>
 	)
 }
-
-// export async function getStaticProps() {
-// 	const firebaseConfig = {
-// 		apiKey: "AIzaSyDMjdPGj_MMlEa0Ub4mYe6gtm2m-dLAZw8",
-// 		authDomain: "dscbooks-3a4c3.firebaseapp.com",
-// 		databaseURL: "https://dscbooks-3a4c3.firebaseio.com",
-// 		projectId: "dscbooks-3a4c3",
-// 		storageBucket: "dscbooks-3a4c3.appspot.com",
-// 		messagingSenderId: "401879675162",
-// 		appId: "1:401879675162:web:0227715ffaee7fc0af7ca3"
-// 	}
-// 	const db = firebase.initializeApp(firebaseConfig)
-// 	return { props: { db } }
-// }
