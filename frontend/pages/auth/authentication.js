@@ -24,7 +24,7 @@ export default function authentication() {
 	}
 
 	return (
-		<>
+		<div className={styles.authContainer}>
 			<Head></Head>
 			<div className={styles.body}>
 				<div className={styles.main_container} ref={main_container}>
@@ -228,6 +228,6 @@ export default function authentication() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
