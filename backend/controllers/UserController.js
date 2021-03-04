@@ -166,6 +166,21 @@ const googleSignIn = (req,res,next)=>{
   });
   res.send("done")
 } 
+const userPasswordReset=(req,res,next)=>{
+    
+    var auth = firebase.auth();
+    var emailAddress = req.body.email;
+
+
+auth.sendPasswordResetEmail("krutikabhatt222@gmail.com").then(function() {
+    // res.send("email sent")
+     res.redirect('http://localhost:3000/auth/authentication')
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+  console.log(error)
+});
+}
 
 module.exports = {
     addUser,
@@ -175,5 +190,6 @@ module.exports = {
     deleteUser,
     signInUser,
     signOutUser,
-    googleSignIn
+    googleSignIn,
+    userPasswordReset
 }

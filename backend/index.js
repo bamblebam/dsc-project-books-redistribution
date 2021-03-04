@@ -5,10 +5,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const Userroute = require('./routes/UserRoutes');
 const Booksroute = require('./routes/BookRoutes');
-<<<<<<< Updated upstream
-=======
 const firebase = require('./db');
->>>>>>> Stashed changes
 
 
 const app = express();

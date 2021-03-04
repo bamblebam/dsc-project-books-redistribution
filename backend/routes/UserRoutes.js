@@ -6,7 +6,8 @@ const { addUser,
     deleteUser,
     signInUser,
     signOutUser,
-    googleSignIn
+    googleSignIn,
+    userPasswordReset
 } = require('../controllers/UserController');
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.delete('/user/:id', deleteUser);
 router.post('/login', signInUser);
 router.post('/signOut', signOutUser);
 router.get('/googleSignIn',googleSignIn);
+router.get('/passwordReset',userPasswordReset);
 module.exports = {
     routes: router
 }
