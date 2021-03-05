@@ -7,7 +7,8 @@ const { addUser,
     signInUser,
     signOutUser,
     googleSignIn,
-    userPasswordReset
+    userPasswordReset,
+    addToUserWishlist
 } = require('../controllers/UserController');
 
 const router = express.Router();
@@ -21,6 +22,8 @@ router.post('/login', signInUser);
 router.post('/signOut', signOutUser);
 router.get('/googleSignIn',googleSignIn);
 router.get('/passwordReset',userPasswordReset);
+router.post('/addWishListBook', addToUserWishlist);
 module.exports = {
     routes: router
 }
+// export default router;

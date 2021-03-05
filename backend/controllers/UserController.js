@@ -1,11 +1,13 @@
 'use strict';
 // import firebase from '../db';   <-Can be written to these
-
+// import { firestore as _firestore, auth } from '../db';
+// const admin = require('firebase');
 const firebase = require('../db');
 const User = require('../models/Users');
 const firestore = firebase.firestore();
 const auth=firebase.auth();
 const { GoogleAuth } = require('google-auth-library');
+const firebase1 =require('firebase') ;
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
 const addUser = async (req, res, next) => {
@@ -182,6 +184,27 @@ auth.sendPasswordResetEmail("krutikabhatt222@gmail.com").then(function() {
 });
 }
 
+const addToUserWishlist=async (req,res,next)=>{
+    console.log("inside fn")
+    try {
+        const userid = req.body.userId;
+        const bookid = req.body.id;
+        // const data = req.body;
+        const user = firestore.collection('users').doc(userid);
+
+        // 
+        const user1 = await user.update({
+            wishListBooks: firebase1.firestore.FieldValue.arrayUnion(bookid) 
+          });
+          console.log(user1)
+        res.send("book added successfully !")
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 module.exports = {
     addUser,
     getAllUser,
@@ -191,5 +214,7 @@ module.exports = {
     signInUser,
     signOutUser,
     googleSignIn,
-    userPasswordReset
+    userPasswordReset,
+    addToUserWishlist
 }
+
