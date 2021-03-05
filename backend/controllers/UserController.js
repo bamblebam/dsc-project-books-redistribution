@@ -1,10 +1,15 @@
 'use strict';
 // import firebase from '../db';   <-Can be written to these
-
+// import { firestore as _firestore, auth } from '../db';
+// const admin = require('firebase');
 const firebase = require('../db');
 const User = require('../models/Users');
 const firestore = firebase.firestore();
-
+const auth=firebase.auth();
+const { GoogleAuth } = require('google-auth-library');
+const firebase1 =require('firebase') ;
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 const addUser = async (req, res, next) => {
 
     try {
@@ -108,7 +113,7 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
-const logInUser = async (req, res, next) => {
+const signInUser = async (req, res, next) => {
 
     var email = req.body.email;
     var password = req.body.password;
@@ -133,11 +138,88 @@ const logInUser = async (req, res, next) => {
         });
 }
 
+const signOutUser =(req,res,next)=>{
+    firebase.auth().signOut().then(() => {
+        
+        res.redirect('/home')
+      }).catch((error) => {
+        // An error happened.
+        console.log(error)
+      });
+}
+
+const googleSignIn = (req,res,next)=>{
+    var provider = new auth.GoogleAuthProvider();
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+  res.send("done")
+} 
+const userPasswordReset=(req,res,next)=>{
+    
+    var auth = firebase.auth();
+    var emailAddress = req.body.email;
+
+
+auth.sendPasswordResetEmail("krutikabhatt222@gmail.com").then(function() {
+    // res.send("email sent")
+     res.redirect('http://localhost:3000/auth/authentication')
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+  console.log(error)
+});
+}
+
+const addToUserWishlist=async (req,res,next)=>{
+    console.log("inside fn")
+    try {
+        const userid = req.body.userId;
+        const bookid = req.body.id;
+        // const data = req.body;
+        const user = firestore.collection('users').doc(userid);
+
+        // 
+        const user1 = await user.update({
+            wishListBooks: firebase1.firestore.FieldValue.arrayUnion(bookid) 
+          });
+          console.log(user1)
+        res.send("book added successfully !")
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 module.exports = {
     addUser,
     getAllUser,
     getUser,
     updateUser,
     deleteUser,
-    logInUser
+    signInUser,
+    signOutUser,
+    googleSignIn,
+    userPasswordReset,
+    addToUserWishlist
 }
+

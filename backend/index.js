@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const Userroute = require('./routes/UserRoutes');
 const Booksroute = require('./routes/BookRoutes');
+const firebase = require('./db');
 
 
 const app = express();
@@ -40,3 +41,4 @@ io.on('connection', (socket) => {
     	socket.broadcast.emit('typing', {username : socket.username})
     })
 })
+
