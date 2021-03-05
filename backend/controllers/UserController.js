@@ -10,7 +10,6 @@ const addUser = async (req, res, next) => {
     try {
 
         const data = req.body;
-        console.log(data);
         var email = data.email;
         var password = data.password;
 
@@ -18,6 +17,12 @@ const addUser = async (req, res, next) => {
             .then((userCredential) => {
                 var user = userCredential.user;
                 firestore.collection('users').doc(user.uid).set(data);
+
+                user.sendEmailVerification().then(function(){
+
+                }).catch(function(error){
+                    console.log("Error occured");
+                });
                 res.send("Successfully added");
 
             })
