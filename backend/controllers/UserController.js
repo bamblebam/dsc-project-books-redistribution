@@ -10,6 +10,7 @@ const {
     GoogleAuth
 } = require('google-auth-library');
 const firebase1 = require('firebase');
+var stringSimilarity = require("string-similarity");
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
 const addUser = async (req, res, next) => {
@@ -181,7 +182,7 @@ const userPasswordReset = (req, res, next) => {
     var emailAddress = req.body.email;
 
 
-    auth.sendPasswordResetEmail("krutikabhatt222@gmail.com").then(function () {
+    auth.sendPasswordResetEmail(emailAddress).then(function () {
         // res.send("email sent")
         res.redirect('http://localhost:3000/auth/authentication')
         // Email sent.
@@ -222,6 +223,7 @@ const recommendBook = async (req, res, next) => {
         const booksAccordingToCategory = []
         const booksAccordingToCategoryID = []
         const recCategory = []
+        const bookRanking=[]
 
         if (!data.exists) {
             res.status(404).send('User not found');
@@ -267,6 +269,24 @@ const recommendBook = async (req, res, next) => {
                     });
                     setTimeout(() => resolve(booksAccordingToCategory), 1000);
                 }).then((booksAccordingToCategory) => {
+                    booksAccordingToCategory.forEach(book=>{
+                        // console.log(book["booktitle"])
+                        bookRanking.push(stringSimilarity.compareTwoStrings("G.V. Kumbojkar", book["booktitle"]));
+                    })
+                    for(var i=0;i<bookRanking.length;i++){
+                        for(var j=0;j<bookRanking.length-i-1;j++){
+                            if(bookRanking[j]<bookRanking[j+1]){
+                                var temp=bookRanking[j];
+                                bookRanking[j]=bookRanking[j+1];
+                                bookRanking[j+1]=temp;
+                                temp=booksAccordingToCategory[j];
+                                booksAccordingToCategory[j]=booksAccordingToCategory[j+1];
+                                booksAccordingToCategory[j+1]=temp
+                            }
+                        }
+                    }
+                    console.log(bookRanking)
+                    console.log(booksAccordingToCategory)
                     res.send(booksAccordingToCategory);
                 })
             })
