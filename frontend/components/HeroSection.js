@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import heroStyles from '../styles/css/HeroSection.module.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 
 const HeroSection = () => {
-	let username = 'user'
+	let username = 'John'
 	// update username from db
 	//change spans from db
 
@@ -79,12 +80,14 @@ const HeroSection = () => {
 						</div>
 					</div>
 					<div className={heroStyles.right}>
-						<Image
-							src='/images/testImage.jpg'
-							alt='test image'
-							width={500}
-							height={500}
-						/>
+						<Link href='product/Resources'>
+							<Image
+								src='/images/testImage.jpg'
+								alt='test image'
+								width={500}
+								height={500}
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>

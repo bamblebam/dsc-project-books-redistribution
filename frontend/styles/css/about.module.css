@@ -1,0 +1,20 @@
+.container {
+	margin-top: 5%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+.image {
+	height: 100%;
+}
+.details {
+	display: block;
+	height: 100%;
+}
+.title {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
