@@ -2,14 +2,17 @@
 	border: 1px solid #17aefd;
 	border-radius: 100px;
 	height: 2rem;
-	width: 15rem;
+	width: 100%;
+	padding: 0 1rem 0 1rem;
 	background-color: white;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
+	transform: scale(1);
+	transition: all ease-in-out 0.25s;
 }
 
-.icon {
+.button {
 	color: #17aefd;
 	height: 1.5rem;
 	width: 1.5rem;
@@ -25,5 +28,10 @@
 
 .input:focus {
 	outline: none;
-	color: #17aefd;
+	color: black;
+}
+
+.icon {
+	font-size: 1.2rem;
+	cursor: pointer;
 }

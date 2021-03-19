@@ -8,11 +8,12 @@ const Resources = () => {
 	return (
 		<div>
 			<div className={resourcesStyle.head}>
-				<h3>Some text </h3>
-				<SearchBar />
+				<SearchBar searchText="Search Resources..." link="/" />
 			</div>
 			<div className={resourcesStyle.main}>
 				{Items.map((data, key) => {
+					let bookDesc = data.text.slice(0, 75) + "...";
+					console.log(bookDesc);
 					return (
 						<ModalCard
 							key={key}
@@ -21,6 +22,7 @@ const Resources = () => {
 							price={data.price}
 							location={data.location}
 							year={data.year}
+							bookDesc={data.text.slice(0, 75) + "..."}
 							text={data.text}
 							imgSrc={data.imgSrc}
 							imgAlt={data.imgAlt}

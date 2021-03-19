@@ -9,6 +9,7 @@ const ModalCard = ({
 	price,
 	location,
 	year,
+	bookDesc,
 	text,
 	imgSrc,
 	imgAlt,
@@ -17,32 +18,40 @@ const ModalCard = ({
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	return (
-		<div
-			className={modalCardStyles.store}
-			onClick={() => {
-				setModalIsOpen(true);
-				console.log("Click registered");
-			}}
-		>
-			<Card
-				bookImg={imgSrc}
-				bookName={bookName}
-				author={author}
-				imgAlt={imgAlt}
-				text={text}
-			/>
+		<div className={modalCardStyles.store}>
+			<div
+				onClick={() => {
+					setModalIsOpen(true);
+				}}
+			>
+				<Card
+					bookImg={imgSrc}
+					bookName={bookName}
+					author={author}
+					imgAlt={imgAlt}
+					bookDesc={bookDesc}
+				/>
+			</div>
 			<Modal
 				className="Modal"
 				isOpen={modalIsOpen}
+				ariaHideApp={false}
 				onRequestClose={() => {
 					setModalIsOpen(false);
 				}}
 			>
 				<div className={modalCardStyles.modal}>
-					<img className={modalCardStyles.store_left} src={imgSrc} alt="" />
+					<div className={modalCardStyles.store_left}>
+						<img className={modalCardStyles.image} src={imgSrc} alt="" />
+					</div>
 					<div className={modalCardStyles.store_right}>
 						<div className={modalCardStyles.modal_header}>
-							<h1 className={modalCardStyles.modal_title}>{bookName}</h1>
+							<div>
+								<h1 className={modalCardStyles.modal_title}>{bookName}</h1>
+								<h2 className={modalCardStyles.modal_subtitle}>
+									{author}, {year}
+								</h2>
+							</div>
 							<button
 								className={modalCardStyles.close_button}
 								onClick={() => {
@@ -53,28 +62,31 @@ const ModalCard = ({
 							</button>
 						</div>
 						<div className={modalCardStyles.modal_body}>
-							<div className={modalCardStyles.modal_details}>
+							<div className={modalCardStyles.box}>
 								<div>
-									<h2>Author: {author}</h2>
-									<h2>Price: {price}</h2>
+									<div className={modalCardStyles.modal_details}>
+										<h3>Price: {price}</h3>
+										<h3>Location: {location}</h3>
+									</div>
 								</div>
-								<div>
-									<h2>Year: {year}</h2>
-									<h2>Location: {location}</h2>
+								<div className={modalCardStyles.modal_product_description}>
+									<p>Description:</p>
+									<p>{text}</p>
 								</div>
 							</div>
-							<p>Description:</p>
-							<p>{text}</p>
-							<button className={modalCardStyles.btn_card}>
-								<a className={modalCardStyles.btn_link} href={link}>
-									Add to wishlist
-								</a>
-							</button>
-							<button className={modalCardStyles.btn_card}>
-								<a className={modalCardStyles.btn_link} href="/sign-up">
-									Contact User
-								</a>
-							</button>
+
+							<div className={modalCardStyles.modal_btns}>
+								<button className={modalCardStyles.btn_primary}>
+									<a className={modalCardStyles.btn_link_primary} href={link}>
+										Add to wishlist
+									</a>
+								</button>
+								<button className={modalCardStyles.btn_secondary}>
+									<a className={modalCardStyles.btn_link_secondary} href="/sign-up">
+										Contact User
+									</a>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
