@@ -4,7 +4,12 @@ const { addUser,
     getUser,
     updateUser,
     deleteUser,
-    logInUser
+    signInUser,
+    signOutUser,
+    googleSignIn,
+    userPasswordReset,
+    addToUserWishlist,
+    recommendBook
 } = require('../controllers/UserController');
 
 const router = express.Router();
@@ -14,7 +19,13 @@ router.get('/allUser', getAllUser);
 router.get('/user/:id', getUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
-router.post('/login', logInUser);
+router.post('/login', signInUser);
+router.post('/signOut', signOutUser);
+router.get('/googleSignIn',googleSignIn);
+router.get('/passwordReset',userPasswordReset);
+router.post('/addWishListBook', addToUserWishlist);
+router.get('/recommend/:id',recommendBook);
 module.exports = {
     routes: router
 }
+// export default router;

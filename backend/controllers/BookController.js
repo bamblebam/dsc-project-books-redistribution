@@ -6,7 +6,8 @@ const firestore = firebase.firestore();
 
 const addbook = async(req,res,next) =>{
     try{
-
+        let current = new Date();
+        
         const userid = req.params.userId;
         const data = req.body;
 
@@ -18,12 +19,17 @@ const addbook = async(req,res,next) =>{
  
         const bookData ={
             userId :userid,
+            isAvailable:true,
             ...req.body,
+            timestamp: current,
+
+            
          };
         await firestore.collection('books').doc().set(bookData);
         res.send('Book added successfully!');
 
     }catch(error){
+        console.log(error);
         res.status(400).send(error.message);
     }
 }
@@ -48,7 +54,8 @@ const getAllBooksofUser = async(req,res,next) =>{
                     doc.data().booktitle,
                     doc.data().requested_users,
                     doc.data().created_at ,
-                    doc.data().description
+                    doc.data().description,
+                    doc.data().category,
                 );
                 bookArray.push(book);
             });
@@ -146,6 +153,8 @@ const GetAllBookWithRespectiveUser = async (req ,res, next) =>{
     }
 
 }
+
+
 module.exports={
     addbook,
     getAllBooksofUser,
@@ -154,3 +163,10 @@ module.exports={
     deleteBook,
     GetAllBookWithRespectiveUser
 }
+
+// export default  addbook;
+// export default getAllBooksofUser;
+// export default getAbook;
+// export default updateBook;
+// export default deleteBook;
+// export default GetAllBookWithRespectiveUser;
