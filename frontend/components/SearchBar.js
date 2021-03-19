@@ -1,7 +1,7 @@
-import searchBarStyles from "../styles/css/SearchBar.module.css";
+import searchBarStyles from '../styles/css/SearchBar.module.css'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBar = ({ searchText, link }) => {
 	return (
@@ -16,6 +16,6 @@ const SearchBar = ({ searchText, link }) => {
 				</a>
 			</button>
 		</div>
-	);
-};
-export default SearchBar;
+	)
+}
+export default SearchBar
