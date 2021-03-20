@@ -55,7 +55,7 @@ const about = () => {
 							<h3>Need books for new sem?</h3>
 							<p>Checkout our book store for books.</p>
 							<button className={aboutStyles.btn__primary}>
-								<Link href='/auth/authentication'>Join us</Link>
+								<Link href='/product/Resources'>Get Books</Link>
 							</button>
 						</div>
 					</div>
@@ -81,8 +81,9 @@ const about = () => {
 				</div>
 				<div id='right' className={aboutStyles.details}>
 					<h1 className={aboutStyles.title}>How?</h1>
+					<h2>Cycle based on trust</h2>
 					<p>
-						People who have book they are willing to donate, add their books in the
+						People who have books and are willing to donate, add their books in the
 						item list
 					</p>
 					<p>People who want the books can take them from item list</p>
@@ -93,6 +94,9 @@ const about = () => {
 					<h1 className={aboutStyles.title}>What have we achieved?</h1>
 					<p>
 						Over <span>10,000</span> student helped.
+					</p>
+					<p>
+						More than <span>100,000</span> books exchanged.
 					</p>
 					<p>Help us increase the number</p>
 					<button className={aboutStyles.btn__primary}>
