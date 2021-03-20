@@ -7,7 +7,7 @@ import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-b
 import firebase from "firebase/app"
 import "firebase/auth"
 import firebaseApp from '../../configurations/db';
-import {addUser} from "../../../backend/controllers/UserController.js"
+import { addUser } from "../../../backend/controllers/UserController.js"
 
 export default function authentication() {
 
