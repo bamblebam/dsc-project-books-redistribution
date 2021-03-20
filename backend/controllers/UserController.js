@@ -43,21 +43,21 @@ const addUser = async (req, res, next) => {
     }
 }
 
-const loginUser = async (req, res, next) => {
-    try {
-        await firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(
-            userCredential => {
-                var user = userCredential.user
-                res.send("Login successful")
-            }).catch(error => {
-                res.send(error.message)
-            }
-            )
-    }
-    catch (error) {
-        res.status(400).send(error.message)
-    }
-}
+// const loginUser = async (req, res, next) => {
+//     try {
+//         await firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(
+//             userCredential => {
+//                 var user = userCredential.user
+//                 res.send("Login successful")
+//             }).catch(error => {
+//                 res.send(error.message)
+//             }
+//             )
+//     }
+//     catch (error) {
+//         res.status(400).send(error.message)
+//     }
+// }
 
 
 const getAllUser = async (req, res, next) => {
@@ -401,5 +401,4 @@ module.exports = {
     userPasswordReset,
     addToUserWishlist,
     recommendBook,
-    loginUser
 }
