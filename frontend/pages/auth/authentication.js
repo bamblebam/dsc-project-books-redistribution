@@ -1,17 +1,13 @@
 import React, { useRef } from 'react'
 import Head from 'next/head'
 import styles from '../../styles/css/authentication.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import {
-	faFacebook,
-	faGoogle,
-	faLinkedin,
-	faTwitter,
-} from '@fortawesome/free-brands-svg-icons'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import firebaseApp from '../../configurations/db'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import firebase from "firebase/app"
+import "firebase/auth"
+import firebaseApp from '../../configurations/db';
+import axios from 'axios'
 
 export default function authentication() {
 	const change_to_signup_btn = useRef(null)
@@ -47,6 +43,19 @@ export default function authentication() {
 				var credential = error.credential
 			})
 	}
+
+	const signup = (e) => {
+		e.preventDefault()
+		let body = {
+			"email": "bam@gmail.com",
+			"password": "ieuwnfiuegiurbg"
+		}
+		console.log("bam")
+		axios.post("http://localhost:8080/api/User", body).then(res => {
+			console.log(res)
+		})
+	}
+
 
 	return (
 		<>
@@ -89,9 +98,7 @@ export default function authentication() {
 										placeholder='Password'
 									/>
 								</div>
-								<button type='submit' className={styles.btn + ' ' + styles.solid}>
-									Sign In
-								</button>
+								<button onClick={(e) => signup(e)} className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
 							</form>
 							<div className={styles.social_media}>
@@ -232,11 +239,3 @@ export default function authentication() {
 	)
 }
 
-// export async function getServerSideProps() {
-// 	import("../../../backend/controllers/UserController.js").then({ addUser })
-// 	return {
-// 		props: {
-// 			'num': 100
-// 		}
-// 	}
-// }
