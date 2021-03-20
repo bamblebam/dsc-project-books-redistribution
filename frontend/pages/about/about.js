@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 import aboutStyles from '../../styles/css/about.module.css'
 import Footer from '../../components/Footer'
+import Link from 'next/link'
 
 const about = () => {
 	useEffect(() => {
@@ -46,12 +47,16 @@ const about = () => {
 							<p>
 								Add your books to our items list and help others achieve their dreams.
 							</p>
-							<button className={aboutStyles.btn__secondary}>Donate Books</button>
+							<button className={aboutStyles.btn__secondary}>
+								<Link href='/product/donate'>Donate Books</Link>
+							</button>
 						</div>
 						<div className={aboutStyles.textLeft}>
 							<h3>Need books for new sem?</h3>
 							<p>Checkout our book store for books.</p>
-							<button className={aboutStyles.btn__primary}>Join us</button>
+							<button className={aboutStyles.btn__primary}>
+								<Link href='/auth/authentication'>Join us</Link>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -90,7 +95,9 @@ const about = () => {
 						Over <span>10,000</span> student helped.
 					</p>
 					<p>Help us increase the number</p>
-					<button className={aboutStyles.btn__primary}>Join us</button>
+					<button className={aboutStyles.btn__primary}>
+						<Link href='/auth/authentication'>Join us</Link>
+					</button>
 				</div>
 				<div id='right' className={aboutStyles.image}>
 					<Image
