@@ -262,6 +262,10 @@ $primary_dark:#1466e3;
     }
 }
 
+.form_error{
+    color: #dc3545;
+}
+
 @media (max-width:870px){
     .main_container{
         min-height: 800px;
