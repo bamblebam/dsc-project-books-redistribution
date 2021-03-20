@@ -23,3 +23,5 @@ This is the repository for our project submission in the google DSC challenge.
 - [ ] Video
 - [ ] Survey
 - [ ] Add to userWishList error
+- [ ] Authors in books
+- [ ] Books structure
