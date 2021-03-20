@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import Card from "./Card";
-import modalCardStyles from "../styles/css/ModalCard.module.css";
+import React, { useState } from 'react'
+import Modal from 'react-modal'
+import Card from './Card'
+import modalCardStyles from '../styles/css/ModalCard.module.css'
 
 const ModalCard = ({
 	author,
@@ -15,13 +15,13 @@ const ModalCard = ({
 	imgAlt,
 	link,
 }) => {
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	return (
 		<div className={modalCardStyles.store}>
 			<div
 				onClick={() => {
-					setModalIsOpen(true);
+					setModalIsOpen(true)
 				}}
 			>
 				<Card
@@ -29,20 +29,20 @@ const ModalCard = ({
 					bookName={bookName}
 					author={author}
 					imgAlt={imgAlt}
-					bookDesc={bookDesc}
+					text={bookDesc}
 				/>
 			</div>
 			<Modal
-				className="Modal"
+				className='Modal'
 				isOpen={modalIsOpen}
 				ariaHideApp={false}
 				onRequestClose={() => {
-					setModalIsOpen(false);
+					setModalIsOpen(false)
 				}}
 			>
 				<div className={modalCardStyles.modal}>
 					<div className={modalCardStyles.store_left}>
-						<img className={modalCardStyles.image} src={imgSrc} alt="" />
+						<img className={modalCardStyles.image} src={imgSrc} alt='' />
 					</div>
 					<div className={modalCardStyles.store_right}>
 						<div className={modalCardStyles.modal_header}>
@@ -55,7 +55,7 @@ const ModalCard = ({
 							<button
 								className={modalCardStyles.close_button}
 								onClick={() => {
-									setModalIsOpen(false);
+									setModalIsOpen(false)
 								}}
 							>
 								&times;
@@ -82,7 +82,7 @@ const ModalCard = ({
 									</a>
 								</button>
 								<button className={modalCardStyles.btn_secondary}>
-									<a className={modalCardStyles.btn_link_secondary} href="/sign-up">
+									<a className={modalCardStyles.btn_link_secondary} href='/sign-up'>
 										Contact User
 									</a>
 								</button>
@@ -92,7 +92,7 @@ const ModalCard = ({
 				</div>
 			</Modal>
 		</div>
-	);
-};
+	)
+}
 
-export default ModalCard;
+export default ModalCard
