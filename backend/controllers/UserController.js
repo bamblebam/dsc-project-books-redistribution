@@ -223,14 +223,14 @@ const recommendBook = async (req, res, next) => {
 
         var userLocation = data.data().location;
         userLocation = JSON.parse(JSON.stringify(userLocation));
-        
+
         const userLat = userLocation.latitude;
         const userLong = userLocation.longitude;
 
         const booksAccordingToCategory = []
         const booksAccordingToCategoryID = []
         const recCategory = []
-        const bookRanking=[]
+        const bookRanking = []
         const bookRankingId = []
 
         if (!data.exists) {
@@ -277,35 +277,35 @@ const recommendBook = async (req, res, next) => {
 
                     });
                     setTimeout(() => resolve(booksAccordingToCategory), 1000);
-                }).then((booksAccordingToCategory)=>{
+                }).then((booksAccordingToCategory) => {
 
-                    booksAccordingToCategory.forEach((doc)=>{
-                        
+                    booksAccordingToCategory.forEach((doc) => {
+
                         var location = JSON.stringify(doc['location']);
                         location = JSON.parse(location);
                         //const longitude = location._long;
                         //const lat = location._lat;
-                       // console.log(userLat);
+                        // console.log(userLat);
                         //console.log(getDistance(userLat,userLong, location.lattitude,location.longitude));
-                        bookRanking.push(getDistance(userLat,userLong,location.latitude,location.longitude));
+                        bookRanking.push(getDistance(userLat, userLong, location.latitude, location.longitude));
                     })
 
-                    for(var i=0;i<bookRanking.length;i++){
-                        for(var j=0;j<bookRanking.length-i-1;j++){
-                            if(bookRanking[j]>=bookRanking[j+1]){
-                                var temp=bookRanking[j];
-                                bookRanking[j]=bookRanking[j+1];
-                                bookRanking[j+1]=temp;
-                                temp=booksAccordingToCategory[j];
-                                booksAccordingToCategory[j]=booksAccordingToCategory[j+1];
-                                booksAccordingToCategory[j+1]=temp
+                    for (var i = 0; i < bookRanking.length; i++) {
+                        for (var j = 0; j < bookRanking.length - i - 1; j++) {
+                            if (bookRanking[j] >= bookRanking[j + 1]) {
+                                var temp = bookRanking[j];
+                                bookRanking[j] = bookRanking[j + 1];
+                                bookRanking[j + 1] = temp;
+                                temp = booksAccordingToCategory[j];
+                                booksAccordingToCategory[j] = booksAccordingToCategory[j + 1];
+                                booksAccordingToCategory[j + 1] = temp
                             }
                         }
                     }
 
                     res.send(booksAccordingToCategory);
 
-                }).catch((error)=>{
+                }).catch((error) => {
                     console.log(error);
                     console.log(error.message);
                 })
@@ -338,18 +338,18 @@ const recommendBook = async (req, res, next) => {
     }
 }
 
-function deg2rad(degree){
-    return degree*(Math.PI/180);
+function deg2rad(degree) {
+    return degree * (Math.PI / 180);
 }
 
 // Function returns value in kilometer
-function getDistance(lat1,long1,lat2,long2) {
+function getDistance(lat1, long1, lat2, long2) {
 
     const theta = long1 - long2;
-    var distance =  Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+    var distance = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
     distance = Math.acos(distance);
-    distance = (180/Math.PI)*distance;
-    distance = distance*111.189577;  //KM
+    distance = (180 / Math.PI) * distance;
+    distance = distance * 111.189577;  //KM
     return Math.round(distance); //Integer 10.55 = 11 
 
 }
@@ -362,7 +362,7 @@ const searchBookbyTitle = async (req, res, next) => {
         res.send(404).send("Some error occurred");
 
     }else{
-        
+
         const booksAccordingToCategory = [];
         const books = firebase.collection('books');
         const booksData = await books.get();
