@@ -46,13 +46,12 @@ export default function authentication() {
 
 	const signup = (e) => {
 		e.preventDefault()
-		User = {
-			name: "bam",
-			email: "bam@gmail.com",
-			password: "ieuwnfiuegiurbg"
+		let body = {
+			"email": "bam@gmail.com",
+			"password": "ieuwnfiuegiurbg"
 		}
 		console.log("bam")
-		axios.post(`localhost:8080/api/User`, { User }).then(res => {
+		axios.post("http://localhost:8080/api/User", { body }).then(res => {
 			console.log(res)
 		})
 	}
@@ -99,7 +98,7 @@ export default function authentication() {
 										placeholder='Password'
 									/>
 								</div>
-								<button onClick={() => signup()} className={styles.btn + " " + styles.solid}>Sign In</button>
+								<button onClick={(e) => signup(e)} className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
 							</form>
 							<div className={styles.social_media}>

@@ -2,14 +2,13 @@ import firebase from "firebase/app"
 import "firebase/auth"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDPwpw5NlQfoRnmT25ssEbTIjxIZ2M9O1E",
-    authDomain: "dsc-project-8d8cd.firebaseapp.com",
-    projectId: "dsc-project-8d8cd",
-    storageBucket: "dsc-project-8d8cd.appspot.com",
-    messagingSenderId: "308644591275",
-    appId: "1:308644591275:web:0e3f5f1295971f105629ee",
-    measurementId: "G-LWXEXZH8XH",
-    databaseURL: "https://dsc-project-8d8cd.firebaseio.com"
+    apiKey: "AIzaSyDMjdPGj_MMlEa0Ub4mYe6gtm2m-dLAZw8",
+    authDomain: "dscbooks-3a4c3.firebaseapp.com",
+    databaseURL: "https://dscbooks-3a4c3.firebaseio.com",
+    projectId: "dscbooks-3a4c3",
+    storageBucket: "dscbooks-3a4c3.appspot.com",
+    messagingSenderId: "401879675162",
+    appId: "1:401879675162:web:0227715ffaee7fc0af7ca3"
 }
 
 const firebaseApp = firebase.apps && firebase.apps.length > 0 ? firebase.apps[0] : firebase.initializeApp(firebaseConfig)
