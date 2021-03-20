@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import navStyles from '../styles/css/Nav.module.css'
 
-import firebase from 'firebase/app'
+import firebase from '../configurations/db'
 import 'firebase/auth'
 
 const Nav = () => {
-	const { uid } = firebase.auth().currentUser
+	const { uid } = firebase.auth().currentUser || 'abc'
 	const [click, setClick] = useState(false)
 	const [button, setButton] = useState(true)
 	const [width, setWidth] = useState(0)
