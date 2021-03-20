@@ -7,6 +7,7 @@ import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-b
 import firebase from "firebase/app"
 import "firebase/auth"
 import firebaseApp from '../../configurations/db';
+import {addUser} from "../../../backend/controllers/UserController.js"
 
 export default function authentication() {
 
@@ -74,9 +75,9 @@ export default function authentication() {
 								<a href="" className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
 								</a>
-								<button onClick={googleSignIn} className={styles.social_icon}>
+								<a onClick={googleSignIn} className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faGoogle}></FontAwesomeIcon>
-								</button>
+								</a>
 
 								<a href="" className={styles.social_icon}>
 									<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
@@ -114,21 +115,6 @@ export default function authentication() {
 									<input type="text" name="signup_password2" className={styles.input} placeholder="Confirm Password" />
 								</div>
 								<button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
-								<p className={styles.social_text}>Or sign up with</p>
-								<div className={styles.social_media}>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faFacebook}></FontAwesomeIcon>
-									</a>
-									<button onClick={() => { console.log("Fucking clicked") }} >
-										Google
-                                    </button>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faTwitter}></FontAwesomeIcon>
-									</a>
-									<a href="" className={styles.social_icon}>
-										<FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faLinkedin}></FontAwesomeIcon>
-									</a>
-								</div>
 							</form>
 						</div>
 					</div>
