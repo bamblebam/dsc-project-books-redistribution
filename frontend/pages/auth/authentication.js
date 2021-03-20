@@ -51,7 +51,7 @@ export default function authentication() {
 			"password": "ieuwnfiuegiurbg"
 		}
 		console.log("bam")
-		axios.post("http://localhost:8080/api/User", { body }).then(res => {
+		axios.post("http://localhost:8080/api/User", body).then(res => {
 			console.log(res)
 		})
 	}
