@@ -4,9 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBar = ({ searchText, link }) => {
+	const focusInput = () => {
+		if (process.browser) {
+			document.getElementById('input').focus()
+		}
+	}
 	return (
-		<div className={searchBarStyles.main}>
-			<input className={searchBarStyles.input} placeholder={searchText}></input>
+		<div className={searchBarStyles.main} onClick={focusInput}>
+			<input
+				id='input'
+				className={searchBarStyles.input}
+				placeholder={searchText}
+				autoFocus
+			></input>
 			<button className={searchBarStyles.button}>
 				<a href={link}>
 					<FontAwesomeIcon

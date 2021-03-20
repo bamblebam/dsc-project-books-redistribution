@@ -1,14 +1,10 @@
 .head {
 	width: 50%;
-	position: absolute;
-	top: 15%;
-	left: 50%;
-	transform: translate(-50%, -15%);
 }
 
 .main {
-	margin-top: 3rem;
 	display: flex;
+	width: 50%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -16,4 +12,11 @@
 
 .title {
 	color: white;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 }
