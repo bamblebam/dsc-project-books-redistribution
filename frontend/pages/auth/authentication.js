@@ -8,11 +8,30 @@ import firebase from "firebase/app"
 import "firebase/auth"
 import firebaseApp from '../../configurations/db';
 import axios from 'axios'
+import { useFormik } from 'formik';
 
 export default function authentication() {
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
+	const signup = useFormik({
+		initialValues: {
+			signup_username: "",
+			signup_email: "",
+			signup_password1: "",
+			signup_password2: ""
+		},
+		onSubmit: values => {
+			let body = {
+				"email": values.signup_email,
+				"password": values.signup_password1
+			}
+			console.log("bam")
+			axios.post("http://localhost:8080/api/User", body).then(res => {
+				console.log(res)
+			})
+		}
+	})
 
 	const change_to_signup = () => {
 		main_container.current.classList.add(styles.signup_mode)
@@ -44,17 +63,17 @@ export default function authentication() {
 			})
 	}
 
-	const signup = (e) => {
-		e.preventDefault()
-		let body = {
-			"email": "bam@gmail.com",
-			"password": "ieuwnfiuegiurbg"
-		}
-		console.log("bam")
-		axios.post("http://localhost:8080/api/User", body).then(res => {
-			console.log(res)
-		})
-	}
+	// const signup = (e) => {
+	// 	e.preventDefault()
+	// 	let body = {
+	// 		"email": "bam@gmail.com",
+	// 		"password": "ieuwnfiuegiurbg"
+	// 	}
+	// 	console.log("bam")
+	// 	axios.post("http://localhost:8080/api/User", body).then(res => {
+	// 		console.log(res)
+	// 	})
+	// }
 
 
 	return (
@@ -98,7 +117,7 @@ export default function authentication() {
 										placeholder='Password'
 									/>
 								</div>
-								<button onClick={(e) => signup(e)} className={styles.btn + " " + styles.solid}>Sign In</button>
+								<button className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
 							</form>
 							<div className={styles.social_media}>
@@ -133,6 +152,7 @@ export default function authentication() {
 								action=''
 								method='POST'
 								className={styles.form + ' ' + styles.signup_form}
+								onSubmit={signup.handleSubmit}
 							>
 								<h2 className={styles.title}>Sign Up</h2>
 								<div className={styles.input_field}>
@@ -147,6 +167,8 @@ export default function authentication() {
 										name='signup_username'
 										className={styles.input}
 										placeholder='Username'
+										onChange={signup.handleChange}
+										value={signup.values.signup_username}
 									/>
 								</div>
 								<div className={styles.input_field}>
@@ -161,6 +183,8 @@ export default function authentication() {
 										name='signup_email'
 										className={styles.input}
 										placeholder='Email'
+										onChange={signup.handleChange}
+										value={signup.values.signup_email}
 									/>
 								</div>
 								<div className={styles.input_field}>
@@ -175,6 +199,8 @@ export default function authentication() {
 										name='signup_password1'
 										className={styles.input}
 										placeholder='Password'
+										onChange={signup.handleChange}
+										value={signup.values.signup_password1}
 									/>
 								</div>
 								<div className={styles.input_field}>
@@ -189,6 +215,8 @@ export default function authentication() {
 										name='signup_password2'
 										className={styles.input}
 										placeholder='Confirm Password'
+										onChange={signup.handleChange}
+										value={signup.values.signup_password2}
 									/>
 								</div>
 								<button type='submit' className={styles.btn + ' ' + styles.solid}>
