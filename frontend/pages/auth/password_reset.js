@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import styles from '../../styles/css/donate.module.css'
+import styles from '../../styles/css/password_reset.module.css'
 
 export default function PasswordReset() {
     return (
@@ -22,27 +22,8 @@ export default function PasswordReset() {
                                 <input
                                     type='text'
                                     className={styles.input}
-                                    placeholder='Product Name'
-                                    name='product_name'
-                                />
-                            </div>
-                            <div className={styles.text_field}>
-                                <textarea
-                                    cols='30'
-                                    rows='10'
-                                    className={styles.text}
-                                    placeholder='Enter a short description about your product.'
-                                    name='product_description'
-                                ></textarea>
-                            </div>
-                            <div className={styles.file_field}>
-                                <label htmlFor='product_image'>Image (Optional)</label>
-                                <input
-                                    type='file'
-                                    accept='image/*'
-                                    className={styles.file}
-                                    name='product_image'
-                                    id='product_image'
+                                    placeholder='Email'
+                                    name='password_email'
                                 />
                             </div>
                             <button className={styles.btn}>Donate</button>
@@ -55,16 +36,11 @@ export default function PasswordReset() {
                 <div className={styles.panel_container}>
                     <div className={styles.panel}>
                         <div className={styles.content}>
-                            <h3>Donate Now!!!</h3>
+                            <h3>Changed Your Mind</h3>
                             <p className={styles.desctext}>
-                                Donate now and help provide a child education
+                                Login Again
 							</p>
-                            <p>Or</p>
-                            <p className={styles.desctext}>
-                                Browse products that others want to give you might find something useful
-                                for yourself
-							</p>
-                            <button className={styles.btn + ' ' + styles.transparent}>Browse</button>
+                            <button className={styles.btn + ' ' + styles.transparent}>Login</button>
                         </div>
                         <img src='/images/image1.svg' alt='' className={styles.image} />
                     </div>
