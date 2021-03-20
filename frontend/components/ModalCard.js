@@ -82,7 +82,7 @@ const ModalCard = ({
 									</a>
 								</button>
 								<button className={modalCardStyles.btn_secondary}>
-									<a className={modalCardStyles.btn_link_secondary} href='/sign-up'>
+									<a className={modalCardStyles.btn_link_secondary} href='/'>
 										Contact User
 									</a>
 								</button>
