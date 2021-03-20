@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
 $primary: #17aefd;
 $accent: #f83686;
@@ -61,7 +61,7 @@ $light: white;
 	color: $dark;
 }
 .title::after {
-	content: "";
+	content: '';
 	z-index: -1;
 	position: absolute;
 	bottom: 25px;
@@ -110,10 +110,10 @@ $light: white;
 	transform: scale(1.5);
 	transition: all ease-in-out 0.5s;
 }
-.right{
+.right {
 	height: 80vh;
 }
-.image{
+.image {
 	display: none;
 	min-width: 30vw;
 	object-fit: cover;
@@ -184,19 +184,18 @@ $light: white;
 	}
 }
 
-
-@media screen and (max-width: 960px){
-	.title{
+@media screen and (max-width: 960px) {
+	.title {
 		font-size: 3rem;
 	}
-	.title::after{
+	.title::after {
 		height: 0.5rem;
 		bottom: 1rem;
 	}
-	.subtitle{
+	.subtitle {
 		font-size: 1.5rem;
 	}
-	.buttonDiv{
+	.buttonDiv {
 		display: flex;
 		height: 20vh;
 		flex-direction: column;
@@ -204,22 +203,22 @@ $light: white;
 		align-items: center;
 		margin: 0;
 	}
-	.main{
+	.main {
 		width: 40vw;
 	}
-	.btn__primary{
+	.btn__primary {
 		margin: 0;
 		width: 20vw;
 	}
-	.btn__secondary{
+	.btn__secondary {
 		margin: 0;
 		width: 20vw;
 	}
-	.right{
+	.right {
 		height: 70vh;
 		width: 40vw;
 	}
-	.image{
+	.image {
 		object-fit: cover;
 	}
 }

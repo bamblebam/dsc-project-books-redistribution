@@ -1,5 +1,5 @@
-import cardStyles from "../styles/css/Card.module.css";
-import Image from "next/image";
+import cardStyles from '../styles/css/Card.module.css'
+import Image from 'next/image'
 
 const Card = ({ bookImg, imgAlt, bookName, author, text }) => {
 	return (
@@ -13,6 +13,6 @@ const Card = ({ bookImg, imgAlt, bookName, author, text }) => {
 				<p className={cardStyles.description}>{text}</p>
 			</div>
 		</div>
-	);
-};
-export default Card;
+	)
+}
+export default Card

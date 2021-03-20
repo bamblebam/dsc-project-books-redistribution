@@ -13,6 +13,7 @@ const Resources = () => {
 			<div className={resourcesStyle.main}>
 				{Items.map((data, key) => {
 					let bookDesc = data.text.slice(0, 75) + '...'
+					console.log(bookDesc)
 					return (
 						<ModalCard
 							key={key}
