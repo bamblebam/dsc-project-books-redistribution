@@ -7,6 +7,7 @@ import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-b
 import firebase from "firebase/app"
 import "firebase/auth"
 import firebaseApp from '../../configurations/db';
+import axios from 'axios'
 
 export default function authentication() {
 
@@ -44,6 +45,19 @@ export default function authentication() {
 			});
 	}
 
+	const signup = (e) => {
+		e.preventDefault()
+		User = {
+			name: "bam",
+			email: "bam@gmail.com",
+			password: "ieuwnfiuegiurbg"
+		}
+		console.log("bam")
+		axios.post(`localhost:8080/api/User`, { User }).then(res => {
+			console.log(res)
+		})
+	}
+
 
 	return (
 		<>
@@ -67,7 +81,7 @@ export default function authentication() {
 									</div>
 									<input type="text" name="signin_password" className={styles.input} placeholder="Password" />
 								</div>
-								<button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
+								<button onClick={() => signup()} className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
 							</form>
 							<div className={styles.social_media}>
@@ -142,11 +156,3 @@ export default function authentication() {
 	)
 }
 
-export async function getServerSideProps() {
-	import("../../../backend/controllers/UserController.js").then({ addUser })
-	return {
-		props: {
-			'num': 100
-		}
-	}
-}
