@@ -15,6 +15,7 @@ export default function authentication() {
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
+
 	const signup = useFormik({
 		initialValues: {
 			signup_username: "",
@@ -23,7 +24,7 @@ export default function authentication() {
 			signup_password2: ""
 		},
 		validationSchema: Yup.object({
-			signup_username: Yup.string().max(25, "Username must be less than 25 characters").required('Required'),
+			signup_username: Yup.string().max(25, "Username must be less than 25 characters").min(8, "Username must be greater than 25 characters").required('Required'),
 			signup_email: Yup.string().email("Not a valid email").required('Required'),
 			signup_password1: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required'),
 			signup_password2: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").oneOf([Yup.ref("signup_password1"), null], "The passwords must match").required('Required')
@@ -38,6 +39,17 @@ export default function authentication() {
 				console.log(res)
 			})
 		}
+	})
+
+	const signin = useFormik({
+		initialValues: {
+			signin_email: "",
+			signin_password: ""
+		},
+		validationSchema: Yup.object({
+			signin_username: Yup.string().max(25, "Username must be less than 25 characters").min(8, "Username must be greater than 25 characters").required('Required'),
+			signin_password: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required')
+		})
 	})
 
 	const change_to_signup = () => {
@@ -70,19 +82,6 @@ export default function authentication() {
 			})
 	}
 
-	// const signup = (e) => {
-	// 	e.preventDefault()
-	// 	let body = {
-	// 		"email": "bam@gmail.com",
-	// 		"password": "ieuwnfiuegiurbg"
-	// 	}
-	// 	console.log("bam")
-	// 	axios.post("http://localhost:8080/api/User", body).then(res => {
-	// 		console.log(res)
-	// 	})
-	// }
-
-
 	return (
 		<>
 			<Head></Head>
@@ -94,6 +93,7 @@ export default function authentication() {
 								action=''
 								method='POST'
 								className={styles.form + ' ' + styles.signin_form}
+								onSubmit={signin.onSubmit}
 							>
 								<h2 className={styles.title}>Sign In</h2>
 								<div className={styles.input_field}>
@@ -108,8 +108,14 @@ export default function authentication() {
 										name='signin_username'
 										className={styles.input}
 										placeholder='Username'
+										onChange={signin.handleChange}
+										onBlur={signin.handleBlur}
+										value={signin.values.signin_username}
 									/>
 								</div>
+								{signin.touched.signin_username && signin.errors.signin_username ? (
+									<div className={styles.form_error}>{signin.errors.signin_username}</div>
+								) : null}
 								<div className={styles.input_field}>
 									<div className={styles.icon}>
 										<FontAwesomeIcon
@@ -122,9 +128,15 @@ export default function authentication() {
 										name='signin_password'
 										className={styles.input}
 										placeholder='Password'
+										onChange={signin.handleChange}
+										onBlur={signin.handleBlur}
+										value={signin.values.signin_password}
 									/>
 								</div>
-								<button className={styles.btn + " " + styles.solid}>Sign In</button>
+								{signin.touched.signin_password && signin.errors.signin_password ? (
+									<div className={styles.form_error}>{signin.errors.signin_password}</div>
+								) : null}
+								<button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
 							</form>
 							<div className={styles.social_media}>
@@ -175,9 +187,13 @@ export default function authentication() {
 										className={styles.input}
 										placeholder='Username'
 										onChange={signup.handleChange}
+										onBlur={signup.handleBlur}
 										value={signup.values.signup_username}
 									/>
 								</div>
+								{signup.touched.signup_username && signup.errors.signup_username ? (
+									<div className={styles.form_error}>{signup.errors.signup_username}</div>
+								) : null}
 								<div className={styles.input_field}>
 									<div className={styles.icon}>
 										<FontAwesomeIcon
@@ -191,9 +207,13 @@ export default function authentication() {
 										className={styles.input}
 										placeholder='Email'
 										onChange={signup.handleChange}
+										onBlur={signup.handleBlur}
 										value={signup.values.signup_email}
 									/>
 								</div>
+								{signup.touched.signup_email && signup.errors.signup_email ? (
+									<div className={styles.form_error}>{signup.errors.signup_email}</div>
+								) : null}
 								<div className={styles.input_field}>
 									<div className={styles.icon}>
 										<FontAwesomeIcon
@@ -207,9 +227,13 @@ export default function authentication() {
 										className={styles.input}
 										placeholder='Password'
 										onChange={signup.handleChange}
+										onBlur={signup.handleBlur}
 										value={signup.values.signup_password1}
 									/>
 								</div>
+								{signup.touched.signup_password1 && signup.errors.signup_password1 ? (
+									<div className={styles.form_error}>{signup.errors.signup_password1}</div>
+								) : null}
 								<div className={styles.input_field}>
 									<div className={styles.icon}>
 										<FontAwesomeIcon
@@ -223,9 +247,13 @@ export default function authentication() {
 										className={styles.input}
 										placeholder='Confirm Password'
 										onChange={signup.handleChange}
+										onBlur={signup.handleBlur}
 										value={signup.values.signup_password2}
 									/>
 								</div>
+								{signup.touched.signup_password2 && signup.errors.signup_password2 ? (
+									<div className={styles.form_error}>{signup.errors.signup_password2}</div>
+								) : null}
 								<button type='submit' className={styles.btn + ' ' + styles.solid}>
 									Sign Up
 								</button>
