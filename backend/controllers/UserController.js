@@ -401,4 +401,5 @@ module.exports = {
     userPasswordReset,
     addToUserWishlist,
     recommendBook,
+    loginUser
 }
