@@ -9,6 +9,7 @@ import "firebase/auth"
 import firebaseApp from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 export default function authentication() {
 	const change_to_signup_btn = useRef(null)
@@ -21,6 +22,12 @@ export default function authentication() {
 			signup_password1: "",
 			signup_password2: ""
 		},
+		validationSchema: Yup.object({
+			signup_username: Yup.string().max(25, "Username must be less than 25 characters").required('Required'),
+			signup_email: Yup.string().email("Not a valid email").required('Required'),
+			signup_password1: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required'),
+			signup_password2: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").oneOf([Yup.ref("signup_password1"), null], "The passwords must match").required('Required')
+		}),
 		onSubmit: values => {
 			let body = {
 				"email": values.signup_email,

@@ -29,7 +29,8 @@
 		"react-geocode": "^0.2.3",
 		"react-google-autocomplete": "^1.2.6",
 		"react-google-maps": "^9.4.5",
-		"react-modal": "^3.12.1"
+		"react-modal": "^3.12.1",
+		"yup": "^0.32.9"
 	},
 	"devDependencies": {
 		"webpack-dev-server": "^3.11.2"
