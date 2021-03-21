@@ -22,7 +22,7 @@
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .drag_area{
-    margin-top:30px ;
+  margin-top:30px ;
   border: 2px dashed rgb(17, 16, 16);
   height: 200px;
   width: 200px;
@@ -81,8 +81,9 @@
 .drag_area img{
   height: 100%;
   width: 100%;
-  object-fit: cover;
-  border-radius: 5px;
+  padding:2px 2px 2px 2px ;
+  object-fit:cover;
+  border-radius: 2.1em;
   font-family: "Poppins", sans-serif;
 }
 

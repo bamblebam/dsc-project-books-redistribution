@@ -1,21 +1,51 @@
-import React, { useRef } from 'react'
+import React, { useRef ,useState} from 'react'
 import Head from 'next/head'
 import styles from '../../styles/css/description.module.css'
 
 const description = () => {
+
+    const fileInput = useRef(null);
+    const[image, setImage] = useState(null);
+    const[previewUrl, setPreviewUrl] = useState(""); 
+    const handleFile = file => {
+        setImage(file);
+        setPreviewUrl(URL.createObjectURL(file));
+    }
+
+    const handledragOver = event => {
+        event.preventDefault();
+    
+    }
+    const handleOndrop = event => {
+        //prevent the browser from opening the image
+        event.preventDefault(); 
+        event.stopPropagation(); 
+        //let's grab the image file
+        let imageFile = event.dataTransfer.files[0];
+        handleFile(imageFile);
+    }
+
 return(
     <div className={styles.form_class}>
         <div className={styles.Incenter}>
-            <div className={styles.drag_area}>
-                <div className={styles.icon}></div>
-                <span>Drag and Drop to Upload Profile</span> 
-                    
+             <div className={styles.drag_area} onDragOver = {handledragOver} onDrop = {handleOndrop}>
+             {previewUrl ? (
+                <img src={previewUrl} alt='image' /> 
+                ) : (
+                    <>
+                    <div className={styles.icon}></div>
+                    <span>Drag and Drop to Upload Profile</span>
+                    </>
+                )}
+
             </div>
+            {previewUrl && <div className={styles.buttonClass}> <span>{image.name}</span></div> }
             <div className ={styles.buttonClass}>
                 {/* <button className ={styles.push_area} >Add Profile</button> */}
                 {/* <input type="file" hidden  />  */}
-                <label htmlFor="product_image" className={styles.push_area}>Add Image</label>
-                <input type="file" accept="image/*" className={styles.file} name="product_image" id="product_image" hidden />
+                <label htmlFor="product_image" className={styles.push_area} onClick = { () => fileInput.current.click()}>Add Image</label>
+                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e.target.files[0])}/>
+                {/* <input type="file" accept="image/*" ref={fileInput} onChange={e => handleFile(e.target.files[0])} className={styles.file} name="product_image" id="product_image" hidden /> */}
             </div> 
             <div className={styles.formInput}>
                 <div className ={styles.formChildren}>
