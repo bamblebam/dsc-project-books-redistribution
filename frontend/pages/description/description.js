@@ -12,21 +12,31 @@ return(
                     
             </div>
             <div className ={styles.buttonClass}>
-                <button className ={styles.push_area}>Add Profile</button>
-                <input type="file" hidden /> 
+                {/* <button className ={styles.push_area} >Add Profile</button> */}
+                {/* <input type="file" hidden  />  */}
+                <label htmlFor="product_image" className={styles.push_area}>Add Image</label>
+                <input type="file" accept="image/*" className={styles.file} name="product_image" id="product_image" hidden />
             </div> 
             <div className={styles.formInput}>
                 <div className ={styles.formChildren}>
-                <h2>Name :</h2>
+                <h4>Name :</h4>
                 <input type="text" placeholder ="Enter your name"></input>
                 </div>
-                <br/>
                 <div className ={styles.formChildren}>
-                <h2>Bio :</h2>
+                <h4>Phone :</h4>
+                <input type="text" placeholder ="Enter Your Phone No"></input>
+                </div>
+                <div className ={styles.formChildren}>
+                <h4>Education :</h4>
+                <input type="text" placeholder ="Enter Your Education"></input>
+                </div>
+                {/* <br/> */}
+                <div className ={styles.formChildren}>
+                <h4>Bio :</h4>
                 <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40"></textarea>
                 </div>
 
-                <div>
+                <div className ={styles.formChildren}>
                     <h2>Location :</h2>
                 
                 </div>
