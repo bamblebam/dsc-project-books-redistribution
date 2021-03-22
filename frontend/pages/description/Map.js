@@ -12,9 +12,9 @@ const Map = () => {
   const [zoom, setZoom] = useState(5);
 
 
-  navigator.geolocation.getCurrentPosition(successPosition, errorPosition, {
-    enableHighAccuracy: true,
-  });
+  // navigator.geolocation.getCurrentPosition(successPosition, errorPosition, {
+  //   enableHighAccuracy: true,
+  // });
 
   //When the position is fetched successfully.
 function successPosition(position) {
@@ -34,13 +34,22 @@ function successPosition(position) {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [latitude, longitude],
+      // center: [latitude, longitude],
+      center: [19.2, 17.2],
       zoom: zoom,
     });
 
     //This adds zoom button and compass
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
-
+    
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+      positionOptions: {
+      enableHighAccuracy: true
+      },
+      trackUserLocation: false
+      }),"top-left"
+      );
     map.on("move", () => {
       setLongitude(map.getCenter().longitude);
       setLatitude(map.getCenter().latitude);
