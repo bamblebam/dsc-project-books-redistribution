@@ -4,12 +4,19 @@ import styles from "../../styles/css/Map.module.css";
 import 'mapbox-gl/dist/mapbox-gl.css'
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css"
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import introJs from 'intro.js';
+import 'intro.js/introjs.css';
+
 
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
 
 const Map = () => {
+
+  
   const mapContainerRef = useRef(null);
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
@@ -47,7 +54,7 @@ function successPosition(position) {
       // Initialize the geocoder
       accessToken: mapboxgl.accessToken, // Set the access token
       mapboxgl: mapboxgl, // Set the mapbox-gl instance
-      marker: false, // Do not use the default marker style
+      marker: true, // Do not use the default marker style
       placeholder: 'Search ', // Placeholder text for the search bar
       
       });
@@ -69,11 +76,28 @@ function successPosition(position) {
     // Clean up on unmount
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  
 
+  
   return (
     
-      <div className={styles.map__container} ref={mapContainerRef} />
+    <div className={styles.Location_form}>
+      <div className={styles.Incenter}>
+        <h3>Enter your Location </h3>
+        <Tippy placement='top' arrow={false} content="Click on top left Icon to get current location "><div className={styles.map__container} ref={mapContainerRef} /></Tippy>
+        <div className={styles.formInput}>
+          <div className ={styles.formChildren}>
+            <h4>Address  </h4>
+            <input type="text" placeholder ="Search Address on top right bar" onClick={styles.OnClickStyles}></input>
+            </div>
+        </div>
+        <div className ={styles.MoveToRight}>
+          
+          <Tippy Tippy placement='bottom' content="Bottom Tooltip"  content="Your location is not stored or shared" >
+          <label className={styles.Continue}>Save</label>
+          </Tippy>
+        </div>
+      </div>
+    </div>
   );
 };
 

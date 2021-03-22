@@ -12,6 +12,7 @@
 		"@fortawesome/free-brands-svg-icons": "^5.15.2",
 		"@fortawesome/free-solid-svg-icons": "^5.15.2",
 		"@fortawesome/react-fontawesome": "^0.1.14",
+		"@tippyjs/react": "^4.2.5",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
 		"deck.gl": "^8.4.10",
@@ -20,6 +21,7 @@
 		"express": "^4.17.1",
 		"firebase": "^8.2.9",
 		"gsap": "^3.6.0",
+		"intro.js": "^3.3.1",
 		"mapbox-gl": "^2.1.1",
 		"next": "^10.0.7",
 		"react": "^17.0.1",
@@ -29,7 +31,8 @@
 		"react-google-maps": "^9.4.5",
 		"react-map-gl": "^6.1.10",
 		"react-map-gl-geocoder": "^2.1.6",
-		"react-modal": "^3.12.1"
+		"react-modal": "^3.12.1",
+		"tippy.js": "^6.3.1"
 	},
 	"devDependencies": {
 		"webpack-dev-server": "^3.11.2"

@@ -2,7 +2,7 @@
 
 
 .form_class{
-  height:1100px;
+  height:1250px;
   display:flex;
   width:1500px;
   margin:auto;
@@ -156,7 +156,10 @@
   font-weight:400;
   padding-right: 2px;
 }
-
+.formInput input:focus{
+  outline:none;
+  border: 2px solid rgb(7, 7, 7);
+}
 .formChildren{
   display: block;
   /* align-items: ; */
@@ -174,3 +177,4 @@
   border: none;
   display: none;
 }
+
