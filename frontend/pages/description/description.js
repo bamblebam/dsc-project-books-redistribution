@@ -39,7 +39,7 @@ return(
                 )}
 
             </div>
-            {previewUrl && <div className={styles.buttonClass}> <span>{image.name}</span></div> }
+            {previewUrl && <div className={styles.ShowImageName}> <span>{image.name}</span></div> }
             <div className ={styles.buttonClass}>
                 {/* <button className ={styles.push_area} >Add Profile</button> */}
                 {/* <input type="file" hidden  />  */}
@@ -49,26 +49,29 @@ return(
             </div> 
             <div className={styles.formInput}>
                 <div className ={styles.formChildren}>
-                <h4>Name :</h4>
+                <h4>Name </h4>
                 <input type="text" placeholder ="Enter your name"></input>
                 </div>
                 <div className ={styles.formChildren}>
-                <h4>Phone :</h4>
+                <h4>Phone </h4>
                 <input type="text" placeholder ="Enter Your Phone No"></input>
                 </div>
                 <div className ={styles.formChildren}>
-                <h4>Education :</h4>
+                <h4>Education </h4>
                 <input type="text" placeholder ="Enter Your Education"></input>
                 </div>
                 {/* <br/> */}
                 <div className ={styles.formChildren}>
-                <h4>Bio :</h4>
+                <h4>Bio </h4>
                 <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40"></textarea>
                 </div>
 
-                <div className ={styles.formChildren}>
-                    <h2>Location :</h2>
+                {/*<div className ={styles.formChildren}>
+                    <h2>Location </h2>
                 
+                </div>*/}
+                <div className ={styles.MoveToRight}>
+                    <label className={styles.Continue}>Continue</label>
                 </div>
             </div>
 
