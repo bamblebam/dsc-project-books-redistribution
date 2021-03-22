@@ -14,6 +14,7 @@
 		"@fortawesome/react-fontawesome": "^0.1.14",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
+		"deck.gl": "^8.4.10",
 		"dotenv": "^8.2.0",
 		"ejs": "^3.1.6",
 		"express": "^4.17.1",
@@ -26,6 +27,8 @@
 		"react-geocode": "^0.2.3",
 		"react-google-autocomplete": "^1.2.6",
 		"react-google-maps": "^9.4.5",
+		"react-map-gl": "^6.1.10",
+		"react-map-gl-geocoder": "^2.1.6",
 		"react-modal": "^3.12.1"
 	},
 	"devDependencies": {

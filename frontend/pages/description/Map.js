@@ -1,8 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState,Component } from "react";
 import mapboxgl from "mapbox-gl";
 import styles from "../../styles/css/Map.module.css";
+import 'mapbox-gl/dist/mapbox-gl.css'
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css"
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 //Add the access token here
+
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
 
 const Map = () => {
@@ -11,12 +15,6 @@ const Map = () => {
   const [latitude, setLatitude] = useState(0);
   const [zoom, setZoom] = useState(5);
 
-
-  // navigator.geolocation.getCurrentPosition(successPosition, errorPosition, {
-  //   enableHighAccuracy: true,
-  // });
-
-  //When the position is fetched successfully.
 function successPosition(position) {
     //Mapbox receives longitude and latitude from Geolocation API
     setLongitude(position.coords.longitude)
@@ -29,7 +27,7 @@ function successPosition(position) {
     setLatitude(77.5946)
   }
 
-  // This gets fired up when the application loads
+  
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
@@ -40,8 +38,20 @@ function successPosition(position) {
     });
 
     //This adds zoom button and compass
-    map.addControl(new mapboxgl.NavigationControl(), "top-right");
-    
+    map.addControl(new mapboxgl.NavigationControl({
+      showCompass: false,
+      showZoom: true
+    }), "bottom-left");
+
+    var geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: mapboxgl.accessToken, // Set the access token
+      mapboxgl: mapboxgl, // Set the mapbox-gl instance
+      marker: false, // Do not use the default marker style
+      placeholder: 'Search ', // Placeholder text for the search bar
+      
+      });
+    map.addControl(geocoder);
     map.addControl(
       new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -62,10 +72,97 @@ function successPosition(position) {
   
 
   return (
-    <div>
-      <div className="styles.map__container" ref={mapContainerRef} />
-    </div>
+    
+      <div className={styles.map__container} ref={mapContainerRef} />
   );
 };
 
 export default Map;
+/*
+import MapGL, {GeolocateControl } from 'react-map-gl'
+import DeckGL, { GeoJsonLayer } from "deck.gl";
+import Geocoder from "react-map-gl-geocoder";
+import 'mapbox-gl/dist/mapbox-gl.css'
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css"
+
+const token= "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
+
+
+const geolocateStyle = {
+  float: 'right',
+  margin: '50px',
+  padding: '10px'
+};
+class Map extends Component {
+  state = { 
+    viewport :{
+      width: "100%",
+      height: 900,
+      latitude: 0,
+      longitude: 0,
+      zoom: 1
+    },
+    searchResultLayer: null
+  }
+
+  mapRef = React.createRef()
+
+  handleViewportChange = viewport => {
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    })
+  }
+  // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+  handleGeocoderViewportChange = viewport => {
+    const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+    return this.handleViewportChange({
+      ...viewport,
+      ...geocoderDefaultOverrides
+    });
+  };
+
+  handleOnResult = event => {
+    this.setState({
+      searchResultLayer: new GeoJsonLayer({
+        id: "search-result",
+        data: event.result.geometry,
+        getFillColor: [255, 0, 0, 128],
+        getRadius: 1000,
+        pointRadiusMinPixels: 10,
+        pointRadiusMaxPixels: 10
+      })
+    })
+  }
+
+    render(){
+      const { viewport, searchResultLayer} = this.state
+      return (
+        <div style={{ height: '100vh'}}>
+          <h1 style={{textAlign: 'center', fontSize: '25px', fontWeight: 'bolder' }}>Use the search bar to find a location or click <a href="/">here</a> to find your location</h1>
+          <MapGL 
+            ref={this.mapRef}
+            {...viewport}
+            mapStyle="mapbox://styles/mapbox/streets-v11"
+            width="100%"
+            height="90%"
+            onViewportChange={this.handleViewportChange}
+            mapboxApiAccessToken={token}
+            >
+              <Geocoder 
+                mapRef={this.mapRef}
+                onResult={this.handleOnResult}
+                onViewportChange={this.handleGeocoderViewportChange}
+                mapboxApiAccessToken={token}
+                position='top-left'
+      
+              />
+              
+            </MapGL>
+            <DeckGL {...viewport} layers={[searchResultLayer]} />
+        </div>
+      )
+    }
+}
+export default Map
+*/
