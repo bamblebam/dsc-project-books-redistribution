@@ -8,17 +8,17 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import introJs from 'intro.js';
 import 'intro.js/introjs.css';
-
+import axios from 'axios'
 
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
-Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,-122.453.JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7";
+const Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,-122.453.JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7";
 
 let TextAddress =""
 const Map = () => {
 
-  
+  const [address,setAddress]=useState(0);
   const mapContainerRef = useRef(null);
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
@@ -45,7 +45,22 @@ function successPosition(position) {
       center: [19.2, 17.2],
       zoom: zoom,
     });
+    var marker = new mapboxgl.Marker({draggable: true})
+    .setLngLat([ 72.94318719476757,19.188422818024094])
+    .addTo(map);
+      function onDragEnd() {
+    var lngLat = marker.getLngLat();
+    map.flyTo({
+      center: [lngLat.lng,lngLat.lat]
+      });
+    // coordinates.style.display = 'block';
 
+    console.log('Longitude: ' + lngLat.lng + 'Latitude: ' + lngLat.lat);
+    setMarker(lngLat.lng,lngLat.lat)
+    // latlong={"long":lngLat.lng,"lat":lngLat.lat}
+    }
+
+    marker.on('dragend', onDragEnd);
     //This adds zoom button and compass
     map.addControl(new mapboxgl.NavigationControl({
       showCompass: false,
@@ -56,26 +71,59 @@ function successPosition(position) {
       // Initialize the geocoder
       accessToken: mapboxgl.accessToken, // Set the access token
       mapboxgl: mapboxgl, // Set the mapbox-gl instance
-      marker: true, // Do not use the default marker style
+      marker: false, // Do not use the default marker style
       placeholder: 'Search ', // Placeholder text for the search bar
       
       });
     map.addControl(geocoder);
-    map.addControl(
-      new mapboxgl.GeolocateControl({
+    geocoder.on('result', function(e) {
+      console.log(e.result.place_name);
+      console.log(e.result.geometry.coordinates)
+      setAddress(e.result.place_name);
+      console.log(address)
+      marker.setLngLat(e.result.geometry.coordinates)
+      // map.getSource('single-point').setData(e.result.geometry);
+      // marker.setLngLat(e.result.geometry.coordinates)
+      map.flyTo({
+      center: e.result.geometry.coordinates
+      });
+      setMarker(... e.result.geometry.coordinates)
+    });
+    var geolocate=new mapboxgl.GeolocateControl({
       positionOptions: {
       enableHighAccuracy: true
       },
-      trackUserLocation: false
-      }),"top-left"
-      );
+      trackUserLocation: false,
+      showUserLocation:false,
+      showAccuracyCircle:false
+      })
+    map.addControl(geolocate,"top-left");
+    geolocate.on('geolocate', function(loc) {
+      console.log(loc.coords)
+      console.log(loc.coords.latitude)
+      setMarker(loc.coords.longitude,loc.coords.latitude)
+      
+      });
     map.on("move", () => {
       setLongitude(map.getCenter().longitude);
       setLatitude(map.getCenter().latitude);
       setZoom(map.getZoom().toFixed(2));
   
     });
+    function setMarker(lng,lat){
+      // longlat={"long":lng,"lat":lat}
+    
+      marker.setLngLat([lng,lat])
+      map.flyTo({
+      center: [lng,lat]
+      });
 
+    var url="https://api.tomtom.com/search/2/reverseGeocode/+"+lat+","+lng+".JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7"
+
+axios.get(url).then(res => {
+        setAddress(res.data.addresses[0].address.streetName+","+res.data.addresses[0].address.municipalitySubdivision+","+res.data.addresses[0].address.municipality+","+res.data.addresses[0].address.countrySubdivision)
+				console.log(res.data.addresses[0].address.streetName+res.data.addresses[0].address.municipalitySubdivision+res.data.addresses[0].address.municipality+res.data.addresses[0].address.municipality+res.data.addresses[0].address.countrySubdivision)
+			})}
     // Clean up on unmount
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -90,7 +138,8 @@ function successPosition(position) {
         <div className={styles.formInput}>
           <div className ={styles.formChildren}>
             <h4>Address  </h4>
-            <input type="text" placeholder ="Search Address on top right bar" className={"mapboxgl-ctrl-geocoder--input"} onClick={styles.OnClickStyles} ></input>
+            {address ? (<input type="text" placeholder ="Search Address on top right bar" className={"mapboxgl-ctrl-geocoder--input"} onClick={styles.OnClickStyles} value={address} ></input>):(<input type="text" placeholder ="Search Address on top right bar" className={"mapboxgl-ctrl-geocoder--input"} onClick={styles.OnClickStyles} ></input>)}
+            {/* <input type="text" placeholder ="Search Address on top right bar" className={"mapboxgl-ctrl-geocoder--input"} onClick={styles.OnClickStyles} content={address} ></input> */}
             </div>
         </div>
         <div className ={styles.MoveToRight}>
@@ -193,3 +242,42 @@ class Map extends Component {
 }
 export default Map
 */
+
+// function setMarker(lng,lat){
+//   // longlat={"long":lng,"lat":lat}
+
+//   marker.setLngLat([lng,lat])
+//   map.flyTo({
+//   center: [lng,lat]
+//   });
+//   $.ajax({
+//     type: "POST",
+//     dataType: 'text',
+//     url: "/php",
+//     // url: api_url,
+//     async: false,
+    
+//     data: {
+//         // url: JSON.stringify(api_url),
+//         url:"https://api.tomtom.com/search/2/reverseGeocode/+"+lat+","+lng+".JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7"
+//     },
+//     success: function (result) {
+//         console.log(result)
+//         // result = result.replaceAll("'", "\"");
+        
+//         var jsondata = JSON.parse(result);
+//         console.log(jsondata)
+//         if (jsondata!= undefined) {
+//                 // display_rev_geocode_result(jsondata);
+//                 adtext=jsondata.addresses[0].address.municipalitySubdivision+","+jsondata.addresses[0].address.municipality+","+jsondata.addresses[0].address.postalCode
+//                 console.log(adtext)
+//                 document.getElementById('addText').innerHTML=adtext
+//                 // document.getElementById('addL').innerHTML=[lng,lat]
+//         }
+//         /*handle the error codes and put the responses in divs. more error codes can be viewed in the documentation*/
+//         else{
+//            document.getElementById('addText').innerHTML="No Result found" ;
+//         }
+//     }
+// });
+// }
