@@ -12,11 +12,8 @@
 		"@fortawesome/free-brands-svg-icons": "^5.15.2",
 		"@fortawesome/free-solid-svg-icons": "^5.15.2",
 		"@fortawesome/react-fontawesome": "^0.1.14",
-<<<<<<< HEAD
 		"@tippyjs/react": "^4.2.5",
-=======
 		"axios": "^0.21.1",
->>>>>>> 86441eef4a0a8b6da1347a28af6b3c1bd630e83d
 		"body-parser": "^1.19.0",
 		"child_process": "^1.0.2",
 		"cors": "^2.8.5",
@@ -36,15 +33,11 @@
 		"react-geocode": "^0.2.3",
 		"react-google-autocomplete": "^1.2.6",
 		"react-google-maps": "^9.4.5",
-<<<<<<< HEAD
 		"react-map-gl": "^6.1.10",
 		"react-map-gl-geocoder": "^2.1.6",
 		"react-modal": "^3.12.1",
-		"tippy.js": "^6.3.1"
-=======
-		"react-modal": "^3.12.1",
+		"tippy.js": "^6.3.1",
 		"yup": "^0.32.9"
->>>>>>> 86441eef4a0a8b6da1347a28af6b3c1bd630e83d
 	},
 	"devDependencies": {
 		"webpack-dev-server": "^3.11.2"

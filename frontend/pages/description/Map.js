@@ -13,7 +13,9 @@ import 'intro.js/introjs.css';
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
+Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,-122.453.JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7";
 
+let TextAddress =""
 const Map = () => {
 
   
@@ -71,6 +73,7 @@ function successPosition(position) {
       setLongitude(map.getCenter().longitude);
       setLatitude(map.getCenter().latitude);
       setZoom(map.getZoom().toFixed(2));
+  
     });
 
     // Clean up on unmount
@@ -87,7 +90,7 @@ function successPosition(position) {
         <div className={styles.formInput}>
           <div className ={styles.formChildren}>
             <h4>Address  </h4>
-            <input type="text" placeholder ="Search Address on top right bar" onClick={styles.OnClickStyles}></input>
+            <input type="text" placeholder ="Search Address on top right bar" className={"mapboxgl-ctrl-geocoder--input"} onClick={styles.OnClickStyles} ></input>
             </div>
         </div>
         <div className ={styles.MoveToRight}>
