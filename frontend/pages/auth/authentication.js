@@ -24,7 +24,7 @@ export default function authentication() {
 			signup_password2: ""
 		},
 		validationSchema: Yup.object({
-			signup_username: Yup.string().max(25, "Username must be less than 25 characters").min(8, "Username must be greater than 25 characters").required('Required'),
+			signup_username: Yup.string().max(25, "Username must be less than 25 characters").min(8, "Username must be less than 25 characters").required('Required'),
 			signup_email: Yup.string().email("Not a valid email").required('Required'),
 			signup_password1: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required'),
 			signup_password2: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").oneOf([Yup.ref("signup_password1"), null], "The passwords must match").required('Required')
@@ -47,9 +47,19 @@ export default function authentication() {
 			signin_password: ""
 		},
 		validationSchema: Yup.object({
-			signin_username: Yup.string().max(25, "Username must be less than 25 characters").min(8, "Username must be greater than 25 characters").required('Required'),
-			signin_password: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required')
-		})
+			signin_email: Yup.string().email("Not a valid Email").required('Required'),
+			signin_password: Yup.string().max(25, "Password must be less than 25 characters").required('Required')
+		}),
+		onSubmit: values => {
+			let body = {
+				email: values.signin_email,
+				password: values.signin_password
+			}
+			console.log(values.signin_email)
+			axios.post("http://localhost:8080/api/login", body).then(res => {
+				console.log(res)
+			})
+		}
 	})
 
 	const change_to_signup = () => {
@@ -105,16 +115,16 @@ export default function authentication() {
 									</div>
 									<input
 										type='text'
-										name='signin_username'
+										name='signin_email'
 										className={styles.input}
-										placeholder='Username'
+										placeholder='Email'
 										onChange={signin.handleChange}
 										onBlur={signin.handleBlur}
-										value={signin.values.signin_username}
+										value={signin.values.signin_email}
 									/>
 								</div>
-								{signin.touched.signin_username && signin.errors.signin_username ? (
-									<div className={styles.form_error}>{signin.errors.signin_username}</div>
+								{signin.touched.signin_email && signin.errors.signin_email ? (
+									<div className={styles.form_error}>{signin.errors.signin_email}</div>
 								) : null}
 								<div className={styles.input_field}>
 									<div className={styles.icon}>

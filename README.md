@@ -25,3 +25,5 @@ This is the repository for our project submission in the google DSC challenge.
 - [ ] Add to userWishList error
 - [ ] Authors in books
 - [ ] Books structure
+- [ ] Make the signin view work
+- [ ] Password reset and email verification
