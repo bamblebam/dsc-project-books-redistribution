@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/auth"
 
-const firebaseConfig= {
+const firebaseConfig = {
     apiKey: "AIzaSyDMjdPGj_MMlEa0Ub4mYe6gtm2m-dLAZw8",
     authDomain: "dscbooks-3a4c3.firebaseapp.com",
     databaseURL: "https://dscbooks-3a4c3.firebaseio.com",
@@ -13,4 +13,4 @@ const firebaseConfig= {
 
 const firebaseApp = firebase.apps && firebase.apps.length > 0 ? firebase.apps[0] : firebase.initializeApp(firebaseConfig)
 
-export  default firebaseApp;
+export default firebaseApp;

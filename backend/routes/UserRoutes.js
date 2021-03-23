@@ -21,10 +21,10 @@ router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
 router.post('/login', signInUser);
 router.post('/signOut', signOutUser);
-router.get('/googleSignIn',googleSignIn);
-router.get('/passwordReset',userPasswordReset);
+router.get('/googleSignIn', googleSignIn);
+router.get('/passwordReset', userPasswordReset);
 router.post('/addWishListBook', addToUserWishlist);
-router.get('/recommend/:id',recommendBook);
+router.get('/recommend/:id', recommendBook);
 module.exports = {
     routes: router
 }

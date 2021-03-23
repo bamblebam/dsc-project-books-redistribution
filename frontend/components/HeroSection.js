@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import heroStyles from '../styles/css/HeroSection.module.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 
 const HeroSection = () => {
-	let username = 'user'
+	let username = 'John'
 	// update username from db
 	//change spans from db
 
@@ -73,18 +74,24 @@ const HeroSection = () => {
 							<h1 className={heroStyles.title}>Hello {username}</h1>
 							<p className={heroStyles.subtitle}> Some random quote/text from api</p>
 							<div className={heroStyles.buttonDiv}>
-								<button className={heroStyles.btn__primary}>Get Books</button>
-								<button className={heroStyles.btn__secondary}>Donate Books</button>
+								<button className={heroStyles.btn__primary}>
+									<Link href='product/Resources'>Get Books</Link>
+								</button>
+								<button className={heroStyles.btn__secondary}>
+									<Link href='product/donate'>Donate Books</Link>
+								</button>
 							</div>
 						</div>
 					</div>
 					<div className={heroStyles.right}>
-						<Image
-							src='/images/testImage.jpg'
-							alt='test image'
-							width={500}
-							height={500}
-						/>
+						<Link href='product/Resources'>
+							<Image
+								src='/images/testImage.jpg'
+								alt='test image'
+								width={500}
+								height={500}
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -105,8 +112,12 @@ const HeroSection = () => {
 							</h1>
 							<p className={heroStyles.subtitle}>Join Us and become a provider</p>
 							<div className={heroStyles.buttonDiv}>
-								<button className={heroStyles.btn__primary}>Join us</button>
-								<button className={heroStyles.btn__secondary}>Donate Books</button>
+								<button className={heroStyles.btn__primary}>
+									<Link href='auth/authentication'>Join us</Link>
+								</button>
+								<button className={heroStyles.btn__secondary}>
+									<Link href='product/donate'>Donate Books</Link>
+								</button>
 							</div>
 						</div>
 					</div>

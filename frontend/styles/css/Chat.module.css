@@ -1,0 +1,29 @@
+.inputArea {
+	width: 80%;
+	height: 8%;
+	position: absolute;
+	bottom: 10%;
+	right: 5%;
+	transform: translate(-5%, -10%);
+	outline: none;
+	border: none;
+	background-color: white;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.input {
+	width: 90%;
+	height: 80%;
+	border: none;
+	border-radius: 1.5rem;
+	padding-left: 1rem;
+	background-color: #17aefd;
+	color: white;
+	outline: none;
+}
+.icon {
+	font-size: 1.5rem;
+	color: #17aefd;
+}

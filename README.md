@@ -15,10 +15,15 @@ This is the repository for our project submission in the google DSC challenge.
 - [x] Home page components
 - [x] unable to exit out of modal
 - [ ] Search in resources page
-- [ ] About Page
+- [x] About Page
 - [ ] Account Page
 - [ ] Wishlist
 - [ ] Backend integration
 - [ ] Maps
 - [ ] Video
 - [ ] Survey
+- [ ] Add to userWishList error
+- [ ] Authors in books
+- [ ] Books structure
+- [ ] Make the signin view work
+- [ ] Password reset and email verification
