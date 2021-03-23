@@ -6,18 +6,7 @@ import firebase from '../configurations/db'
 import 'firebase/auth'
 import axios from 'axios'
 
-const ModalCard = ({
-	author,
-	bookName,
-	price,
-	location,
-	year,
-	bookDesc,
-	text,
-	imgSrc,
-	imgAlt,
-	link,
-}) => {
+const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	const addToWishlist = () => {
@@ -46,7 +35,6 @@ const ModalCard = ({
 				<Card
 					bookImg={imgSrc}
 					bookName={bookName}
-					author={author}
 					imgAlt={imgAlt}
 					text={bookDesc}
 				/>
@@ -67,9 +55,6 @@ const ModalCard = ({
 						<div className={modalCardStyles.modal_header}>
 							<div>
 								<h1 className={modalCardStyles.modal_title}>{bookName}</h1>
-								<h2 className={modalCardStyles.modal_subtitle}>
-									{author}, {year}
-								</h2>
 							</div>
 							<button
 								className={modalCardStyles.close_button}
@@ -82,12 +67,6 @@ const ModalCard = ({
 						</div>
 						<div className={modalCardStyles.modal_body}>
 							<div className={modalCardStyles.box}>
-								<div>
-									<div className={modalCardStyles.modal_details}>
-										<h3>Price: {price}</h3>
-										<h3>Location: {location}</h3>
-									</div>
-								</div>
 								<div className={modalCardStyles.modal_product_description}>
 									<p>Description:</p>
 									<p>{text}</p>

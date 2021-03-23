@@ -6,42 +6,58 @@ import axios from 'axios'
 import firebase from 'firebase/app'
 
 const Resources = () => {
-	let Items = []
 	let body = {
 		userId: '95GhG5U6Yi7aSInxZyPs',
 	}
+
+	let items = []
 	axios
 		.get('http://localhost:8080/books/getbooks/95GhG5U6Yi7aSInxZyPs')
 		.then(res => {
-			Items = res.data
-			console.log(res.data)
-			Items.map((data, key) => {
-				console.log(data)
-			})
-			console.log('hwhehe')
+			items = res.data
 		})
+	// let items = temp
+
+	// function axiosTest() {
+	// 	// create a promise for the axios request
+	// 	const promise = axios.get(
+	// 		'http://localhost:8080/books/getbooks/95GhG5U6Yi7aSInxZyPs'
+	// 	)
+
+	// 	// using .then, create a new promise which extracts the data
+	// 	const dataPromise = promise.then(response => response.data)
+
+	// 	// return it
+	// 	return dataPromise
+	// }
+
+	// // now we can use that data from the outside!
+
+	// axiosTest()
+	// 	.then(data => {
+	// 		items.push(data)
+	// 	})
+	// 	.catch(err => console.log(err))
+
+	console.log(items)
+	items = Array(items)
 	return (
 		<div className={resourcesStyle.container}>
 			<div className={resourcesStyle.head}>
 				<SearchBar searchText='Search Resources...' link='/' />
 			</div>
 			<div className={resourcesStyle.main}>
-				{Items.map(data => {
-					let bookDesc = data.description.slice(0, 75) + '...'
-					console.log(bookDesc)
+				{items.map((data, index) => {
+					console.log('THis is my data', data)
 					return (
 						<ModalCard
-							key={data.id}
-							author={data.author}
-							bookName={data.booktitle}
-							price={data.price}
-							location={data.location}
-							year={data.year}
-							bookDesc={data.description.slice(0, 75) + '...'}
-							text={data.description}
+							key={index}
 							imgSrc={data.bookImg}
-							imgAlt={data.imgAlt}
-							link={data.link}
+							imgAlt={data.booktitle}
+							bookName={data.booktitle}
+							bookDesc={data.description}
+							text={data.description}
+							link='/'
 						/>
 					)
 				})}
