@@ -106,7 +106,7 @@ const GetAllBookWithRespectiveUser = async (req, res, next) => {
 		const books = await firestore.collection('books')
 		const data_from_firestore = await books.get()
 		const Array = []
-
+		// console.log(data_from_firestore)
 		if (data_from_firestore.empty) {
 			res.send(404).send('No data in database')
 		} else {
@@ -115,12 +115,14 @@ const GetAllBookWithRespectiveUser = async (req, res, next) => {
 					const bookTitle = doc.data().booktitle
 					const des = doc.data().description
 					const user_id = doc.data().userId
+					const bookImg= doc.data().bookImage
 					const userData = await firestore.collection('users').doc(user_id)
 					const docdata = await userData.get()
 					const jsondata = {
 						Title: bookTitle,
 						Description: des,
 						Belongs_To: docdata.data().username,
+						image:bookImg
 					}
 					Array.push(jsondata)
 				})

@@ -13,16 +13,44 @@ var stringSimilarity = require('string-similarity')
 // import 'firebase/auth';
 const addUser = async (req, res, next) => {
     try {
-        const data = req.body
+        let current = new Date()
+        const data = {
+            ... req.body,
+            // bio:"",
+            // phone:"",
+            // full_name:"",
+            // wishList:[],
+            // userImage:"",
+            // location: new firebase.firestore.GeoPoint(19.073760882494316, 72.89957748403077),
+            // education:"",
+            // lastUpdated:current,
+            // addBooks:0,
+
+            
+        }
+        
         var email = data.email
         var password = data.password
+        const todb= {
+            email:email,
+            bio:"",
+            phone:"",
+            full_name:"",
+            wishList:[],
+            userImage:"",
+            location: new firebase1.firestore.GeoPoint(19.073760882494316, 72.89957748403077),
+            education:"",
+            lastUpdated:current,
+            addBooks:0,
 
+            
+        }
         await firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .then(userCredential => {
                 var user = userCredential.user
-                firestore.collection('users').doc(user.uid).set(data)
+                firestore.collection('users').doc(user.uid).set(todb)
 
                 user
                     .sendEmailVerification()
