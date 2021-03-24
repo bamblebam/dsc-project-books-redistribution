@@ -1,6 +1,10 @@
 import React, { useRef ,useState} from 'react'
 import Head from 'next/head'
 import styles from '../../styles/css/description.module.css'
+import axios from 'axios'
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
+
 
 const description = () => {
 
@@ -25,9 +29,40 @@ const description = () => {
         handleFile(imageFile);
     }
 
+    const description_form = useFormik({
+		initialValues: {
+			user_Name: "",
+			phone_number: "",
+            user_bio:"",
+            education :""
+		},
+		validationSchema: Yup.object({
+			user_Name: Yup.string().max(25, "Name must be less than 25").required('Required'),
+            user_bio: Yup.string().max(100, "Bio must be less than 100").required('Required'),
+            phone_number:Yup.string().phone().required()
+
+		}),
+		onSubmit: values => {
+			let body = {
+				bio: values.user_bio,
+				fullName:values.user_Name,
+                phone:values.phone_number,
+                education :values.education
+			}
+			console.log(values.signin_email)
+			axios.update("http://localhost:8080/api/login", body).then(res => {
+				console.log(res)
+			})
+		}
+	})
+
 return(
     <div className={styles.form_class}>
         <div className={styles.Incenter}>
+        <form
+				action=''
+				method='POST'
+				onSubmit={description_form.handleSubmit}>
              <div className={styles.drag_area} onDragOver = {handledragOver} onDrop = {handleOndrop}>
              {previewUrl ? (
                 <img src={previewUrl} alt='image' /> 
@@ -50,20 +85,20 @@ return(
             <div className={styles.formInput}>
                 <div className ={styles.formChildren}>
                 <h4>Name </h4>
-                <input type="text" placeholder ="Enter your name"></input>
+                <input type="text" placeholder ="Enter your name" value={description_form.user_Name}></input>
                 </div>
                 <div className ={styles.formChildren}>
                 <h4>Phone </h4>
-                <input type="text" placeholder ="Enter Your Phone No"></input>
+                <input type="text" placeholder ="Enter Your Phone No" value={description_form.phone_number}></input>
                 </div>
                 <div className ={styles.formChildren}>
                 <h4>Education </h4>
-                <input type="text" placeholder ="Enter Your Education"></input>
+                <input type="text" placeholder ="Enter Your Education" value={description_form.education}></input>
                 </div>
                 {/* <br/> */}
                 <div className ={styles.formChildren}>
                 <h4>Bio </h4>
-                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40"></textarea>
+                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" value={description_form.user_bio}></textarea>
                 </div>
 
                 {/*<div className ={styles.formChildren}>
@@ -75,6 +110,7 @@ return(
                 </div>
             </div>
 
+            </form>
        </div>
         
        

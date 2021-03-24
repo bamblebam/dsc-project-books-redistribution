@@ -103,7 +103,7 @@ export default function authentication() {
 								action=''
 								method='POST'
 								className={styles.form + ' ' + styles.signin_form}
-								onSubmit={signin.onSubmit}
+								onSubmit={signin.handleSubmit}
 							>
 								<h2 className={styles.title}>Sign In</h2>
 								<div className={styles.input_field}>
