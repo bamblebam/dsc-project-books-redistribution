@@ -49,7 +49,7 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt }) => {
 			>
 				<div className={modalCardStyles.modal}>
 					<div className={modalCardStyles.store_left}>
-						<img className={modalCardStyles.image} src={imgSrc} alt='' />
+						<img className={modalCardStyles.card_img} src={imgSrc} alt='' />
 					</div>
 					<div className={modalCardStyles.store_right}>
 						<div className={modalCardStyles.modal_header}>
