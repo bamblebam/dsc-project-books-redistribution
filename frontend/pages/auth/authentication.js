@@ -10,6 +10,7 @@ import firebaseApp from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import Link from 'next/link'
 
 export default function authentication() {
 	const change_to_signup_btn = useRef(null)
@@ -51,14 +52,18 @@ export default function authentication() {
 			signin_password: Yup.string().max(25, "Password must be less than 25 characters").required('Required')
 		}),
 		onSubmit: values => {
+			console.log("Here in submit")
+			console.log(values)
 			let body = {
 				email: values.signin_email,
 				password: values.signin_password
+				
 			}
 			console.log(values.signin_email)
 			axios.post("http://localhost:8080/api/login", body).then(res => {
-				console.log(res)
+				console.log(res);
 			})
+			
 		}
 	})
 
@@ -103,7 +108,7 @@ export default function authentication() {
 								action=''
 								method='POST'
 								className={styles.form + ' ' + styles.signin_form}
-								onSubmit={signin.onSubmit}
+								onSubmit={signin.handleSubmit}
 							>
 								<h2 className={styles.title}>Sign In</h2>
 								<div className={styles.input_field}>
@@ -146,9 +151,12 @@ export default function authentication() {
 								{signin.touched.signin_password && signin.errors.signin_password ? (
 									<div className={styles.form_error}>{signin.errors.signin_password}</div>
 								) : null}
-								<button type="submit" className={styles.btn + " " + styles.solid}>Sign In</button>
+								
+								<button type="submit" className={styles.btn + " " + styles.solid} >Sign In</button>
 								<p className={styles.social_text}>Or sign in with</p>
-							</form>
+								</form>
+								
+							
 							<div className={styles.social_media}>
 								<a href='' className={styles.social_icon}>
 									<FontAwesomeIcon
