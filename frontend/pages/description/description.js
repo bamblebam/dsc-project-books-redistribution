@@ -1,11 +1,16 @@
 import React, { useRef } from 'react'
 import Head from 'next/head'
 import styles from '../../styles/css/description.module.css'
+import axios from 'axios'
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 const description = () => {
+
 return(
     <div className={styles.form_class}>
         <div className={styles.Incenter}>
+            
             <div className={styles.drag_area}>
                 <div className={styles.icon}></div>
                 <span>Drag and Drop to Upload Profile</span> 
@@ -31,10 +36,8 @@ return(
                 
                 </div>
             </div>
-
        </div>
         
-       
     </div>
   
    );

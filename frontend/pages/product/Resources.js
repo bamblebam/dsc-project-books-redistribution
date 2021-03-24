@@ -4,8 +4,14 @@ import resourcesStyle from '../../styles/css/Resources.module.css'
 import firebaseApp from '../../configurations/db'
 import axios from 'axios'
 import firebase from 'firebase/app'
+import Fuse from 'fuse.js';
+import React ,{useState,useEffect} from 'react';
 
 const Resources = () => {
+
+	
+	const [slideRows,setSlideRows] = useState([]);
+	const [searchTerm, setSearchTerm] = useState('');
 	let body = {
 		userId: '95GhG5U6Yi7aSInxZyPs',
 	}
@@ -16,6 +22,8 @@ const Resources = () => {
 		.then(res => {
 			items = res.data
 		})
+
+		
 	// let items = temp
 
 	// function axiosTest() {
@@ -39,15 +47,33 @@ const Resources = () => {
 	// 	})
 	// 	.catch(err => console.log(err))
 
-	console.log(items)
 	items = Array(items)
+	
+	useEffect(() => {
+		setSlideRows([items]);
+	  }, [items]);
+
+	
+
+	useEffect(() => {
+		const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.booktitle'] });
+		const results = fuse.search(searchTerm).map(({ item }) => item);
+	
+		if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+		  setSlideRows(results);
+
+		} else {
+		  setSlideRows(items);
+		}
+	  }, [searchTerm]);
+
 	return (
 		<div className={resourcesStyle.container}>
 			<div className={resourcesStyle.head}>
-				<SearchBar searchText='Search Resources...' link='/' />
+				<SearchBar ssearchText={searchTerm} setSearchTerm={setSearchTerm} link='/' />
 			</div>
 			<div className={resourcesStyle.main}>
-				{items.map((data, index) => {
+				{slideRows.map((data, index) => {
 					console.log('THis is my data', data)
 					return (
 						<ModalCard

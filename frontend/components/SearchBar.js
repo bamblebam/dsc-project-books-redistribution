@@ -3,7 +3,8 @@ import searchBarStyles from '../styles/css/SearchBar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-const SearchBar = ({ searchText, link }) => {
+const SearchBar = ({ searchText,setSearchTerm, link }) => {
+	
 	const focusInput = () => {
 		if (process.browser) {
 			document.getElementById('input').focus()
@@ -16,6 +17,8 @@ const SearchBar = ({ searchText, link }) => {
 				className={searchBarStyles.input}
 				placeholder={searchText}
 				autoFocus
+				value={searchText}
+                onChange={({ target }) => setSearchTerm(target.value)}
 			></input>
 			<button className={searchBarStyles.button}>
 				<a href={link}>
