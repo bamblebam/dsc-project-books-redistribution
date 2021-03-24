@@ -8,6 +8,8 @@ import * as Yup from 'yup'
 
 const description = () => {
 
+    const clientID = "912277245270-ul1c1edu9150hbkfk19i59senecpqnpk.apps.googleusercontent.com";
+    const clientSecret ="yHNvXzYBuKE29o28d7IH5HYz";
     const fileInput = useRef(null);
     const[image, setImage] = useState(null);
     const[previewUrl, setPreviewUrl] = useState(""); 
@@ -42,20 +44,40 @@ const description = () => {
             phone_number:Yup.string().phone().required()
 
 		}),
-		onSubmit: values => {
+		onSubmit:
+         values => {
 			let body = {
 				bio: values.user_bio,
-				fullName:values.user_Name,
+				full_name:values.user_Name,
                 phone:values.phone_number,
                 education :values.education
 			}
-			console.log(values.signin_email)
-			axios.update("http://localhost:8080/api/login", body).then(res => {
+			console.log(values.phone_number)
+			axios.update("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
 				console.log(res)
 			})
 		}
 	})
 
+    var fileMetadata = {
+        'name': 'photo.jpg'
+      };
+      var media = {
+        mimeType: 'image/jpeg',
+        body: fs.createReadStream('files/photo.jpg')
+      };
+      drive.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id'
+      }, function (err, file) {
+        if (err) {
+          // Handle error
+          console.error(err);
+        } else {
+          console.log('File Id: ', file.id);
+        }
+      });
 return(
     <div className={styles.form_class}>
         <div className={styles.Incenter}>
@@ -106,7 +128,7 @@ return(
                 
                 </div>*/}
                 <div className ={styles.MoveToRight}>
-                    <label className={styles.Continue}>Continue</label>
+                    <button type="submit" className={styles.Continue}>Continue</button>
                 </div>
             </div>
 
