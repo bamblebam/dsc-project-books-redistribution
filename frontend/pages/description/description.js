@@ -36,33 +36,35 @@ const description = () => {
 			user_Name: "",
 			phone_number: "",
             user_bio:"",
-            education :""
+            education :"",
+            
 		},
 		validationSchema: Yup.object({
 			user_Name: Yup.string().max(25, "Name must be less than 25").required('Required'),
             user_bio: Yup.string().max(100, "Bio must be less than 100").required('Required'),
-            // phone_number:Yup.string().phone().required()
-            // phone_number:Yup.string().required()
+            //phone_number:Yup.string().phone().required()
+
 		}),
 		onSubmit:
          values => {
+             console.log("Clicking");
           let DriveLink ='';
           let Imagedata={
-            address:image.path
-  
+            address: image
           }
           console.log("x")
           console.log(Imagedata);
           axios.post("http://localhost:8080/api/UploadImage", Imagedata).then(res => {
-            console.log(res)
+            
             DriveLink = res.fileID;
+            console.log(DriveLink);
           })
 			let body = {
 				bio: values.user_bio,
 				full_name:values.user_Name,
-        phone:values.phone_number,
-        education :values.education,
-        userImage : DriveLink
+                phone:values.phone_number,
+                education :values.education,
+                userImage : DriveLink
 			}
 			console.log(values.phone_number)
 			axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
@@ -100,20 +102,20 @@ return(
             <div className={styles.formInput}>
                 <div className ={styles.formChildren}>
                 <h4>Name </h4>
-                <input type="text" placeholder ="Enter your name" value={description_form.user_Name}></input>
+                <input type="text" placeholder ="Enter your name"  name ='user_Name' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_Name}></input>
                 </div>
                 <div className ={styles.formChildren}>
                 <h4>Phone </h4>
-                <input type="text" placeholder ="Enter Your Phone No" value={description_form.phone_number}></input>
+                <input type="text" placeholder ="Enter Your Phone No" name='phone_number' onChange={description_form.handleChange} onBlur={description_form.handleBlur}  value={description_form.values.phone_number} ></input>
                 </div>
                 <div className ={styles.formChildren}>
                 <h4>Education </h4>
-                <input type="text" placeholder ="Enter Your Education" value={description_form.education}></input>
+                <input type="text" placeholder ="Enter Your Education" name='education' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.education}></input>
                 </div>
                 {/* <br/> */}
                 <div className ={styles.formChildren}>
                 <h4>Bio </h4>
-                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" value={description_form.user_bio}></textarea>
+                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
                 </div>
 
                 {/*<div className ={styles.formChildren}>
