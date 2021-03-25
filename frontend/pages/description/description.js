@@ -41,8 +41,8 @@ const description = () => {
 		validationSchema: Yup.object({
 			user_Name: Yup.string().max(25, "Name must be less than 25").required('Required'),
             user_bio: Yup.string().max(100, "Bio must be less than 100").required('Required'),
-            phone_number:Yup.string().phone().required()
-
+            // phone_number:Yup.string().phone().required()
+            // phone_number:Yup.string().required()
 		}),
 		onSubmit:
          values => {
@@ -51,6 +51,7 @@ const description = () => {
             address:image.path
   
           }
+          console.log("x")
           console.log(Imagedata);
           axios.post("http://localhost:8080/api/UploadImage", Imagedata).then(res => {
             console.log(res)
