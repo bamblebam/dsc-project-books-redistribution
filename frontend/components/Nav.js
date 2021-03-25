@@ -7,6 +7,7 @@ import navStyles from '../styles/css/Nav.module.css'
 
 import firebase from '../configurations/db'
 import 'firebase/auth'
+import axios from 'axios'
 
 const Nav = () => {
 	const { uid } = firebase.auth().currentUser || 'abc'
@@ -39,6 +40,13 @@ const Nav = () => {
 	useEffect(() => {
 		showButton()
 	})
+
+	const signout = () => {
+		console.log("3")
+		axios.post("http://localhost:8080/api/signOut").then(res => {
+			console.log(res)
+		})
+	}
 
 	return (
 		<div className={navStyles.customNav}>
@@ -75,6 +83,9 @@ const Nav = () => {
 						<Link className={navStyles.links} href='/profile/{uid}'>
 							Account
 						</Link>
+					</li>
+					<li className={navStyles.links} onClick={closeMobile}>
+						<button onClick={signout}>LogOut</button>
 					</li>
 				</ul>
 			</div>
