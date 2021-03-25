@@ -2,7 +2,7 @@
 
 
 .form_class{
-  height:1100px;
+  height:1250px;
   display:flex;
   width:1500px;
   margin:auto;
@@ -16,10 +16,12 @@
     justify-content: center;
     margin-top: 50px;
     width:800px;
-    
+    padding: 30px;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .drag_area{
-    margin-top:30px ;
   border: 2px dashed rgb(17, 16, 16);
   height: 200px;
   width: 200px;
@@ -32,7 +34,7 @@
   background-color: rgb(250, 251, 252);
   background-size: contain;
   text-align:center;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 .drag_area.active{
   border: 2px solid rgb(5, 5, 5);
@@ -62,6 +64,13 @@
     display:flex;
     justify-content: center;
     margin-top:30px;
+    margin-bottom:50px;
+}
+.ShowImageName{
+  display:flex;
+  justify-content: center;
+  margin-top:30px;
+
 }
 .push_area {
     padding: 10px 25px;
@@ -75,49 +84,97 @@
     cursor: pointer;
     font-family: "Poppins", sans-serif;
 }
+.MoveToRight{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:30px;
+  margin-bottom:80px;
+  margin-right: 50px;
+}
+.Continue{
+  padding: 10px 25px;
+  font-size: 21px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: #17aefd;
+  color: #e9eaf3;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
 .drag_area img{
   height: 100%;
   width: 100%;
-  object-fit: cover;
-  border-radius: 5px;
+  padding:2px 2px 2px 2px ;
+  object-fit:cover;
+  border-radius: 2.1em;
   font-family: "Poppins", sans-serif;
 }
 
 .formInput{
-    margin-top: 50px;
+    margin-top: 30px;
     font-family: "Poppins", sans-serif;
     font-size :21px;
+    
 }
 
-.formInput h2{
+.formInput h4{
     padding-top: 14px;
     font-family: "Poppins", sans-serif;
+    font-size: 20px;
 
 }
 .formInput input{
-  margin-top: 15px;
-  margin-left: 10px;
+  /* margin-top: 15px; */
+  /* margin-left: 10px; */
+  margin: 5px auto;
   font-family: "Poppins", sans-serif;
-  width : 450px;
+  width : 100%;
   height:40px;
+  border-radius:15px;
+  border: 2px solid rgb(175, 185, 189);
+  padding: 3px 3px 0px 3px;
 }
-.formInput textarea{
 
-  margin-top: 15px;
-  margin-left: 25px;
+.formInput textarea{
+  margin: 5px auto;
+  /* margin-top: 15px;
+  margin-left: 25px; */
   font-size:21px;
   font-family: "Poppins", sans-serif;
-  width : 480px;
+  width : 100%;
   height:140px;
   font-weight:400;
   padding: 3px 3px 0px 3px;
+  border-radius:15px;
+  border: 2px solid rgb(175, 185, 189);
 }
 .formInput input[type="text"]{
   font-family: "Poppins", sans-serif;
   font-size:21px;
   font-weight:400;
+  padding-right: 2px;
+}
+.formInput input:focus{
+  outline:none;
+  border: 2px solid rgb(7, 7, 7);
+}
+.formChildren{
+  display: block;
+  /* align-items: ; */
+  justify-content: left;
+  padding: 0 13%;
+  margin-top: 20px;
+  
 }
 
-.formChildren{
-  display: flex;
+.file_field .file {
+  width: 100%;
+  height: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  display: none;
 }
+
