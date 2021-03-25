@@ -9,7 +9,8 @@ const { addUser,
     googleSignIn,
     userPasswordReset,
     addToUserWishlist,
-    recommendBook
+    recommendBook,
+    UploadImage 
 } = require('../controllers/UserController');
 
 const router = express.Router();
@@ -25,6 +26,7 @@ router.get('/googleSignIn', googleSignIn);
 router.get('/passwordReset', userPasswordReset);
 router.post('/addWishListBook', addToUserWishlist);
 router.get('/recommend/:id', recommendBook);
+router.post('/UploadImage',UploadImage);
 module.exports = {
     routes: router
 }

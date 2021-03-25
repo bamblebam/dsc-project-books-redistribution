@@ -8,8 +8,8 @@ import * as Yup from 'yup'
 
 const description = () => {
 
-    const clientID = "912277245270-ul1c1edu9150hbkfk19i59senecpqnpk.apps.googleusercontent.com";
-    const clientSecret ="yHNvXzYBuKE29o28d7IH5HYz";
+    const clientID = "918606077379-f6ekp752jkmtrmnu0u6ng6ufpkg996pk.apps.googleusercontent.com";
+    const clientSecret ="5Y26f39iNlEwsnaAuzrPmFNd";
     const fileInput = useRef(null);
     const[image, setImage] = useState(null);
     const[previewUrl, setPreviewUrl] = useState(""); 
@@ -23,7 +23,7 @@ const description = () => {
     
     }
     const handleOndrop = event => {
-        //prevent the browser from opening the image
+        
         event.preventDefault(); 
         event.stopPropagation(); 
         //let's grab the image file
@@ -46,38 +46,30 @@ const description = () => {
 		}),
 		onSubmit:
          values => {
+          let DriveLink ='';
+          let Imagedata={
+            address:image.path
+  
+          }
+          console.log(Imagedata);
+          axios.post("http://localhost:8080/api/UploadImage", Imagedata).then(res => {
+            console.log(res)
+            DriveLink = res.fileID;
+          })
 			let body = {
 				bio: values.user_bio,
 				full_name:values.user_Name,
-                phone:values.phone_number,
-                education :values.education
+        phone:values.phone_number,
+        education :values.education,
+        userImage : DriveLink
 			}
 			console.log(values.phone_number)
-			axios.update("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
+			axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
 				console.log(res)
 			})
 		}
 	})
 
-    var fileMetadata = {
-        'name': 'photo.jpg'
-      };
-      var media = {
-        mimeType: 'image/jpeg',
-        body: fs.createReadStream('files/photo.jpg')
-      };
-      drive.files.create({
-        resource: fileMetadata,
-        media: media,
-        fields: 'id'
-      }, function (err, file) {
-        if (err) {
-          // Handle error
-          console.error(err);
-        } else {
-          console.log('File Id: ', file.id);
-        }
-      });
 return(
     <div className={styles.form_class}>
         <div className={styles.Incenter}>
