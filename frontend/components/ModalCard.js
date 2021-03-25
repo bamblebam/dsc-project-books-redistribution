@@ -6,23 +6,26 @@ import firebase from '../configurations/db'
 import 'firebase/auth'
 import axios from 'axios'
 
-const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt }) => {
+const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	const addToWishlist = () => {
-		const userid = '95GhG5U6Yi7aSInxZyPs'
-		const bookid = 'NoKO2i0DY6VKmZZXzblq'
+		const userid = firebase.auth().currentUser.id || null
+		const bookid = bookId
 
-		let body = {
-			userId: userid,
-			id: bookid,
+		if (userid == null) {
+			console.log('user not found')
+		} else {
+			let body = {
+				userId: userid,
+				id: bookid,
+			}
+			console.log(body)
+			axios.post('http://localhost:8080/api/addWishListBook', body).then(res => {
+				console.log('test')
+				console.log(res)
+			})
 		}
-		body = JSON.stringify(body)
-		console.log(body)
-		axios.post('http://localhost:8080/api/addWishListBook', body).then(res => {
-			console.log('test')
-			console.log(res)
-		})
 	}
 
 	return (

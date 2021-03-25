@@ -9,41 +9,34 @@ import ReactHtmlParser, {
 	convertNodeToElement,
 	htmlparser2,
 } from 'react-html-parser'
-import Fuse from 'fuse.js';
-import React ,{useState,useEffect} from 'react';
-
+import Fuse from 'fuse.js'
+import React, { useState, useEffect } from 'react'
 
 const Resources = ({ data }) => {
 	let body = {
 		userId: '95GhG5U6Yi7aSInxZyPs',
 	}
 
-	const [slideRows,setSlideRows] = useState([]);
-	const [searchTerm, setSearchTerm] = useState('');
+	const [slideRows, setSlideRows] = useState([])
+	const [searchTerm, setSearchTerm] = useState('')
 	let items = data
 
-
-	
 	useEffect(() => {
-		setSlideRows([items]);
-	  }, [items]);
-
-	
+		setSlideRows([items])
+	}, [items])
 
 	useEffect(() => {
-		const fuse = new Fuse(slideRows, { keys: ['booktitle', 'description'] });
-		const results = fuse.search(searchTerm).map(({ item }) => item);
+		const fuse = new Fuse(slideRows, { keys: ['booktitle', 'description'] })
+		const results = fuse.search(searchTerm).map(({ item }) => item)
 
-		console.log('results :',results);
+		console.log('results :', results)
 		if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-			console.log(results);
-		  setSlideRows(results);
-
+			console.log(results)
+			setSlideRows(results)
 		} else {
-		  setSlideRows(items);
+			setSlideRows(items)
 		}
-	  }, [searchTerm]);
-
+	}, [searchTerm])
 
 	return (
 		<div className={resourcesStyle.container}>
@@ -55,6 +48,7 @@ const Resources = ({ data }) => {
 					return (
 						<ModalCard
 							key={key}
+							bookId={values.id}
 							bookName={values.booktitle}
 							bookDesc={values.description.slice(0, 75) + '...'}
 							text={values.description}
