@@ -72,7 +72,7 @@ const Nav = () => {
 						</Link>
 					</li>
 					<li className={navStyles.links} onClick={closeMobile}>
-						<Link className={navStyles.links} href='/profile/{uid}'>
+						<Link className={navStyles.links} href='/description/description'>
 							Account
 						</Link>
 					</li>

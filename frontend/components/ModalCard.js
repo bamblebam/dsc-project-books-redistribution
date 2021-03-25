@@ -10,14 +10,13 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	const addToWishlist = () => {
-		const userid = '95GhG5U6Yi7aSInxZyPs'
+		const userid = '1kY7ymskNraVdl5SmgYTPtr7Xgq1'
 		const bookid = 'NoKO2i0DY6VKmZZXzblq'
 
 		let body = {
 			userId: userid,
 			id: bookid,
 		}
-		body = JSON.stringify(body)
 		console.log(body)
 		axios.post('http://localhost:8080/api/addWishListBook', body).then(res => {
 			console.log('test')
