@@ -70,7 +70,9 @@ fs.readFile('credentials.json', (err, content) => {
 
 const UploadImage = async(req,res,next)=>{
 
-    const image_Name = req.Imagedata.address;
+    const image_Name = req.body.address;
+    
+    console.log(req.body)
     var fileMetadata = {
         name: 'Demo-Test', // file name that will be saved in google drive
       };
@@ -78,6 +80,7 @@ const UploadImage = async(req,res,next)=>{
       var media = {
         mimeType: 'image/jpg',
         body: fs.createReadStream(image_Name), // Reading the file from our server
+        
       };
       // Authenticating drive API
       const drive = google.drive({ version: 'v3', auth: Imageauth });

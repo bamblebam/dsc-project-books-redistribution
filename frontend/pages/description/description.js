@@ -12,10 +12,18 @@ const description = () => {
     const clientSecret ="5Y26f39iNlEwsnaAuzrPmFNd";
     const fileInput = useRef(null);
     const[image, setImage] = useState(null);
+    const[imgPath,setImgPath]=useState("");
     const[previewUrl, setPreviewUrl] = useState(""); 
-    const handleFile = file => {
-        setImage(file);
-        setPreviewUrl(URL.createObjectURL(file));
+    const handleFile = (file) => {
+        
+        
+        console.log(file.target.files)
+        setImage(file.target.files);
+        
+        console.log(typeof(file.target.files))
+        
+        setPreviewUrl(URL.createObjectURL(file.target.files[0]));
+        
     }
 
     const handledragOver = event => {
@@ -27,7 +35,9 @@ const description = () => {
         event.preventDefault(); 
         event.stopPropagation(); 
         //let's grab the image file
+        console.log(event)
         let imageFile = event.dataTransfer.files[0];
+        console.log(imageFile.path)
         handleFile(imageFile);
     }
 
@@ -48,13 +58,21 @@ const description = () => {
 		onSubmit:
          values => {
              console.log("Clicking");
+             
           let DriveLink ='';
+          
           let Imagedata={
-            address: image
+            address: image,
+            
           }
           console.log("x")
           console.log(Imagedata);
-          axios.post("http://localhost:8080/api/UploadImage", Imagedata).then(res => {
+          
+          axios.post("http://localhost:8080/api/UploadImage", Imagedata,{
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
             
             DriveLink = res.fileID;
             console.log(DriveLink);
@@ -96,7 +114,7 @@ return(
                 {/* <button className ={styles.push_area} >Add Profile</button> */}
                 {/* <input type="file" hidden  />  */}
                 <label htmlFor="product_image" className={styles.push_area} onClick = { () => fileInput.current.click()}>Add Image</label>
-                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e.target.files[0])}/>
+                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e)}/>
                 {/* <input type="file" accept="image/*" ref={fileInput} onChange={e => handleFile(e.target.files[0])} className={styles.file} name="product_image" id="product_image" hidden /> */}
             </div> 
             <div className={styles.formInput}>
