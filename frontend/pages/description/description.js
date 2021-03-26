@@ -4,13 +4,14 @@ import styles from '../../styles/css/description.module.css'
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-
+var FormData = require('form-data');
 
 const description = () => {
 
     const clientID = "918606077379-f6ekp752jkmtrmnu0u6ng6ufpkg996pk.apps.googleusercontent.com";
     const clientSecret ="5Y26f39iNlEwsnaAuzrPmFNd";
     const fileInput = useRef(null);
+<<<<<<< HEAD
     const[image, setImage] = useState(null);
     const[imgPath,setImgPath]=useState("");
     const[previewUrl, setPreviewUrl] = useState(""); 
@@ -24,6 +25,18 @@ const description = () => {
         
         setPreviewUrl(URL.createObjectURL(file.target.files[0]));
         
+=======
+    const[image, setImage] = useState('');
+    const[previewUrl, setPreviewUrl] = useState(""); 
+    const [driveLink,setdrive] = useState("");
+    let formData = new FormData();
+
+    const handleFile = file => {
+        setImage(file);
+        setPreviewUrl(URL.createObjectURL(file));
+        
+        formData.append('profile',image);
+>>>>>>> 4fad0a356924e27dfa2a0dd198fc53fbb1d18f9e
     }
 
     const handledragOver = event => {
@@ -57,6 +70,7 @@ const description = () => {
 		}),
 		onSubmit:
          values => {
+<<<<<<< HEAD
              console.log("Clicking");
              
           let DriveLink ='';
@@ -78,16 +92,28 @@ const description = () => {
             console.log(DriveLink);
           })
 			let body = {
+=======
+           const file ={
+               body : image
+           };
+          formData.append('profile',image);
+          axios.post("http://localhost:8080/api/UploadImage",formData ).then(res => {
+            setdrive(res.data.fileID);
+           
+            let body = {
+>>>>>>> 4fad0a356924e27dfa2a0dd198fc53fbb1d18f9e
 				bio: values.user_bio,
 				full_name:values.user_Name,
                 phone:values.phone_number,
                 education :values.education,
-                userImage : DriveLink
+                userImage : res.data.fileID
 			}
 			console.log(values.phone_number)
 			axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
 				console.log(res)
 			})
+          })
+			
 		}
 	})
 

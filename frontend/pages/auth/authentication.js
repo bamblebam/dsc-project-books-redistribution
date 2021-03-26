@@ -10,8 +10,12 @@ import firebaseApp from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import { useHistory } from 'react-router-dom';
 
 export default function authentication() {
+
+	const history = useHistory();
+	
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
@@ -56,9 +60,21 @@ export default function authentication() {
 				password: values.signin_password
 			}
 			console.log(values.signin_email)
-			axios.post("http://localhost:8080/api/login", body).then(res => {
+			/*axios.post("http://localhost:8080/api/login", body).then(res => {
 				console.log(res)
+			})*/
+			return  firebaseApp
+			.auth()
+			.signInWithEmailAndPassword(values.signin_email, values.signin_password)
+			.then(() => {
+				console.log("Stayus :200 .. User login done");
+				history.push('/');
 			})
+			.catch((error) => {
+				setEmailAddress('');
+				setPassword('');
+				setError(error.message);
+			});
 		}
 	})
 

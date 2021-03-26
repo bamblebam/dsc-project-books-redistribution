@@ -14,6 +14,19 @@ var stringSimilarity = require('string-similarity')
 const fs = require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './upload');
+     },
+    filename: function (req, file, cb) {
+        cb(null , file.originalname);
+    }
+});
+
+var upload = multer({ storage: storage })
+
 
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = 'token.json';
@@ -68,13 +81,24 @@ fs.readFile('credentials.json', (err, content) => {
     });
   }
 
-const UploadImage = async(req,res,next)=>{
+  
+ 
+const singleFileUpload = async(req,res) =>{
+    try {
+        console.log(req.file);
+        res.send(req.file);
+        
+    } catch(error) {
+          console.log(error);
+           res.send(400);
+    }
+}
 
-    const image_Name = req.body.address;
-    
-    console.log(req.body)
+const UploadImage = async(req,res,next)=>{
+    const filename = req.file.originalname;
+    const image_Name = './upload/'+filename;
     var fileMetadata = {
-        name: 'Demo-Test', // file name that will be saved in google drive
+        name: filename, // file name that will be saved in google drive
       };
     
       var media = {
@@ -531,5 +555,6 @@ module.exports = {
     userPasswordReset,
     addToUserWishlist,
     recommendBook,
-    UploadImage
+    UploadImage,
+    singleFileUpload
 }
