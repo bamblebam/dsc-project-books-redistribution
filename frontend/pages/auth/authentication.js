@@ -11,10 +11,14 @@ import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
 
 export default function authentication() {
 
 	const history = useHistory();
+	const auth = useAuth()
+	const router = useRouter()
 
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
@@ -43,6 +47,9 @@ export default function authentication() {
 				console.log(res)
 			})
 		}
+		// onSubmit: values => {
+
+		// }
 	})
 
 	const signin = useFormik({

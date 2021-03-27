@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import { auth } from "../configurations/db.js"
 
-const authContext = createContext({ user })
+const authContext = createContext(null)
 const { Provider } = authContext
 
 export function AuthProvider(props) {
