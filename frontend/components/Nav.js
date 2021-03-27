@@ -7,8 +7,10 @@ import navStyles from '../styles/css/Nav.module.css'
 
 import { firebase } from '../configurations/db'
 import 'firebase/auth'
+import { useAuth } from '../hooks/useAuth.js'
 
 const Nav = () => {
+	const auth = useAuth()
 	const { uid } = firebase.auth().currentUser || 'abc'
 	const [click, setClick] = useState(false)
 	const [button, setButton] = useState(true)
@@ -75,6 +77,9 @@ const Nav = () => {
 						<Link className={navStyles.links} href='/profile/{uid}'>
 							Account
 						</Link>
+					</li>
+					<li className={navStyles.links} onClick={closeMobile}>
+						<button onClick={auth.signout}>Logout</button>
 					</li>
 				</ul>
 			</div>

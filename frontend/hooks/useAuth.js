@@ -24,8 +24,8 @@ const useAuthProvider = () => {
     useEffect(() => {
         if (user?.uid) {
             const unsubscribed = db.collection("users").doc(user.uid).onSnapshot(doc => setUser(doc.data()))
+            return () => unsubscribed()
         }
-        return () => unsubscribed()
     }, [])
 
     const addUserToFirestore = user => {
@@ -74,5 +74,10 @@ const useAuthProvider = () => {
         })
     }
 
-    return { user, signup, signin }
+    const signout = () => {
+        console.log("bam3")
+        return auth.signOut().then(() => setUser(false))
+    }
+
+    return { user, signup, signin, signout }
 }
