@@ -30,7 +30,6 @@ const useAuthProvider = () => {
 
     const addUserToFirestore = user => {
         return db.collection("users").doc(user.uid).set(user).then(() => {
-            console.log("bam")
             setUser(user)
             return user
         }).catch(error => {
@@ -42,7 +41,6 @@ const useAuthProvider = () => {
         return db.collection("users").doc(user.uid).get().then(res => {
             if (res.data()) {
                 setUser(res.data())
-                console.log("bam2")
             }
         })
     }
@@ -56,7 +54,6 @@ const useAuthProvider = () => {
 
     const signup = (email, password, username) => {
         return auth.createUserWithEmailAndPassword(email, password).then(res => {
-            console.log(res)
             return addUserToFirestore({ uid: res.user.uid, email, password, username })
         }).catch(error => {
             console.log(error)
@@ -67,7 +64,6 @@ const useAuthProvider = () => {
         return auth.signInWithEmailAndPassword(email, password).then(res => {
             setUser(res.user)
             fetchUserDataFromFirestore(user)
-            console.log(res)
             return res.user
         }).catch(error => {
             console.log(error)
@@ -75,13 +71,11 @@ const useAuthProvider = () => {
     }
 
     const signout = () => {
-        console.log("bam3")
         return auth.signOut().then(() => setUser(false))
     }
 
     const resetPassword = email => {
         return auth.sendPasswordResetEmail(email).then(res => {
-            console.log("bam4")
             return res
         }).catch(error => {
             console.log(error)

@@ -22,15 +22,6 @@ export default function PasswordReset() {
         validationSchema: Yup.object({
             password_email: Yup.string().email("Not a valid email").required('Required'),
         }),
-        // onSubmit: values => {
-        //     let body = {
-        //         email: values.password_email
-        //     }
-        //     axios.post('http://localhost:8080/passwordReset', body).then(res => {
-        //         console.log("bam")
-        //         console.log(res)
-        //     })
-        // }
         onSubmit: values => {
             auth.resetPassword(values.password_email)
             router.push("/")
