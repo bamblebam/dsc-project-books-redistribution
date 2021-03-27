@@ -1,0 +1,82 @@
+import ModalCard from '../../components/ModalCard'
+import SearchBar from '../../components/SearchBar'
+import resourcesStyle from '../../styles/css/Resources.module.css'
+import firebaseApp from '../../configurations/db'
+import axios from 'axios'
+import firebase from 'firebase/app'
+import ReactHtmlParser, {
+	processNodes,
+	convertNodeToElement,
+	htmlparser2,
+} from 'react-html-parser'
+import Fuse from 'fuse.js'
+import React, { useState, useEffect } from 'react'
+
+const Resources = ({ data }) => {
+	let body = {
+		userId: '95GhG5U6Yi7aSInxZyPs',
+	}
+
+	const [slideRows, setSlideRows] = useState([])
+	const [searchTerm, setSearchTerm] = useState('')
+	let items = data
+
+	useEffect(() => {
+		setSlideRows([items])
+	}, [items])
+
+	useEffect(() => {
+		const fuse = new Fuse(slideRows, { keys: ['booktitle', 'description'] })
+		const results = fuse.search(searchTerm).map(({ item }) => item)
+
+		console.log('results :', results)
+		if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+			console.log(results)
+			setSlideRows(results)
+		} else {
+			setSlideRows(items)
+		}
+	}, [searchTerm])
+
+	return (
+		<div className={resourcesStyle.container}>
+			<div className={resourcesStyle.head}>
+				<SearchBar searchText={searchTerm} setSearchTerm={setSearchTerm} link='/' />
+			</div>
+			<div className={resourcesStyle.main}>
+				{slideRows.map((values, key) => {
+					return (
+						<ModalCard
+							key={key}
+							bookId={values.id}
+							bookName={values.booktitle}
+							bookDesc={values.description.slice(0, 75) + '...'}
+							text={values.description}
+							imgSrc={values.bookImage}
+							imgAlt={values.booktitle}
+							link='/'
+						/>
+					)
+				})}
+			</div>
+		</div>
+	)
+}
+export async function getStaticProps() {
+	const res = await axios.get(
+		'http://localhost:8080/books/getbooks/95GhG5U6Yi7aSInxZyPs'
+	)
+	const data = await res.data
+
+	if (!data) {
+		return {
+			notFound: true,
+		}
+	}
+
+	return {
+		props: { data }, // will be passed to the page component as props
+	}
+}
+
+export default Resources

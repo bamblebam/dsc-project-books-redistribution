@@ -1,0 +1,2 @@
+// export const GoogleMapsAPI ="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=places&v=weekly"
+export const GoogleMapsAPI ="AIzaSyBgzOgVVD1ZlKYk1CGD0Na790aba9Fs-TM"

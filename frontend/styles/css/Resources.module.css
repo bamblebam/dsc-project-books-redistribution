@@ -1,0 +1,23 @@
+.head {
+	width: 50%;
+}
+
+.main {
+	display: flex;
+	width: 50%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	color: white;
+}
+
+.container {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}

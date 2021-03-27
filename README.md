@@ -6,3 +6,22 @@ This is the repository for our project submission in the google DSC challenge.
 2. Different branches have been created one for frontend and one for backend make changes on that not on the master directly.
 3. Do not install anything in the root module unless necessary.
 4. Do not commit unnecessary stuff like **Node Modules**. Put them in the gitignore
+
+### TODO:
+
+- [x] Hambuger in nav
+- [x] Home page components
+- [x] unable to exit out of modal
+- [ ] Search in resources page
+- [x] About Page
+- [ ] Account Page
+- [ ] Wishlist
+- [ ] Backend integration
+- [ ] Maps
+- [ ] Video
+- [ ] Survey
+- [ ] Add to userWishList error
+- [ ] Authors in books
+- [ ] Books structure
+- [ ] Make the signin view work
+- [ ] Password reset and email verification
