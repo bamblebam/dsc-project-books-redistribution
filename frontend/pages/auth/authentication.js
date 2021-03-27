@@ -48,7 +48,7 @@ export default function authentication() {
 		// 	})
 		// }
 		onSubmit: values => {
-			auth.signup(values.signup_email, values.signup_password1).then(() => {
+			auth.signup(values.signup_email, values.signup_password1, values.signup_username).then(() => {
 				router.push('/')
 			})
 		}

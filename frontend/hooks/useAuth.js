@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react"
-import { auth } from "../configurations/db.js"
+import { auth, db } from "../configurations/db.js"
 
 const authContext = createContext(null)
 const { Provider } = authContext
@@ -16,9 +16,18 @@ export const useAuth = () => {
 const useAuthProvider = () => {
     const [user, setUser] = useState(null)
 
-    const signup = (email, password) => {
+    const addUserToFirestore = user => {
+        return db.collection("users").doc(user.uid).set(user).then(() => {
+            console.log("bam")
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    const signup = (email, password, username) => {
         return auth.createUserWithEmailAndPassword(email, password).then(res => {
             console.log(res)
+            return addUserToFirestore({ uid: res.user.uid, email, password, username })
         }).catch(error => {
             console.log(error)
         })
