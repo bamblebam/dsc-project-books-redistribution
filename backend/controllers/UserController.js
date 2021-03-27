@@ -11,9 +11,22 @@ const firebase1 = require('firebase')
 var stringSimilarity = require('string-similarity')
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
-const fs = require('fs')
-const readline = require('readline')
-const { google } = require('googleapis')
+const fs = require('fs');
+const readline = require('readline');
+const { google } = require('googleapis');
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './upload');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+var upload = multer({ storage: storage })
+
 
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 const TOKEN_PATH = 'token.json'
@@ -51,27 +64,41 @@ function getAccessToken(oAuth2Client) {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
-    })
-    rl.question('Enter the code from that page here: ', code => {
-        rl.close()
+    });
+    rl.question('Enter the code from that page here: ', (code) => {
+        rl.close();
         oAuth2Client.getToken(code, (err, token) => {
-            if (err) return console.error('Error retrieving access token', err)
-            oAuth2Client.setCredentials(token)
+            if (err) return console.error('Error retrieving access token', err);
+            oAuth2Client.setCredentials(token);
             // Store the token to disk for later program executions
-            fs.writeFile(TOKEN_PATH, JSON.stringify(token), err => {
-                if (err) return console.error(err)
-                console.log('Token stored to', TOKEN_PATH)
-            })
-            Imageauth = authoAuth2Client
-        })
-    })
+            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                if (err) return console.error(err);
+                console.log('Token stored to', TOKEN_PATH);
+            });
+            Imageauth = authoAuth2Client;
+        });
+    });
+}
+
+
+
+const singleFileUpload = async (req, res) => {
+    try {
+        console.log(req.file);
+        res.send(req.file);
+
+    } catch (error) {
+        console.log(error);
+        res.send(400);
+    }
 }
 
 const UploadImage = async (req, res, next) => {
-    const image_Name = req.Imagedata.address
+    const filename = req.file.originalname;
+    const image_Name = './upload/' + filename;
     var fileMetadata = {
-        name: 'Demo-Test', // file name that will be saved in google drive
-    }
+        name: filename, // file name that will be saved in google drive
+    };
 
     var media = {
         mimeType: 'image/jpg',
@@ -89,18 +116,25 @@ const UploadImage = async (req, res, next) => {
         async (err, file) => {
             if (err) {
                 // Handle error
-                console.error(err.msg)
-                console.log(err.msg)
+                console.error(err.msg);
+                console.log(err.msg);
                 console.log('Main  error :', err)
                 return res
                     .status(400)
-                    .json({ errors: [{ msg: 'Server Error try again later' }] })
+                    .json({ errors: [{ msg: 'Server Error try again later' }] });
             } else {
-                console.log(file.data.id)
+                console.log(file.data.id);
+                try {
+                    fs.unlinkSync(image_Name);
+                    console.log(image_Name, " Has been deleted  ");
+                } catch (err) {
+                    console.log("Error while deleting");
+                }
                 // if file upload success then return the unique google drive id
                 res.status(200).json({
-                    fileID: 'https://drive.google.com/uc?export=view&id=' + file.data.id,
-                })
+
+                    fileID: "https://drive.google.com/uc?export=view&id=" + file.data.id,
+                });
             }
         }
     )
@@ -523,4 +557,5 @@ module.exports = {
     addToUserWishlist,
     recommendBook,
     UploadImage,
+    singleFileUpload
 }

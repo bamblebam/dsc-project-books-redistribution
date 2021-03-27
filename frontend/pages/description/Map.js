@@ -9,7 +9,9 @@ import 'tippy.js/dist/tippy.css';
 import introJs from 'intro.js';
 import 'intro.js/introjs.css';
 import axios from 'axios'
-
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
+var FormData = require('form-data');
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
@@ -18,26 +20,7 @@ const Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,
 let TextAddress =""
 const Map = () => {
 
-  const signin = useFormik({
-		initialValues: {
-			signin_email: "",
-			signin_password: ""
-		},
-		validationSchema: Yup.object({
-			signin_email: Yup.string().email("Not a valid Email").required('Required'),
-			signin_password: Yup.string().max(25, "Password must be less than 25 characters").required('Required')
-		}),
-		onSubmit: values => {
-			let body = {
-				email: values.signin_email,
-				password: values.signin_password
-			}
-			console.log(values.signin_email)
-			axios.post("http://localhost:8080/api/login", body).then(res => {
-				console.log(res)
-			})
-		}
-	})
+  
   const [address,setAddress]=useState(0);
   const mapContainerRef = useRef(null);
   const [longitude, setLongitude] = useState(0);
