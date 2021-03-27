@@ -5,12 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import firebase from "firebase/app"
 import "firebase/auth"
-import firebaseApp from '../../configurations/db';
+import firebaseApp, { auth } from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+import { useAuth } from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
 
 export default function PasswordReset() {
+    const auth = useAuth()
+    const router = useRouter()
     const password_reset = useFormik({
         initialValues: {
             password_email: ""
@@ -18,14 +22,18 @@ export default function PasswordReset() {
         validationSchema: Yup.object({
             password_email: Yup.string().email("Not a valid email").required('Required'),
         }),
+        // onSubmit: values => {
+        //     let body = {
+        //         email: values.password_email
+        //     }
+        //     axios.post('http://localhost:8080/passwordReset', body).then(res => {
+        //         console.log("bam")
+        //         console.log(res)
+        //     })
+        // }
         onSubmit: values => {
-            let body = {
-                email: values.password_email
-            }
-            axios.post('http://localhost:8080/passwordReset', body).then(res => {
-                console.log("bam")
-                console.log(res)
-            })
+            auth.resetPassword(values.password_email)
+            router.push("/")
         }
     })
     return (

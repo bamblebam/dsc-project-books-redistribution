@@ -14,7 +14,7 @@ export const useAuth = () => {
 }
 
 const useAuthProvider = () => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(false)
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged(handleAuthState)
@@ -79,5 +79,14 @@ const useAuthProvider = () => {
         return auth.signOut().then(() => setUser(false))
     }
 
-    return { user, signup, signin, signout }
+    const resetPassword = email => {
+        return auth.sendPasswordResetEmail(email).then(res => {
+            console.log("bam4")
+            return res
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    return { user, signup, signin, signout, resetPassword }
 }
