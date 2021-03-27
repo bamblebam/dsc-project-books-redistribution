@@ -13,9 +13,6 @@ import * as Yup from 'yup'
 import Link from 'next/link'
 
 export default function authentication() {
-
-	const history = useHistory();
-
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
@@ -61,11 +58,6 @@ export default function authentication() {
 			axios.post("http://localhost:8080/api/login", body).then(res => {
 				console.log(res);
 			})
-				.catch((error) => {
-					setEmailAddress('');
-					setPassword('');
-					setError(error.message);
-				});
 		}
 	})
 
