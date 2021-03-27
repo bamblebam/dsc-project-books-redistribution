@@ -15,7 +15,7 @@ export const useAuth = () => {
 
 const useAuthProvider = () => {
     const [user, setUser] = useState(null)
-    const signup = ({ email, password }) => {
+    const signup = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password).then(res => {
             console.log(res)
         }).catch(error => {

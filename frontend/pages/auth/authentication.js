@@ -37,19 +37,21 @@ export default function authentication() {
 			signup_password1: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").required('Required'),
 			signup_password2: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").oneOf([Yup.ref("signup_password1"), null], "The passwords must match").required('Required')
 		}),
+		// onSubmit: values => {
+		// 	let body = {
+		// 		"email": values.signup_email,
+		// 		"password": values.signup_password1
+		// 	}
+		// 	console.log("bam")
+		// 	axios.post("http://localhost:8080/api/User", body).then(res => {
+		// 		console.log(res)
+		// 	})
+		// }
 		onSubmit: values => {
-			let body = {
-				"email": values.signup_email,
-				"password": values.signup_password1
-			}
-			console.log("bam")
-			axios.post("http://localhost:8080/api/User", body).then(res => {
-				console.log(res)
+			auth.signup(values.signup_email, values.signup_password1).then(() => {
+				router.push('/')
 			})
 		}
-		// onSubmit: values => {
-
-		// }
 	})
 
 	const signin = useFormik({
