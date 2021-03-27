@@ -6,13 +6,20 @@ import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import firebase from "firebase/app"
 import "firebase/auth"
-import firebaseApp from '../../configurations/db';
+import { firebaseApp } from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-import Link from 'next/link'
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
 
 export default function authentication() {
+
+	const history = useHistory();
+	const auth = useAuth()
+	const router = useRouter()
+
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
@@ -31,12 +38,8 @@ export default function authentication() {
 			signup_password2: Yup.string().max(25, "Password must be less than 25 characters").min(8, "Password must be longer than 8 characters").oneOf([Yup.ref("signup_password1"), null], "The passwords must match").required('Required')
 		}),
 		onSubmit: values => {
-			let body = {
-				"email": values.signup_email,
-				"password": values.signup_password1
-			}
-			axios.post("http://localhost:8080/api/User", body).then(res => {
-				console.log(res)
+			auth.signup(values.signup_email, values.signup_password1, values.signup_username).then(() => {
+				router.push('/')
 			})
 		}
 	})
@@ -51,12 +54,8 @@ export default function authentication() {
 			signin_password: Yup.string().max(25, "Password must be less than 25 characters").required('Required')
 		}),
 		onSubmit: values => {
-			let body = {
-				email: values.signin_email,
-				password: values.signin_password
-			}
-			axios.post("http://localhost:8080/api/login", body).then(res => {
-				console.log(res);
+			auth.signin(values.signin_email, values.signin_password).then(() => {
+				router.push("/")
 			})
 		}
 	})
