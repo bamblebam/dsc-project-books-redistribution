@@ -63,27 +63,32 @@ export default function authentication() {
 			signin_email: Yup.string().email("Not a valid Email").required('Required'),
 			signin_password: Yup.string().max(25, "Password must be less than 25 characters").required('Required')
 		}),
+		// onSubmit: values => {
+		// 	let body = {
+		// 		email: values.signin_email,
+		// 		password: values.signin_password
+		// 	}
+		// 	console.log(values.signin_email)
+		// 	/*axios.post("http://localhost:8080/api/login", body).then(res => {
+		// 		console.log(res)
+		// 	})*/
+		// 	return firebaseApp
+		// 		.auth()
+		// 		.signInWithEmailAndPassword(values.signin_email, values.signin_password)
+		// 		.then(() => {
+		// 			console.log("Stayus :200 .. User login done");
+		// 			history.push('/');
+		// 		})
+		// 		.catch((error) => {
+		// 			setEmailAddress('');
+		// 			setPassword('');
+		// 			setError(error.message);
+		// 		});
+		// }
 		onSubmit: values => {
-			let body = {
-				email: values.signin_email,
-				password: values.signin_password
-			}
-			console.log(values.signin_email)
-			/*axios.post("http://localhost:8080/api/login", body).then(res => {
-				console.log(res)
-			})*/
-			return firebaseApp
-				.auth()
-				.signInWithEmailAndPassword(values.signin_email, values.signin_password)
-				.then(() => {
-					console.log("Stayus :200 .. User login done");
-					history.push('/');
-				})
-				.catch((error) => {
-					setEmailAddress('');
-					setPassword('');
-					setError(error.message);
-				});
+			auth.signin(values.signin_email, values.signin_password).then(() => {
+				router.push("/")
+			})
 		}
 	})
 
