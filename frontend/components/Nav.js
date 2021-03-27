@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import navStyles from '../styles/css/Nav.module.css'
 
-import firebase from '../configurations/db'
+import { firebase } from '../configurations/db'
 import 'firebase/auth'
 
 const Nav = () => {

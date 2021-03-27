@@ -6,7 +6,7 @@ import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import firebase from "firebase/app"
 import "firebase/auth"
-import firebaseApp from '../../configurations/db';
+import { firebaseApp } from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
@@ -15,7 +15,7 @@ import { useHistory } from 'react-router-dom';
 export default function authentication() {
 
 	const history = useHistory();
-	
+
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
 	const main_container = useRef(null)
@@ -63,18 +63,18 @@ export default function authentication() {
 			/*axios.post("http://localhost:8080/api/login", body).then(res => {
 				console.log(res)
 			})*/
-			return  firebaseApp
-			.auth()
-			.signInWithEmailAndPassword(values.signin_email, values.signin_password)
-			.then(() => {
-				console.log("Stayus :200 .. User login done");
-				history.push('/');
-			})
-			.catch((error) => {
-				setEmailAddress('');
-				setPassword('');
-				setError(error.message);
-			});
+			return firebaseApp
+				.auth()
+				.signInWithEmailAndPassword(values.signin_email, values.signin_password)
+				.then(() => {
+					console.log("Stayus :200 .. User login done");
+					history.push('/');
+				})
+				.catch((error) => {
+					setEmailAddress('');
+					setPassword('');
+					setError(error.message);
+				});
 		}
 	})
 
