@@ -126,6 +126,12 @@ const UploadImage = async(req,res,next)=>{
               .json({ errors: [{ msg: 'Server Error try again later' }] });
           } else {
             console.log(file.data.id);
+            try{
+                fs.unlinkSync(image_Name);
+                console.log(image_Name," Has been deleted  ");
+            }catch(err){
+                console.log("Error while deleting");
+            }
             // if file upload success then return the unique google drive id
             res.status(200).json({
 

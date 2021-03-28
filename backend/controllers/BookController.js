@@ -4,6 +4,54 @@ const firebase = require('../db')
 const Book = require('../models/Books')
 const firestore = firebase.firestore()
 
+
+const uploadBookImage = async(req,res,next) =>{
+	const filename = req.file.originalname;
+    const image_Name = './upload/'+filename;
+    var fileMetadata = {
+        name: filename, // file name that will be saved in google drive
+      };
+    
+      var media = {
+        mimeType: 'image/jpg',
+        body: fs.createReadStream(image_Name), // Reading the file from our server
+      };
+      // Authenticating drive API
+      const drive = google.drive({ version: 'v3', auth: Imageauth });
+    
+      // Uploading Single image to drive
+      drive.files.create(
+        {
+          resource: fileMetadata,
+          media: media,
+        },
+        async (err, file) => {
+          if (err) {
+            // Handle error
+            console.error(err.msg);
+            console.log(err.msg);
+            console.log('Main  error :',err)
+            return res
+              .status(400)
+              .json({ errors: [{ msg: 'Server Error try again later' }] });
+          } else {
+            console.log(file.data.id);
+            try{
+                fs.unlinkSync(image_Name);
+                console.log(image_Name," Has been deleted  ");
+            }catch(err){
+                console.log("Error while deleting");
+            }
+            // if file upload success then return the unique google drive id
+            res.status(200).json({
+
+              fileID: "https://drive.google.com/uc?export=view&id="+file.data.id,
+            });
+          }
+        }
+      )
+
+}
 const addbook = async (req, res, next) => {
 	try {
 		let current = new Date()
