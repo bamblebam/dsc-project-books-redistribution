@@ -1,6 +1,6 @@
 import React, { useRef ,useState,useEffect} from 'react'
 import Head from 'next/head'
-import styles from '../../styles/css/description.module.css'
+import styles from '../../styles/css/profile.module.css'
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
@@ -91,6 +91,7 @@ const profile = ({ data }) => {
 	return (
 		<div className={styles.form_class}>
         <div className={styles.Incenter}>
+        <h2> Your Profile</h2>
         <form action='' method='POST' onSubmit={description_form.handleSubmit}>
              <div className={styles.drag_area} onDragOver = {handledragOver} onDrop = {handleOndrop}>
 				 {showImage ?(<img src ={showImage} alt='Your current profile image'/>):(

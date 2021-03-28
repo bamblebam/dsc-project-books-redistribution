@@ -2,7 +2,7 @@
 
 
 .form_class{
-  height:1250px;
+  height:1400px;
   display:flex;
   width:1500px;
   margin:auto;
@@ -10,6 +10,7 @@
   border-radius: 8px;
   background-image:url('../../public/images/spikes.png');
   font-family: "Poppins", sans-serif;
+  padding-bottom: 30px;
 }
 .Incenter{
     /* display: flex; */
@@ -21,11 +22,19 @@
     background-color: white;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
+.Incenter h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size :35px;
+  font-family: "Poppins", sans-serif;
+}
 .drag_area{
-  border: 2px dashed rgb(17, 16, 16);
-  height: 200px;
-  width: 200px;
-  border-radius: 6em;
+  border: 2px solid rgb(17, 16, 16);
+  height: 250px;
+  width: 250px;
+  border-radius: 7.4em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,18 +95,21 @@
 }
 .MoveToRight{
   display:flex;
-  float :right;
+  /* justify-content:flex-end; */
   margin-top:30px;
   margin-bottom:80px;
   margin-right: 50px;
+  float: right;
 }
 .MoveToLeft{
   display:flex;
-  float:left;
-  margin-top:80px;
+  /* justify-content:flex-start; */
+  margin-top:30px;
   margin-bottom:80px;
-  margin-right: 50px;
+  margin-left: 50px;
+  float:left;
 }
+
 .Continue{
   padding: 10px 25px;
   font-size: 21px;
@@ -115,7 +127,7 @@
   width: 100%;
   padding:2px 2px 2px 2px ;
   object-fit:cover;
-  border-radius: 6em;
+  border-radius: 7.4em;
   font-family: "Poppins", sans-serif;
 }
 

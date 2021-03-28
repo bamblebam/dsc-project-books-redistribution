@@ -99,6 +99,8 @@ const UploadImage = async(req,res,next)=>{
     const image_Name = './upload/'+filename;
     var fileMetadata = {
         name: filename, // file name that will be saved in google drive
+        //Adding to a Profiles folder
+        parents: ['1OrvrPgwwvlu9Ic4n9rdC6wUhCnRiv77Y']
       };
     
       var media = {
@@ -135,7 +137,7 @@ const UploadImage = async(req,res,next)=>{
             // if file upload success then return the unique google drive id
             res.status(200).json({
 
-              fileID: "https://drive.google.com/uc?export=view&id="+file.data.id,
+              fileID: "https://drive.google.com/thumbnail?id="+file.data.id,
             });
           }
         }
