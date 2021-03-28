@@ -86,14 +86,14 @@
 }
 .MoveToRight{
   display:flex;
-  justify-content:flex-end;
+  float :right;
   margin-top:30px;
   margin-bottom:80px;
   margin-right: 50px;
 }
 .MoveToLeft{
   display:flex;
-  justify-content:flex-start;
+  float:left;
   margin-top:80px;
   margin-bottom:80px;
   margin-right: 50px;
