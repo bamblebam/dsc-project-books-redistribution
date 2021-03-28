@@ -58,7 +58,7 @@ const profile = ({ data }) => {
 			user_Name: data.full_name,
 			phone_number: data.phone,
             user_bio:data.bio,
-            education :data.eduction,
+            education :data.education,
 			email:data.email,
             
 		},
@@ -77,7 +77,8 @@ const profile = ({ data }) => {
 				full_name:values.user_Name,
                 phone:values.phone_number,
                 education :values.education,
-                userImage : showImage
+                userImage : showImage,
+                email:values.email
 			}
 			console.log(values.phone_number)
 			axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
@@ -90,7 +91,7 @@ const profile = ({ data }) => {
 	return (
 		<div className={styles.form_class}>
         <div className={styles.Incenter}>
-        <form>
+        <form action='' method='POST' onSubmit={description_form.handleSubmit}>
              <div className={styles.drag_area} onDragOver = {handledragOver} onDrop = {handleOndrop}>
 				 {showImage ?(<img src ={showImage} alt='Your current profile image'/>):(
 					 previewUrl ? (
@@ -120,21 +121,21 @@ const profile = ({ data }) => {
 
 				<div className ={styles.formChildren}>
 				<h4>Email  </h4>
-                <input type="text" placeholder ="Enter your name"  name ='email' value={data.email} onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.email}></input>
+                <input type="text" placeholder ="Enter your name"  name ='email'  onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.email}></input>
                 </div>
 				
                 <div className ={styles.formChildren}>
                 <h4>Phone </h4>
-                <input type="text" placeholder ="Enter Your Phone No" name='phone_number' value={data.phone} onChange={description_form.handleChange} onBlur={description_form.handleBlur}  value={description_form.values.phone_number}></input>
+                <input type="text" placeholder ="Enter Your Phone No" name='phone_number' onChange={description_form.handleChange} onBlur={description_form.handleBlur}  value={description_form.values.phone_number}></input>
                 </div>
                 <div className ={styles.formChildren}>
                 <h4>Education </h4>
-                <input type="text" placeholder ="Enter Your Education" name='education' value={data.education} onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.education}></input>
+                <input type="text" placeholder ="Enter Your Education" name='education'  onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.education}></input>
                 </div>
                 {/* <br/> */}
                 <div className ={styles.formChildren}>
                 <h4>Bio </h4>
-                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' value={data.bio} onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
+                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
                 </div>
                 <div >
                     <div className ={styles.MoveToLeft}>
