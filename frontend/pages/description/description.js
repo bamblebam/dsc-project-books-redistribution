@@ -11,21 +11,6 @@ const description = () => {
     const clientID = "918606077379-f6ekp752jkmtrmnu0u6ng6ufpkg996pk.apps.googleusercontent.com";
     const clientSecret ="5Y26f39iNlEwsnaAuzrPmFNd";
     const fileInput = useRef(null);
-<<<<<<< HEAD
-    const[image, setImage] = useState(null);
-    const[imgPath,setImgPath]=useState("");
-    const[previewUrl, setPreviewUrl] = useState(""); 
-    const handleFile = (file) => {
-        
-        
-        console.log(file.target.files)
-        setImage(file.target.files);
-        
-        console.log(typeof(file.target.files))
-        
-        setPreviewUrl(URL.createObjectURL(file.target.files[0]));
-        
-=======
     const[image, setImage] = useState('');
     const[previewUrl, setPreviewUrl] = useState(""); 
     const [driveLink,setdrive] = useState("");
@@ -36,7 +21,6 @@ const description = () => {
         setPreviewUrl(URL.createObjectURL(file));
         
         formData.append('profile',image);
->>>>>>> 4fad0a356924e27dfa2a0dd198fc53fbb1d18f9e
     }
 
     const handledragOver = event => {
@@ -70,29 +54,6 @@ const description = () => {
 		}),
 		onSubmit:
          values => {
-<<<<<<< HEAD
-             console.log("Clicking");
-             
-          let DriveLink ='';
-          
-          let Imagedata={
-            address: image,
-            
-          }
-          console.log("x")
-          console.log(Imagedata);
-          
-          axios.post("http://localhost:8080/api/UploadImage", Imagedata,{
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-        }).then(res => {
-            
-            DriveLink = res.fileID;
-            console.log(DriveLink);
-          })
-			let body = {
-=======
            const file ={
                body : image
            };
@@ -101,7 +62,6 @@ const description = () => {
             setdrive(res.data.fileID);
            
             let body = {
->>>>>>> 4fad0a356924e27dfa2a0dd198fc53fbb1d18f9e
 				bio: values.user_bio,
 				full_name:values.user_Name,
                 phone:values.phone_number,
