@@ -136,12 +136,13 @@ const profile = ({ data }) => {
                 <h4>Bio </h4>
                 <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' value={data.bio} onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
                 </div>
-                
-				<div className ={styles.MoveToLeft}>
-					<button className ={styles.Continue}>Cancel</button>
-				</div>
-                <div className ={styles.MoveToRight}>
-                    <button className={styles.Continue}>Update</button>
+                <div >
+                    <div className ={styles.MoveToLeft}>
+                        <button className ={styles.Continue}>Cancel</button>
+                    </div>
+                    <div className ={styles.MoveToRight}>
+                        <button className={styles.Continue}>Update</button>
+                    </div>
                 </div>
             </div>
 
