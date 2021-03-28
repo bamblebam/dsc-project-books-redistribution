@@ -104,6 +104,7 @@ const UploadImage = async(req,res,next)=>{
       var media = {
         mimeType: 'image/jpg',
         body: fs.createReadStream(image_Name), // Reading the file from our server
+        
       };
       // Authenticating drive API
       const drive = google.drive({ version: 'v3', auth: Imageauth });
@@ -267,11 +268,20 @@ const getUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     try {
         const id = req.params.id
-        const data = req.body
+        var data = req.body
+        
+        if(data.long!=undefined&&data.lat!=undefined){
+            data={
+                
+                      location: new firebase1.firestore.GeoPoint(data.lat,data.long)
+                    
+            }
+        }
         const user = await firestore.collection('users').doc(id)
         await user.update(data)
         res.send('Profile updated successfully !')
     } catch (error) {
+        console.log(error)
         res.status(400).send(error.message)
     }
 }

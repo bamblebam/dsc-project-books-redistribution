@@ -12,11 +12,12 @@ import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 var FormData = require('form-data');
+const firebase1 = require('firebase')
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
 const Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,-122.453.JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7";
-
+var longlat={"long":0,"lat":0}
 let TextAddress =""
 const Map = () => {
 
@@ -26,6 +27,18 @@ const Map = () => {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [zoom, setZoom] = useState(5);
+ 
+function updateLoc() {
+  console.log(longlat.long)
+  console.log(longlat.lat)
+  // data={
+  //   location: new firebase1.firestore.GeoPoint(longlat.lat,longlat.long)
+  // }
+  axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", longlat).then(res => {
+				console.log(res)
+			})
+  
+}
 
 function successPosition(position) {
     //Mapbox receives longitude and latitude from Geolocation API
@@ -37,6 +50,7 @@ function successPosition(position) {
   function errorPosition() {
     setLongitude(12.9716)
     setLatitude(77.5946)
+    
   }
 
   
@@ -45,7 +59,7 @@ function successPosition(position) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v11",
       // center: [latitude, longitude],
-      center: [19.2, 17.2],
+      center: [72.943187,19.188422 ],
       zoom: zoom,
     });
     var marker = new mapboxgl.Marker({draggable: true})
@@ -114,12 +128,16 @@ function successPosition(position) {
   
     });
     function setMarker(lng,lat){
-      // longlat={"long":lng,"lat":lat}
-    
+      longlat={"long":lng,"lat":lat}
+      setLatitude(lat)
+      setLongitude(lng)
+      
       marker.setLngLat([lng,lat])
       map.flyTo({
       center: [lng,lat]
       });
+
+      
 
     var url="https://api.tomtom.com/search/2/reverseGeocode/+"+lat+","+lng+".JSON?key=c7nsCFO1nd9rpS8mRxfeJlFZl5FT2Md7"
 
@@ -127,6 +145,12 @@ axios.get(url).then(res => {
         setAddress(res.data.addresses[0].address.streetName+","+res.data.addresses[0].address.municipalitySubdivision+","+res.data.addresses[0].address.municipality+","+res.data.addresses[0].address.countrySubdivision)
 				console.log(res.data.addresses[0].address.streetName+res.data.addresses[0].address.municipalitySubdivision+res.data.addresses[0].address.municipality+res.data.addresses[0].address.municipality+res.data.addresses[0].address.countrySubdivision)
 			})}
+      // useEffect(()=>{
+      //   setLatitude(lat)
+      // },[lat])
+      // useEffect(()=>{
+      //   setLatitude(lng)
+      // },[lng])
     // Clean up on unmount
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -148,7 +172,8 @@ axios.get(url).then(res => {
         <div className ={styles.MoveToRight}>
           
           <Tippy Tippy placement='bottom' content="Bottom Tooltip"  content="Your location is not stored or shared" >
-          <label className={styles.Continue}>Save</label>
+          {/* <label className={styles.Continue}>Save</label> */}
+          <button onClick={updateLoc} className={styles.Continue}>Continue</button>
           </Tippy>
         </div>
       </div>

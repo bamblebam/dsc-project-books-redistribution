@@ -25,7 +25,7 @@
   border: 2px dashed rgb(17, 16, 16);
   height: 200px;
   width: 200px;
-  border-radius: 2.1em;
+  border-radius: 6em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,7 @@
   width: 100%;
   padding:2px 2px 2px 2px ;
   object-fit:cover;
-  border-radius: 2.1em;
+  border-radius: 6em;
   font-family: "Poppins", sans-serif;
 }
 

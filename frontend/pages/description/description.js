@@ -32,7 +32,9 @@ const description = () => {
         event.preventDefault(); 
         event.stopPropagation(); 
         //let's grab the image file
+        console.log(event)
         let imageFile = event.dataTransfer.files[0];
+        console.log(imageFile.path)
         handleFile(imageFile);
     }
 
@@ -98,7 +100,7 @@ return(
                 {/* <button className ={styles.push_area} >Add Profile</button> */}
                 {/* <input type="file" hidden  />  */}
                 <label htmlFor="product_image" className={styles.push_area} onClick = { () => fileInput.current.click()}>Add Image</label>
-                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e.target.files[0])}/>
+                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e)}/>
                 {/* <input type="file" accept="image/*" ref={fileInput} onChange={e => handleFile(e.target.files[0])} className={styles.file} name="product_image" id="product_image" hidden /> */}
             </div> 
             <div className={styles.formInput}>

@@ -86,11 +86,21 @@
 }
 .MoveToRight{
   display:flex;
-  justify-content:flex-end;
+  /* justify-content:flex-end; */
   margin-top:30px;
   margin-bottom:80px;
   margin-right: 50px;
+  float: right;
 }
+.MoveToLeft{
+  display:flex;
+  /* justify-content:flex-start; */
+  margin-top:30px;
+  margin-bottom:80px;
+  margin-left: 50px;
+  float:left;
+}
+
 .Continue{
   padding: 10px 25px;
   font-size: 21px;
