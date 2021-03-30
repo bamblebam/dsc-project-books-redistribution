@@ -91,6 +91,7 @@ const profile = ({ data }) => {
 	return (
 		<div className={styles.form_class}>
         <div className={styles.Incenter}>
+        <h2> Your Profile</h2>
         <form action='' method='POST' onSubmit={description_form.handleSubmit}>
              <div className={styles.drag_area} onDragOver = {handledragOver} onDrop = {handleOndrop}>
 				 {showImage ?(<img src ={showImage} alt='Your current profile image'/>):(

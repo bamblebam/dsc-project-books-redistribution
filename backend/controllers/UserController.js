@@ -99,7 +99,8 @@ const UploadImage = async(req,res,next)=>{
     const image_Name = './upload/'+filename;
     var fileMetadata = {
         name: filename, // file name that will be saved in google drive
-        parents:"1MTy211iKX1fvsMggjE9AkbkvKkaJkqxks"
+        //Adding to a Profiles folder
+        parents: ['1OrvrPgwwvlu9Ic4n9rdC6wUhCnRiv77Y']
       };
     
       var media = {
