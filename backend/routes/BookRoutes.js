@@ -1,4 +1,20 @@
 const express = require('express');
+var multer = require('multer');
+const { google } = require('googleapis');
+const fs = require('fs');
+const readline = require('readline');
+const GoogleDriveStorage = require('multer-google-drive');
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './upload');
+     },
+    filename: function (req, file, cb) {
+        cb(null , file.originalname);
+    }
+});
+
+var upload = multer({ storage: storage })
 
 const {
     addbook,
@@ -18,7 +34,7 @@ router.get('/thisbook/:bookId',getAbook);
 router.put('/update/:bookId',updateBook);
 router.delete('/delete/:bookId',deleteBook);
 router.get('/booksWithUser',GetAllBookWithRespectiveUser);
-router.post('/uploadImage/:bookId',uploadBookImage);
+router.post('/uploadImage',upload.single('bookImage'),uploadBookImage);
 
 module.exports ={
     routes:router
