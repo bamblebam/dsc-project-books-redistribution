@@ -12,6 +12,12 @@ import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 var FormData = require('form-data');
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
+import firebase from "firebase/app"
+import "firebase/auth"
+import { firebaseApp } from '../../configurations/db';
 //Add the access token here
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbW9uZHNzaGluZSIsImEiOiJja21ranZkdW0xMXEwMnZzMTEyM3hhM2YwIn0.JM9YXMef9P7iKu52jt5-KQ";
@@ -20,12 +26,18 @@ const Reverseg_geocode = "https://api.tomtom.com/search/2/reverseGeocode/37.553,
 let TextAddress =""
 const Map = () => {
 
-  
+  const history = useHistory();
+	const auth = useAuth()
+	const router = useRouter()
+
   const [address,setAddress]=useState(0);
   const mapContainerRef = useRef(null);
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [zoom, setZoom] = useState(5);
+
+  const userid = firebase.auth().currentUser.uid || null
+  console.log(userid);
 
 function successPosition(position) {
     //Mapbox receives longitude and latitude from Geolocation API
@@ -126,6 +138,7 @@ function successPosition(position) {
 axios.get(url).then(res => {
         setAddress(res.data.addresses[0].address.streetName+","+res.data.addresses[0].address.municipalitySubdivision+","+res.data.addresses[0].address.municipality+","+res.data.addresses[0].address.countrySubdivision)
 				console.log(res.data.addresses[0].address.streetName+res.data.addresses[0].address.municipalitySubdivision+res.data.addresses[0].address.municipality+res.data.addresses[0].address.municipality+res.data.addresses[0].address.countrySubdivision)
+        router.push('/');
 			})}
     // Clean up on unmount
     return () => map.remove();

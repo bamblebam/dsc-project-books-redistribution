@@ -5,14 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import navStyles from '../styles/css/Nav.module.css'
 
-import { firebase } from '../configurations/db'
+import { firebaseApp } from '../configurations/db'
 import 'firebase/auth'
 import axios from 'axios'
+import firebase from "firebase/app"
 import { useAuth } from '../hooks/useAuth.js'
 
 const Nav = () => {
 	const auth = useAuth()
-	const { uid } = firebase.auth().currentUser || 'abc'
+	//const { uid } = firebase.auth().currentUser.uid || 'abc'
 	const [click, setClick] = useState(false)
 	const [button, setButton] = useState(true)
 	const [width, setWidth] = useState(0)
@@ -87,7 +88,7 @@ const Nav = () => {
 						</Link>
 					</li>
 					<li className={navStyles.links} onClick={closeMobile}>
-						<button onClick={auth.signout}>Logout</button>
+						<Link  onClick={auth.signout} className={navStyles.links} href='/auth/authentication'>Logout</Link>
 					</li>
 				</ul>
 			</div>

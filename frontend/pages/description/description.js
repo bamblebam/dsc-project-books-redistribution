@@ -5,8 +5,18 @@ import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 var FormData = require('form-data');
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'
+import { useRouter } from 'next/router'
+import firebase from "firebase/app"
+import "firebase/auth"
+import { firebaseApp } from '../../configurations/db';
 
 const description = () => {
+
+    const history = useHistory();
+	const auth = useAuth()
+	const router = useRouter()
 
     const clientID = "918606077379-f6ekp752jkmtrmnu0u6ng6ufpkg996pk.apps.googleusercontent.com";
     const clientSecret = "5Y26f39iNlEwsnaAuzrPmFNd";
@@ -16,6 +26,9 @@ const description = () => {
     const [driveLink, setdrive] = useState("");
     let formData = new FormData();
 
+    const userid = firebase.auth().currentUser.uid || null
+    console.log(firebase.auth().currentUser.uid);
+    console.log(userid);
     const handleFile = file => {
         setImage(file);
         setPreviewUrl(URL.createObjectURL(file));
@@ -67,8 +80,9 @@ const description = () => {
                         userImage: res.data.fileID
                     }
                     console.log(values.phone_number)
-                    axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
+                    axios.put("http://localhost:8080/api/user/"+userid , body).then(res => {
                         console.log(res)
+                        router.push('/description/Map')
                     })
                 })
 

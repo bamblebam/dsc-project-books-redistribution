@@ -6,27 +6,27 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth.js'
 import axios from 'axios'
-import { firebase } from '../configurations/db'
+import { firebaseApp} from '../configurations/db'
+import firebase from "firebase/app"
 import 'firebase/auth'
 import {useState} from 'react'
 
 const HeroSection = () => {
 	const auth = useAuth()
-	const { uid } = firebase.auth().currentUser || 'abc'
-	
+	const { id } = firebase.auth().currentUser.uid || null
+	console.log(id);
 	const [user,setUser] = useState('');
 	const [username,setUsername] = useState(null);
-	/*
-	if(uid == 'abc'){
-		username="User"
+	
+	if(id == null || id == undefined){
+		console.log("Error ");
 	}
 	else{
-		axios.get("http://localhost:8080/api/user/"+uid).then(res => {
+		axios.get("http://localhost:8080/api/user/"+id).then(res => {
 				username = res.full_name;
 				console.log(username);
 		})
-}
-*/
+}/*
 	// update username from db
 	//change spans from db
 	axios.get("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1").then(res => {
@@ -34,7 +34,7 @@ const HeroSection = () => {
 		    setUsername(res.data.full_name);
 			//username =res.data.full_name; 
 	})
-
+*/
 	useEffect(()=>{
 		setUser(username);	
 	},[username]);
