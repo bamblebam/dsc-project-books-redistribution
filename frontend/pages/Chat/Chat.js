@@ -1,9 +1,10 @@
 import chatStyle from '../../styles/css/Chat.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-
+import App from './App'
 const Chat = () => {
 	return (
+		
 		<div>
 			<ul className='pages'>
 				<li className='chat page'>
