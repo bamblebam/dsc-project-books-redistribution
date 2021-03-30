@@ -61,35 +61,68 @@ const description = () => {
                 axios.post("http://localhost:8080/api/UploadImage", formData).then(res => {
                     setdrive(res.data.fileID);
 
-            </div >
-    { previewUrl && <div className={styles.ShowImageName}> <span>{image.name}</span></div> }
-            <div className ={styles.buttonClass}>
-                {/* <button className ={styles.push_area} >Add Profile</button> */}
-                {/* <input type="file" hidden  />  */}
-                <label htmlFor="product_image" className={styles.push_area} onClick = { () => fileInput.current.click()}>Add Image</label>
-                <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e)}/>
-                {/* <input type="file" accept="image/*" ref={fileInput} onChange={e => handleFile(e.target.files[0])} className={styles.file} name="product_image" id="product_image" hidden /> */}
-            </div> 
-            <div className={styles.formInput}>
-                <div className ={styles.formChildren}>
-                <h4>Name </h4>
-                <input type="text" placeholder ="Enter your name"  name ='user_Name' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_Name}></input>
-                </div>
-                <div className ={styles.formChildren}>
-                <h4>Phone </h4>
-                <input type="text" placeholder ="Enter Your Phone No" name='phone_number' onChange={description_form.handleChange} onBlur={description_form.handleBlur}  value={description_form.values.phone_number} ></input>
-                </div>
-                <div className ={styles.formChildren}>
-                <h4>Education </h4>
-                <input type="text" placeholder ="Enter Your Education" name='education' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.education}></input>
-                </div>
-                {/* <br/> */}
-                <div className ={styles.formChildren}>
-                <h4>Bio </h4>
-                <textarea placeholder ="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
-                </div>
+                    let body = {
+                        bio: values.user_bio,
+                        full_name: values.user_Name,
+                        phone: values.phone_number,
+                        education: values.education,
+                        userImage: res.data.fileID
+                    }
+                    console.log(values.phone_number)
+                    axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", body).then(res => {
+                        console.log(res)
+                    })
+                })
 
-                {/*<div className ={styles.formChildren}>
+            }
+    })
+
+    return (
+        <div className={styles.form_class}>
+            <div className={styles.Incenter}>
+                <form
+                    action=''
+                    method='POST'
+                    onSubmit={description_form.handleSubmit}>
+                    <div className={styles.drag_area} onDragOver={handledragOver} onDrop={handleOndrop}>
+                        {previewUrl ? (
+                            <img src={previewUrl} alt='image' />
+                        ) : (
+                            <>
+                                <div className={styles.icon}></div>
+                                <span>Drag and Drop to Upload Profile</span>
+                            </>
+                        )}
+
+                    </div>
+                    {previewUrl && <div className={styles.ShowImageName}> <span>{image.name}</span></div>}
+                    <div className={styles.buttonClass}>
+                        {/* <button className ={styles.push_area} >Add Profile</button> */}
+                        {/* <input type="file" hidden  />  */}
+                        <label htmlFor="product_image" className={styles.push_area} onClick={() => fileInput.current.click()}>Add Image</label>
+                        <input type="file" accept='image/*' ref={fileInput} hidden onChange={e => handleFile(e)} />
+                        {/* <input type="file" accept="image/*" ref={fileInput} onChange={e => handleFile(e.target.files[0])} className={styles.file} name="product_image" id="product_image" hidden /> */}
+                    </div>
+                    <div className={styles.formInput}>
+                        <div className={styles.formChildren}>
+                            <h4>Name </h4>
+                            <input type="text" placeholder="Enter your name" name='user_Name' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_Name}></input>
+                        </div>
+                        <div className={styles.formChildren}>
+                            <h4>Phone </h4>
+                            <input type="text" placeholder="Enter Your Phone No" name='phone_number' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.phone_number} ></input>
+                        </div>
+                        <div className={styles.formChildren}>
+                            <h4>Education </h4>
+                            <input type="text" placeholder="Enter Your Education" name='education' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.education}></input>
+                        </div>
+                        {/* <br/> */}
+                        <div className={styles.formChildren}>
+                            <h4>Bio </h4>
+                            <textarea placeholder="Enter your bio to help people know you" rows="20" cols="40" name='user_bio' onChange={description_form.handleChange} onBlur={description_form.handleBlur} value={description_form.values.user_bio}></textarea>
+                        </div>
+
+                        {/*<div className ={styles.formChildren}>
                     <h2>Location </h2>
                 
                 </div>*/}
@@ -98,10 +131,11 @@ const description = () => {
                         </div>
                     </div>
 
-                </form >
-            </div >
+                </form>
+            </div>
 
-        </div >
+
+        </div>
 
     );
 };
