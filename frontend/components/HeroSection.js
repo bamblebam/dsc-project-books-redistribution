@@ -4,11 +4,40 @@ import heroStyles from '../styles/css/HeroSection.module.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useEffect } from 'react'
+import { useAuth } from '../hooks/useAuth.js'
+import axios from 'axios'
+import { firebase } from '../configurations/db'
+import 'firebase/auth'
+import {useState} from 'react'
 
 const HeroSection = () => {
-	let username = 'John'
+	const auth = useAuth()
+	const { uid } = firebase.auth().currentUser || 'abc'
+	
+	const [user,setUser] = useState('');
+	const [username,setUsername] = useState(null);
+	/*
+	if(uid == 'abc'){
+		username="User"
+	}
+	else{
+		axios.get("http://localhost:8080/api/user/"+uid).then(res => {
+				username = res.full_name;
+				console.log(username);
+		})
+}
+*/
 	// update username from db
 	//change spans from db
+	axios.get("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1").then(res => {
+
+		    setUsername(res.data.full_name);
+			//username =res.data.full_name; 
+	})
+
+	useEffect(()=>{
+		setUser(username);	
+	},[username]);
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger)
@@ -71,20 +100,20 @@ const HeroSection = () => {
 					</div>
 					<div className={heroStyles.left}>
 						<div className={heroStyles.main}>
-							<h1 className={heroStyles.title}>Hello {username}</h1>
-							<p className={heroStyles.subtitle}> Some random quote/text from api</p>
+							<h1 className={heroStyles.title}>Hello {user}</h1>
+							<p className={heroStyles.subtitle}> Knowledge can only be volunteered it cannot be conscripted.</p>
 							<div className={heroStyles.buttonDiv}>
 								<button className={heroStyles.btn__primary}>
-									<Link href='product/Resources'>Get Books</Link>
+									<Link href='/product/Resources'>Get Books</Link>
 								</button>
 								<button className={heroStyles.btn__secondary}>
-									<Link href='product/donate'>Donate Books</Link>
+									<Link href='/product/donate'>Donate Books</Link>
 								</button>
 							</div>
 						</div>
 					</div>
 					<div className={heroStyles.right}>
-						<Link href='product/Resources'>
+						<Link href='/product/Resources'>
 							<Image
 								src='/images/testImage.jpg'
 								alt='test image'
@@ -113,10 +142,10 @@ const HeroSection = () => {
 							<p className={heroStyles.subtitle}>Join Us and become a provider</p>
 							<div className={heroStyles.buttonDiv}>
 								<button className={heroStyles.btn__primary}>
-									<Link href='auth/authentication'>Join us</Link>
+									<Link href='/auth/authentication'>Join us</Link>
 								</button>
 								<button className={heroStyles.btn__secondary}>
-									<Link href='product/donate'>Donate Books</Link>
+									<Link href='/product/donate'>Donate Books</Link>
 								</button>
 							</div>
 						</div>

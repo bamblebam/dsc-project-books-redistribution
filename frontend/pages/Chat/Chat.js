@@ -5,10 +5,10 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 const Chat = () => {
 	return (
 		<div>
-			<ul class='pages'>
-				<li class='chat page'>
-					<div class='chatArea'>
-						<ul class='messages'></ul>
+			<ul className='pages'>
+				<li className='chat page'>
+					<div className='chatArea'>
+						<ul className='messages'></ul>
 					</div>
 					<div className={chatStyle.inputArea}>
 						<input className={chatStyle.input} placeholder='Type here...' />

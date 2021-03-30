@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import Modal from 'react-modal'
 import Card from './Card'
 import modalCardStyles from '../styles/css/ModalCard.module.css'
-import firebase from '../configurations/db'
+import {firebase} from '../configurations/db'
 import 'firebase/auth'
 import axios from 'axios'
+import { useAuth } from '../hooks/useAuth.js'
 
 const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
+	const auth = useAuth()
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	const addToWishlist = () => {
@@ -85,8 +87,8 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
 										Add to wishlist
 									</a>
 								</button>
-								<button className={modalCardStyles.btn_secondary}>
-									<a className={modalCardStyles.btn_link_secondary} href='/'>
+								<button className={modalCardStyles.btn_secondary} >
+									<a className={modalCardStyles.btn_link_secondary} href='/Chat/Chat'>
 										Contact User
 									</a>
 								</button>
