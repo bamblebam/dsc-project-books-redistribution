@@ -1,6 +1,6 @@
 import React, { useRef ,useState,useEffect} from 'react'
 import Head from 'next/head'
-import styles from '../../styles/css/description.module.css'
+import styles from '../../styles/css/profile.module.css'
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'

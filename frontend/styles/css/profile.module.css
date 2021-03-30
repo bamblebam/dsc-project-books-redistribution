@@ -86,17 +86,19 @@
 }
 .MoveToRight{
   display:flex;
-  float :right;
+  /* justify-content:flex-end; */
   margin-top:30px;
   margin-bottom:80px;
   margin-right: 50px;
+  float: right;
 }
 .MoveToLeft{
   display:flex;
-  float:left;
-  margin-top:80px;
+  /* justify-content:flex-start; */
+  margin-top:30px;
   margin-bottom:80px;
-  margin-right: 50px;
+  margin-left: 50px;
+  float:left;
 }
 .Continue{
   padding: 10px 25px;
