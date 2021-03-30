@@ -6,6 +6,7 @@ import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faGoogle, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import firebase from "firebase/app"
 import "firebase/auth"
+
 import { firebaseApp } from '../../configurations/db';
 import axios from 'axios'
 import { useFormik } from 'formik';
@@ -19,6 +20,8 @@ export default function authentication() {
 	const history = useHistory();
 	const auth = useAuth()
 	const router = useRouter()
+
+	
 
 	const change_to_signup_btn = useRef(null)
 	const change_to_signin_btn = useRef(null)
@@ -39,7 +42,7 @@ export default function authentication() {
 		}),
 		onSubmit: values => {
 			auth.signup(values.signup_email, values.signup_password1, values.signup_username).then(() => {
-				router.push('/')
+				router.push('/description/description')
 			})
 		}
 	})
