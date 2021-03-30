@@ -98,14 +98,17 @@ const UploadImage = async (req, res, next) => {
     const image_Name = './upload/' + filename;
     var fileMetadata = {
         name: filename, // file name that will be saved in google drive
+        //Adding to a Profiles folder
+        parents: ['1OrvrPgwwvlu9Ic4n9rdC6wUhCnRiv77Y']
     };
 
     var media = {
         mimeType: 'image/jpg',
         body: fs.createReadStream(image_Name), // Reading the file from our server
-    }
+
+    };
     // Authenticating drive API
-    const drive = google.drive({ version: 'v3', auth: Imageauth })
+    const drive = google.drive({ version: 'v3', auth: Imageauth });
 
     // Uploading Single image to drive
     drive.files.create(
@@ -136,6 +139,12 @@ const UploadImage = async (req, res, next) => {
                     fileID: "https://drive.google.com/uc?export=view&id=" + file.data.id,
                 });
             }
+            // if file upload success then return the unique google drive id
+            res.status(200).json({
+
+                fileID: "https://drive.google.com/thumbnail?id=" + file.data.id,
+            });
+        }
         }
     )
 }
@@ -262,11 +271,20 @@ const getUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     try {
         const id = req.params.id
-        const data = req.body
+        var data = req.body
+
+        if (data.long != undefined && data.lat != undefined) {
+            data = {
+
+                location: new firebase1.firestore.GeoPoint(data.lat, data.long)
+
+            }
+        }
         const user = await firestore.collection('users').doc(id)
         await user.update(data)
         res.send('Profile updated successfully !')
     } catch (error) {
+        console.log(error)
         res.status(400).send(error.message)
     }
 }
@@ -360,6 +378,15 @@ const userPasswordReset = (req, res, next) => {
             // An error happened.
             console.log(error)
         })
+}
+const userEmailVerify = (req, res, next) => {
+    var user = firebase.auth().currentUser;
+
+    user.sendEmailVerification().then(function () {
+        // Email sent.
+    }).catch(function (error) {
+        // An error happened.
+    });
 }
 
 const addToUserWishlist = async (req, res, next) => {
@@ -524,6 +551,7 @@ function getDistance(lat1, long1, lat2, long2) {
     return Math.round(distance) //Integer 10.55 = 11
 }
 
+
 /*
 const searchBookbyTitle = async (req, res, next) => {
 
@@ -557,5 +585,6 @@ module.exports = {
     addToUserWishlist,
     recommendBook,
     UploadImage,
-    singleFileUpload
+    singleFileUpload,
+    userEmailVerify
 }
