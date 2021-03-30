@@ -28,39 +28,40 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-const SCOPES = ['https://www.googleapis.com/auth/drive']
-const TOKEN_PATH = 'token.json'
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
+const TOKEN_PATH = 'token.json';
 
-let Imageauth
+let Imageauth;
+
 
 fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err)
+    if (err) return console.log('Error loading client secret file:', err);
 
-    authorize(JSON.parse(content))
-})
+    authorize(JSON.parse(content));
+});
 
 function authorize(credentials) {
-    const { client_secret, client_id, redirect_uris } = credentials.installed
+    const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
         client_id,
         client_secret,
         redirect_uris[0]
-    )
+    );
 
     // Check if we have previously stored a token.
     fs.readFile(TOKEN_PATH, (err, token) => {
-        if (err) return getAccessToken(oAuth2Client)
-        oAuth2Client.setCredentials(JSON.parse(token))
-        Imageauth = oAuth2Client
-    })
+        if (err) return getAccessToken(oAuth2Client);
+        oAuth2Client.setCredentials(JSON.parse(token));
+        Imageauth = oAuth2Client;
+    });
 }
 
 function getAccessToken(oAuth2Client) {
     const authUrl = oAuth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: SCOPES,
-    })
-    console.log('Authorize this app by visiting this url:', authUrl)
+    });
+    console.log('Authorize this app by visiting this url:', authUrl);
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
@@ -136,17 +137,13 @@ const UploadImage = async (req, res, next) => {
                 // if file upload success then return the unique google drive id
                 res.status(200).json({
 
-                    fileID: "https://drive.google.com/uc?export=view&id=" + file.data.id,
+                    fileID: "https://drive.google.com/thumbnail?id=" + file.data.id,
                 });
             }
-            // if file upload success then return the unique google drive id
-            res.status(200).json({
-
-                fileID: "https://drive.google.com/thumbnail?id=" + file.data.id,
-            });
-        }
         }
     )
+
+
 }
 const addUser = async (req, res, next) => {
     try {
@@ -162,24 +159,25 @@ const addUser = async (req, res, next) => {
             // education:"",
             // lastUpdated:current,
             // addBooks:0,
+
+
         }
 
         var email = data.email
         var password = data.password
         const todb = {
             email: email,
-            bio: '',
-            phone: '',
-            full_name: '',
+            bio: "",
+            phone: "",
+            full_name: "",
             wishList: [],
-            userImage: '',
-            location: new firebase1.firestore.GeoPoint(
-                19.073760882494316,
-                72.89957748403077
-            ),
-            education: '',
+            userImage: "",
+            location: new firebase1.firestore.GeoPoint(19.073760882494316, 72.89957748403077),
+            education: "",
             lastUpdated: current,
             addBooks: 0,
+
+
         }
         await firebase
             .auth()
@@ -222,6 +220,7 @@ const addUser = async (req, res, next) => {
 //         res.status(400).send(error.message)
 //     }
 // }
+
 
 const getAllUser = async (req, res, next) => {
     try {
@@ -394,7 +393,6 @@ const addToUserWishlist = async (req, res, next) => {
     try {
         const userid = req.body.userId
         const bookid = req.body.id
-        console.log(userid, bookid)
         // const data = req.body;
         const user = firestore.collection('users').doc(userid)
 
@@ -509,7 +507,6 @@ const recommendBook = async (req, res, next) => {
                 /*
                 .then((booksAccordingToCategory) => {
                     booksAccordingToCategory.forEach(book=>{
-
                         bookRanking.push(stringSimilarity.compareTwoStrings("G.V. Kumbojkar", book["booktitle"]));
                     })
                     for(var i=0;i<bookRanking.length;i++){
@@ -554,21 +551,14 @@ function getDistance(lat1, long1, lat2, long2) {
 
 /*
 const searchBookbyTitle = async (req, res, next) => {
-
     const title = req.body.bookTitle;
     if(!title.exists){
         res.send(404).send("Some error occurred");
-
     }else{
-
         const booksAccordingToCategory = [];
         const books = firebase.collection('books');
         const booksData = await books.get();
-
-
-
     }
-
 }
 */
 
