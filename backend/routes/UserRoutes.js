@@ -32,7 +32,8 @@ const { addUser,
     addToUserWishlist,
     recommendBook,
     UploadImage,
-    singleFileUpload
+    singleFileUpload,
+    userEmailVerify
  
 } = require('../controllers/UserController');
 
@@ -51,6 +52,7 @@ router.post('/addWishListBook', addToUserWishlist);
 router.get('/recommend/:id', recommendBook);
 router.post('/UploadImage',upload.single('profile'),UploadImage);
 router.post('/uploadMulter', upload.single('profile'),singleFileUpload);
+router.post('/verifyEmail',userEmailVerify)
 
 module.exports = {
     routes: router
