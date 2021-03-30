@@ -378,6 +378,15 @@ const userPasswordReset = (req, res, next) => {
             console.log(error)
         })
 }
+const userEmailVerify = (req,res,next) =>{
+    var user = firebase.auth().currentUser;
+
+    user.sendEmailVerification().then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
+}
 
 const addToUserWishlist = async (req, res, next) => {
     console.log('inside fn')
@@ -540,6 +549,7 @@ function getDistance(lat1, long1, lat2, long2) {
     return Math.round(distance) //Integer 10.55 = 11
 }
 
+
 /*
 const searchBookbyTitle = async (req, res, next) => {
 
@@ -573,5 +583,6 @@ module.exports = {
     addToUserWishlist,
     recommendBook,
     UploadImage,
-    singleFileUpload
+    singleFileUpload,
+    userEmailVerify
 }

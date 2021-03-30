@@ -6,7 +6,8 @@ const {
     getAbook,
     updateBook,
     deleteBook,
-    GetAllBookWithRespectiveUser
+    GetAllBookWithRespectiveUser,
+    uploadBookImage
 } = require('../controllers/BookController');
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router.get('/thisbook/:bookId',getAbook);
 router.put('/update/:bookId',updateBook);
 router.delete('/delete/:bookId',deleteBook);
 router.get('/booksWithUser',GetAllBookWithRespectiveUser);
+router.post('/uploadImage/:bookId',uploadBookImage);
 
 module.exports ={
     routes:router
