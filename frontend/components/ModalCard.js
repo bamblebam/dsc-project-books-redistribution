@@ -12,7 +12,8 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 
 	const addToWishlist = () => {
-		const userid = firebase.auth().currentUser.uid || null
+		// const userid = firebase.auth().currentUser.uid || null
+		const userid = "1kY7ymskNraVdl5SmgYTPtr7Xgq1"
 		const bookid = bookId
 
 		if (userid == null) {

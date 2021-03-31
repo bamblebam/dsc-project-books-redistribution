@@ -13,20 +13,30 @@ import {useState} from 'react'
 
 const HeroSection = () => {
 	const auth = useAuth()
-	const { id } = firebase.auth().currentUser.uid || null
-	console.log(id);
+	// const { id } = firebase.auth().currentUser.uid || null
+	// console.log(id);
 	const [user,setUser] = useState('');
 	const [username,setUsername] = useState(null);
-	
-	if(id == null || id == undefined){
-		console.log("Error ");
-	}
-	else{
-		axios.get("http://localhost:8080/api/user/"+id).then(res => {
-				username = res.full_name;
+	axios.get("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1").then(res => {
+				// username = setUsername(res.full_name);
+				setUsername(res.full_name)
 				console.log(username);
 		})
-}/*
+// 	if(id == null || id == undefined){
+// 		console.log("Error ");
+// 	}
+// 	else{
+// 		// axios.get("http://localhost:8080/api/user/"+id).then(res => {
+// 		// 		username = res.full_name;
+// 		// 		console.log(username);
+// 		// })
+// 		axios.get("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1").then(res => {
+// 				username = res.full_name;
+// 				console.log(username);
+// 		})
+		
+// }
+/*
 	// update username from db
 	//change spans from db
 	axios.get("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1").then(res => {
@@ -100,7 +110,7 @@ const HeroSection = () => {
 					</div>
 					<div className={heroStyles.left}>
 						<div className={heroStyles.main}>
-							<h1 className={heroStyles.title}>Hello {user}</h1>
+							<h1 className={heroStyles.title}>Hello, Krutika Bhatt</h1>
 							<p className={heroStyles.subtitle}> Knowledge can only be volunteered it cannot be conscripted.</p>
 							<div className={heroStyles.buttonDiv}>
 								<button className={heroStyles.btn__primary}>

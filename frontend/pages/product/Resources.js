@@ -64,7 +64,8 @@ const Resources = ({ data }) => {
 }
 export async function getStaticProps() {
 	const res = await axios.get(
-		'http://localhost:8080/books/getbooks/95GhG5U6Yi7aSInxZyPs'
+		// 'http://localhost:8080/books/getbooks/1kY7ymskNraVdl5SmgYTPtr7Xgq1'
+		'http://localhost:8080/books/booksWithUser'
 	)
 	const data = await res.data
 

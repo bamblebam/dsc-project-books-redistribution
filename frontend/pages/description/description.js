@@ -26,8 +26,9 @@ const description = () => {
     const [driveLink, setdrive] = useState("");
     let formData = new FormData();
 
-    const userid = firebase.auth().currentUser.uid || null
-    console.log(firebase.auth().currentUser.uid);
+    // const userid = firebase.auth().currentUser.uid || null
+    const userid = "1kY7ymskNraVdl5SmgYTPtr7Xgq1"
+    // console.log(firebase.auth().currentUser.uid);
     console.log(userid);
     const handleFile = file => {
         setImage(file);
