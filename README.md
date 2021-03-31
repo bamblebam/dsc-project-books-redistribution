@@ -25,3 +25,19 @@ This is the repository for our project submission in the google DSC challenge.
 - [ ] Books structure
 - [ ] Make the signin view work
 - [ ] Password reset and email verification
+
+
+## Steps to run:-
+1. Clone the repository.
+2. Install the required dependencies for the root, backend and frontend directories. 
+ ``` 
+  npm install
+ ```
+3. cd into the frontend directory and use npm run dev to start the frontend next JS server.
+ ```
+ npm run dev
+ ```
+4. cd into the backend directory and use npm start to start the backend express server.
+```
+npm start
+```
