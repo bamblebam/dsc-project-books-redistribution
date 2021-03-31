@@ -110,7 +110,7 @@ const HeroSection = () => {
 					</div>
 					<div className={heroStyles.left}>
 						<div className={heroStyles.main}>
-							<h1 className={heroStyles.title}>Hello, Krutika Bhatt</h1>
+							<h1 className={heroStyles.title}>Hello, Aditya</h1>
 							<p className={heroStyles.subtitle}> Knowledge can only be volunteered it cannot be conscripted.</p>
 							<div className={heroStyles.buttonDiv}>
 								<button className={heroStyles.btn__primary}>

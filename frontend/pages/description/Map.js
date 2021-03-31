@@ -44,6 +44,7 @@ function updateLoc() {
   // }
   axios.put("http://localhost:8080/api/user/1kY7ymskNraVdl5SmgYTPtr7Xgq1", longlat).then(res => {
 				console.log(res)
+        router.push('/');
 			})
   
 }
@@ -155,7 +156,7 @@ function successPosition(position) {
 axios.get(url).then(res => {
         setAddress(res.data.addresses[0].address.streetName+","+res.data.addresses[0].address.municipalitySubdivision+","+res.data.addresses[0].address.municipality+","+res.data.addresses[0].address.countrySubdivision)
 				console.log(res.data.addresses[0].address.streetName+res.data.addresses[0].address.municipalitySubdivision+res.data.addresses[0].address.municipality+res.data.addresses[0].address.municipality+res.data.addresses[0].address.countrySubdivision)
-        router.push('/');
+        // router.push('/');
 			})}
       // useEffect(()=>{
       //   setLatitude(lat)

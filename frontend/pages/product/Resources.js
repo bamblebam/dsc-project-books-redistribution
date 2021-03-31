@@ -26,7 +26,7 @@ const Resources = ({ data }) => {
 	}, [items])
 
 	useEffect(() => {
-		const fuse = new Fuse(slideRows, { keys: ['booktitle', 'description'] })
+		const fuse = new Fuse(slideRows, { keys: ['Title', 'Description'] })
 		const results = fuse.search(searchTerm).map(({ item }) => item)
 
 		console.log('results :', results)
@@ -49,11 +49,12 @@ const Resources = ({ data }) => {
 						<ModalCard
 							key={key}
 							bookId={values.id}
-							bookName={values.booktitle}
-							bookDesc={values.description.slice(0, 75) + '...'}
-							text={values.description}
-							imgSrc={values.bookImage}
-							imgAlt={values.booktitle}
+							bookName={values.Title}
+							// bookDesc={values.Description.slice(0, 75) + '...'}
+							bookDesc={values.Description}
+							text={values.Description}
+							imgSrc={values.image}
+							imgAlt={values.Title}
 							link='/'
 						/>
 					)

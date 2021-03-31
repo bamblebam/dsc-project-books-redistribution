@@ -14,7 +14,8 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
 	const addToWishlist = () => {
 		// const userid = firebase.auth().currentUser.uid || null
 		const userid = "1kY7ymskNraVdl5SmgYTPtr7Xgq1"
-		const bookid = bookId
+		// const bookid = bookId
+		const bookid ="QmAxoSgQWYlFiuDji6Ed"
 
 		if (userid == null) {
 			console.log('user not found')
@@ -27,6 +28,7 @@ const ModalCard = ({ bookName, bookDesc, text, imgSrc, imgAlt, bookId }) => {
 			axios.post('http://localhost:8080/api/addWishListBook', body).then(res => {
 				console.log('test')
 				console.log(res)
+				alert("Book Added To Wishlist Successfully!")
 			})
 		}
 	}

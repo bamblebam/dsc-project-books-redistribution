@@ -36,8 +36,8 @@ export default function Donate() {
             setdrive(res.data.fileID);
            
             let body = {
-				product_name: values.product_name,
-				product_description: values.product_description,
+				booktitle: values.product_name,
+				description: values.product_description,
 				bookImage: res.data.fileID
 			}
 			console.log(body)

@@ -53,10 +53,24 @@ const useAuthProvider = () => {
     }
 
     const signup = (email, password, username) => {
+       
         return auth.createUserWithEmailAndPassword(email, password).then(res => {
+            var user = res.user
+            user
+            .sendEmailVerification()
+            .then(function () { })
+            .catch(function (error) {
+                console.log('Error occured')
+            })
             return addUserToFirestore({ uid: res.user.uid, email, password, username })
         }).catch(error => {
             console.log(error)
+        })
+        user
+        .sendEmailVerification()
+        .then(function () { })
+        .catch(function (error) {
+            console.log('Error occured')
         })
     }
 

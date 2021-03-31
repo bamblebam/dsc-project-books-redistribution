@@ -135,7 +135,7 @@ export default function authentication() {
 										></FontAwesomeIcon>
 									</div>
 									<input
-										type='text'
+										type='password'
 										name='signin_password'
 										className={styles.input}
 										placeholder='Password'
@@ -236,7 +236,7 @@ export default function authentication() {
 										></FontAwesomeIcon>
 									</div>
 									<input
-										type='text'
+										type='password'
 										name='signup_password1'
 										className={styles.input}
 										placeholder='Password'
@@ -256,7 +256,7 @@ export default function authentication() {
 										></FontAwesomeIcon>
 									</div>
 									<input
-										type='text'
+										type='password'
 										name='signup_password2'
 										className={styles.input}
 										placeholder='Confirm Password'

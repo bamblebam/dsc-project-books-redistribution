@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-
+import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faTimes, faBars } from '@fortawesome/free-solid-svg-icons'
 import navStyles from '../styles/css/Nav.module.css'
@@ -55,7 +55,8 @@ const Nav = () => {
 		<div className={navStyles.customNav}>
 			<div className={navStyles.logo}>
 				<Link href='/' onClick={closeMobile}>
-					Logo
+				
+							Distribooks
 				</Link>
 			</div>
 			{/* hambuger */}
@@ -83,7 +84,7 @@ const Nav = () => {
 						</Link>
 					</li>
 					<li className={navStyles.links} onClick={closeMobile}>
-						<Link className={navStyles.links} href='/description/description'>
+						<Link className={navStyles.links} href='/profile/profile'>
 							Account
 						</Link>
 					</li>
