@@ -12,19 +12,19 @@ This is the repository for our project submission in the google DSC challenge.
 - [x] Hambuger in nav
 - [x] Home page components
 - [x] unable to exit out of modal
-- [ ] Search in resources page
+- [x] Search in resources page
 - [x] About Page
-- [ ] Account Page
-- [ ] Wishlist
-- [ ] Backend integration
-- [ ] Maps
-- [ ] Video
-- [ ] Survey
-- [ ] Add to userWishList error
-- [ ] Authors in books
-- [ ] Books structure
-- [ ] Make the signin view work
-- [ ] Password reset and email verification
+- [x] Account Page
+- [x] Wishlist
+- [x] Backend integration
+- [x] Maps
+- [x] Video
+- [x] Survey
+- [x] Add to userWishList error
+- [x] Authors in books
+- [x] Books structure
+- [x] Make the signin view work
+- [x] Password reset and email verification
 
 
 ## Steps to run:-
@@ -35,9 +35,19 @@ This is the repository for our project submission in the google DSC challenge.
  ```
 3. cd into the frontend directory and use npm run dev to start the frontend next JS server.
  ```
+ cd backend
  npm run dev
  ```
 4. cd into the backend directory and use npm start to start the backend express server.
 ```
+cd frontend
 npm start
 ```
+Now the frontend runs on localhost://3000/auth/authentication and the backend runs on localhost://8080<br>
+
+## Underatand the problem statement and solution through the short video
+[![The problem statement and Soluton](https://img.youtube.com/vi/BIsYYMsNR9I/0.jpg)](http://www.youtube.com/watch?v=BIsYYMsNR9I)
+
+<br><br>
+## View the demo video for the application
+[![The problem statement and Soluton](https://img.youtube.com/vi/EQsNYcBHdxk/0.jpg)](http://www.youtube.com/watch?v=EQsNYcBHdxk)
